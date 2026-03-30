@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Virmina</title>
+  <meta name="description" content="Virmina 고객 지원 / Support" />
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sage:        #4A7C59;
+      --sage-dark:   #2D5C3F;
+      --peach:       #E8A87C;
+      --mint:        #6FCBA0;
+      --amber:       #F0A500;
+      --cream:       #F7F4EF;
+      --surface:     #FFFFFF;
+      --charcoal:    #2C2C2C;
+      --muted:       #7A9E87;
+      --border:      #E2DDD6;
+      --radius:      12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --cream:   #1A1F17;
+        --surface: #252E21;
+        --charcoal:#F0EDE8;
+        --border:  #344030;
+        --muted:   #7A9E87;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    /* ── Language Toggle ──────────────────────────────────── */
+    .lang-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 24px;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      padding: 5px 16px;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-btn.active {
+      background: var(--sage);
+      border-color: var(--sage);
+      color: #fff;
+    }
+
+    /* ── Header ───────────────────────────────────────────── */
+    .site-header {
+      background: linear-gradient(135deg, var(--sage) 0%, var(--sage-dark) 100%);
+      color: #fff;
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+
+    .logo-mark {
+      width: 64px;
+      height: 64px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .site-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .site-header .subtitle {
+      font-size: 14px;
+      opacity: 0.8;
+      font-weight: 400;
+    }
+
+    /* ── Main Layout ─────────────────────────────────────── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Effective Date Badge ─────────────────────────────── */
+    .meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    .meta-badge .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--mint);
+    }
+
+    /* ── Section ─────────────────────────────────────────── */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 20px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--sage) 12%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .section h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: -0.3px;
+    }
+
+    /* ── Typography ──────────────────────────────────────── */
+    p { margin-bottom: 14px; color: var(--charcoal); }
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 14px;
+    }
+
+    li { margin-bottom: 6px; }
+
+    strong { color: var(--charcoal); font-weight: 600; }
+
+    a {
+      color: var(--sage);
+      text-decoration: none;
+      border-bottom: 1px solid color-mix(in srgb, var(--sage) 30%, transparent);
+      transition: border-color 0.2s;
+    }
+
+    a:hover { border-color: var(--sage); }
+
+    /* ── Highlight Box ───────────────────────────────────── */
+    .highlight {
+      background: color-mix(in srgb, var(--mint) 10%, var(--surface));
+      border-left: 3px solid var(--mint);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 15px;
+    }
+
+    .highlight.warn {
+      background: color-mix(in srgb, var(--amber) 10%, var(--surface));
+      border-color: var(--amber);
+    }
+
+    /* ── FAQ Item ────────────────────────────────────────── */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+    }
+
+    .faq-item:first-child { padding-top: 0; }
+    .faq-item:last-child  { border-bottom: none; padding-bottom: 0; }
+
+    .faq-q {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .faq-q::before {
+      content: "Q";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 22px;
+      background: var(--sage);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .faq-a {
+      font-size: 15px;
+      color: var(--charcoal);
+      line-height: 1.7;
+      padding-left: 30px;
+      margin: 0;
+    }
+
+    /* ── Contact Card ────────────────────────────────────── */
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: linear-gradient(135deg,
+        color-mix(in srgb, var(--sage) 8%, var(--surface)),
+        color-mix(in srgb, var(--mint) 8%, var(--surface))
+      );
+      border: 1px solid color-mix(in srgb, var(--sage) 20%, transparent);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-top: 16px;
+    }
+
+    .contact-card .icon { font-size: 28px; }
+
+    .contact-card .label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .contact-card .value {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--sage);
+    }
+
+    /* ── Footer ──────────────────────────────────────────── */
+    .site-footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .site-footer a { color: var(--muted); }
+
+    /* ── Language visibility ─────────────────────────────── */
+    [lang-block] { display: none; }
+    [lang-block].visible { display: block; }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .section { padding: 24px 18px; }
+      .site-header { padding: 40px 20px 36px; }
+      .contact-card { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Language Toggle ─────────────────────────── -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('ko')" id="btn-ko">한국어</button>
+  <button class="lang-btn"        onclick="setLang('en')" id="btn-en">English</button>
+</div>
+
+<!-- ── Header ─────────────────────────────────── -->
+<header class="site-header">
+  <div class="logo-mark">🌱</div>
+  <h1>Virmina</h1>
+  <p class="subtitle" lang-block="ko" id="hd-ko">고객 지원</p>
+  <p class="subtitle" lang-block="en" id="hd-en">Support</p>
+</header>
+
+<!-- ══════════════════════════════════════════════
+     KOREAN VERSION
+══════════════════════════════════════════════ -->
+<div lang-block="ko" id="content-ko">
+<main class="container">
+
+  <div class="meta-badge">
+    <span class="dot"></span>
+    최종 업데이트: 2026년 3월 30일
+  </div>
+
+  <!-- 자주 묻는 질문 -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">💬</div>
+      <h2>자주 묻는 질문 (FAQ)</h2>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">스트릭이 갑자기 사라졌어요.</p>
+      <p class="faq-a">
+        스트릭은 해당 날짜에 습관을 완료하지 않으면 자동으로 초기화됩니다.
+        실수로 빠뜨린 경우 <strong>소급 완료</strong> 기능으로 최대 3일 전까지 기록을 추가할 수 있습니다.
+        홈 화면에서 습관을 길게 누르거나 습관 상세 화면에서 날짜를 선택해 보세요.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Grace Day란 무엇인가요?</p>
+      <p class="faq-a">
+        Grace Day는 하루를 쉬어도 스트릭이 유지되는 여유 기능입니다.
+        완벽하지 않아도 꾸준함을 이어갈 수 있도록 돕기 위해 설계되었습니다.
+        <strong>긍정 습관</strong>에만 적용 가능하며, 회피 습관에는 사용할 수 없습니다.
+        Grace Day는 연속으로 사용할 수 없습니다.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">회피 습관(Avoidance Habit)은 어떻게 동작하나요?</p>
+      <p class="faq-a">
+        끊고 싶은 나쁜 습관을 등록하면, 그날 참았을 때 스트릭이 쌓입니다.
+        앱을 열어 별도로 체크하지 않아도 자정이 되면 자동으로 완료 처리됩니다.
+        Grace Day는 회피 습관에 적용되지 않습니다.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">위젯이 데이터를 불러오지 못해요 / 비어 있어요.</p>
+      <p class="faq-a">
+        아래 순서로 확인해 보세요.
+      </p>
+      <ul style="padding-left: 30px; margin: 8px 0 0; font-size: 15px;">
+        <li>앱을 한 번 열어 데이터를 동기화하세요.</li>
+        <li>홈 화면에서 위젯을 길게 누른 뒤 <strong>위젯 편집</strong>을 눌러 설정을 저장하세요.</li>
+        <li>그래도 해결되지 않으면 위젯을 삭제 후 다시 추가해 보세요.</li>
+        <li>iPhone을 재시작하면 대부분의 위젯 문제가 해결됩니다.</li>
+      </ul>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Apple Health 연동이 작동하지 않아요.</p>
+      <p class="faq-a">
+        현재 버전에서는 <strong>앱이 열려 있는 동안</strong>에만 Apple Health 데이터를 확인합니다.
+        iOS 설정 → 건강 → 데이터 접근 및 기기에서 Virmina에 필요한 항목(걸음 수, 운동, 수면, 마음챙기기)이
+        활성화되어 있는지 확인해 주세요.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">iCloud 동기화가 되지 않아요.</p>
+      <p class="faq-a">
+        동기화가 작동하려면 두 기기 모두 <strong>같은 Apple ID로 iCloud에 로그인</strong>되어 있어야 합니다.
+        iOS 설정 → [내 이름] → iCloud → Virmina가 활성화되어 있는지 확인하고,
+        인터넷 연결 상태도 확인해 보세요. 변경 사항이 반영되는 데 최대 수 분이 걸릴 수 있습니다.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">습관 데이터를 백업하거나 이전할 수 있나요?</p>
+      <p class="faq-a">
+        앱 내 <strong>설정 → 데이터 내보내기</strong>에서 습관과 기록 전체를 JSON 파일로 저장할 수 있습니다.
+        새 기기나 재설치 후 <strong>설정 → 데이터 가져오기</strong>로 복원하세요.
+        iCloud를 사용 중이라면 별도 백업 없이도 자동 복원됩니다.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">앱을 삭제하면 데이터도 사라지나요?</p>
+      <p class="faq-a">
+        기기 내 로컬 데이터는 앱 삭제 시 함께 삭제됩니다.
+        iCloud에 로그인된 상태였다면 CloudKit에 저장된 데이터는 유지되며,
+        재설치 후 자동으로 복원됩니다. 확실한 보관을 위해 사전에 JSON 내보내기를 권장합니다.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">알림이 오지 않아요.</p>
+      <p class="faq-a">
+        iOS 설정 → 알림 → Virmina에서 알림이 허용되어 있는지 확인하세요.
+        앱 내 각 습관 상세 화면에서 알림 시간이 설정되어 있는지도 확인하세요.
+        방해 금지 모드나 집중 모드가 활성화된 경우 알림이 차단될 수 있습니다.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Siri나 단축어 기능을 사용하려면 어떻게 하나요?</p>
+      <p class="faq-a">
+        iOS 16 이상에서 Siri에게 "Virmina에서 [습관 이름] 완료해줘" 라고 말하거나,
+        단축어 앱에서 Virmina 액션을 추가할 수 있습니다.
+        지원 액션: 습관 완료, 오늘 건너뛰기, 스트릭 확인, 오늘 진행 상황 확인, 습관 추가.
+      </p>
+    </div>
+  </section>
+
+  <!-- 문제 해결 -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">🔧</div>
+      <h2>일반적인 문제 해결</h2>
+    </div>
+
+    <div class="highlight">
+      대부분의 문제는 <strong>앱을 완전히 종료 후 다시 시작</strong>하거나 <strong>iPhone을 재시작</strong>하면 해결됩니다.
+    </div>
+
+    <ul>
+      <li><strong>앱이 느리거나 멈춤</strong> — 앱을 완전히 종료(앱 전환 화면에서 위로 쓸어올림)한 후 재실행하세요.</li>
+      <li><strong>위젯이 업데이트되지 않음</strong> — 앱을 열면 위젯 데이터가 갱신됩니다. 위젯 설정을 저장하면 즉시 반영됩니다.</li>
+      <li><strong>라이브 액티비티가 표시되지 않음</strong> — iOS 설정 → Virmina → 라이브 액티비티 허용이 켜져 있는지 확인하세요.</li>
+      <li><strong>iCloud 동기화 지연</strong> — 네트워크 상태와 iCloud 설정을 확인하세요. 변경 사항 반영에 최대 수 분이 소요될 수 있습니다.</li>
+    </ul>
+  </section>
+
+  <!-- 문의하기 -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">✉️</div>
+      <h2>문의하기</h2>
+    </div>
+    <p>
+      FAQ에서 해결되지 않은 문제나 피드백이 있으시면 이메일로 문의해 주세요.
+      가능한 한 빠르게 답변드리겠습니다.
+    </p>
+    <div class="highlight">
+      문의 시 <strong>iOS 버전</strong>, <strong>기기 모델</strong>, <strong>문제 재현 방법</strong>을 함께 알려주시면 더 빠른 지원이 가능합니다.
+    </div>
+    <div class="contact-card">
+      <div class="icon">📬</div>
+      <div>
+        <div class="label">이메일</div>
+        <div class="value"><a href="mailto:support@hoonslabs.com">support@hoonslabs.com</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 개인정보 처리방침 -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">🔒</div>
+      <h2>개인정보 처리방침</h2>
+    </div>
+    <p>
+      Virmina의 개인정보 처리방침은 아래 링크에서 확인하실 수 있습니다.
+    </p>
+    <p>
+      <a href="https://hoonslabs.github.io/privacy/virmina/">hoonslabs.github.io/privacy/virmina/</a>
+    </p>
+  </section>
+
+</main>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     ENGLISH VERSION
+══════════════════════════════════════════════ -->
+<div lang-block="en" id="content-en">
+<main class="container">
+
+  <div class="meta-badge">
+    <span class="dot"></span>
+    Last updated: March 30, 2026
+  </div>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">💬</div>
+      <h2>Frequently Asked Questions</h2>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">My streak disappeared.</p>
+      <p class="faq-a">
+        Streaks reset if a habit isn't completed on its scheduled day.
+        If you missed a day by accident, use the <strong>Retroactive Completion</strong> feature
+        to log habits up to 3 days back. Long-press a habit on the home screen
+        or tap a past date in the habit detail view.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">What is a Grace Day?</p>
+      <p class="faq-a">
+        A Grace Day lets you skip one day without breaking your streak —
+        because consistency matters more than perfection.
+        Grace Days are available for <strong>positive habits only</strong> and cannot be used
+        for avoidance habits. You cannot use Grace Days on consecutive days.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">How do avoidance habits work?</p>
+      <p class="faq-a">
+        Set a habit you want to break (e.g., "no social media") and your streak grows
+        every day you resist. At midnight, the day is automatically marked complete
+        if you didn't log a failure. Grace Days do not apply to avoidance habits.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">My widget is empty or not loading data.</p>
+      <p class="faq-a">
+        Try these steps in order:
+      </p>
+      <ul style="padding-left: 30px; margin: 8px 0 0; font-size: 15px;">
+        <li>Open the app once to sync data to the widget.</li>
+        <li>Long-press the widget → <strong>Edit Widget</strong> → save the settings.</li>
+        <li>Remove the widget and add it again if the issue persists.</li>
+        <li>Restarting your iPhone resolves most widget issues.</li>
+      </ul>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Apple Health integration isn't working.</p>
+      <p class="faq-a">
+        In the current version, Apple Health data is checked <strong>while the app is open</strong>.
+        Go to iOS Settings → Health → Data Access &amp; Devices → Virmina and make sure
+        the required categories (Steps, Workouts, Sleep, Mindfulness) are enabled.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">iCloud sync isn't working.</p>
+      <p class="faq-a">
+        Both devices must be <strong>signed in to iCloud with the same Apple ID</strong>.
+        Go to iOS Settings → [your name] → iCloud and make sure Virmina is toggled on.
+        Also check your internet connection. Changes can take a few minutes to propagate.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Can I back up or transfer my habit data?</p>
+      <p class="faq-a">
+        Go to <strong>Settings → Export Data</strong> in the app to save all habits and records
+        as a JSON file. Use <strong>Settings → Import Data</strong> to restore after reinstalling
+        or switching devices. If you use iCloud, your data restores automatically.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Will my data be deleted if I delete the app?</p>
+      <p class="faq-a">
+        Local data on your device is deleted with the app.
+        If you were signed in to iCloud, data stored in CloudKit is preserved and
+        will restore automatically after reinstalling. We recommend exporting a JSON
+        backup before deleting to be safe.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">I'm not receiving reminders.</p>
+      <p class="faq-a">
+        Check iOS Settings → Notifications → Virmina and make sure notifications are allowed.
+        Also confirm that a reminder time is set for each habit in the habit detail screen.
+        Do Not Disturb or Focus modes may suppress notifications.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">How do I use Siri or Shortcuts?</p>
+      <p class="faq-a">
+        On iOS 16 or later, say "Complete [habit name] in Virmina" to Siri,
+        or add Virmina actions in the Shortcuts app.
+        Supported actions: Complete Habit, Skip Today, Check Streak, Today's Progress, Add Habit.
+      </p>
+    </div>
+  </section>
+
+  <!-- Troubleshooting -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">🔧</div>
+      <h2>General Troubleshooting</h2>
+    </div>
+
+    <div class="highlight">
+      Most issues are resolved by <strong>force-closing the app and reopening it</strong>,
+      or by <strong>restarting your iPhone</strong>.
+    </div>
+
+    <ul>
+      <li><strong>App is slow or freezing</strong> — Force-close the app (swipe up in the app switcher) and relaunch.</li>
+      <li><strong>Widget not updating</strong> — Opening the app refreshes widget data. Saving widget settings triggers an immediate refresh.</li>
+      <li><strong>Live Activity not showing</strong> — Go to iOS Settings → Virmina and make sure Live Activities is enabled.</li>
+      <li><strong>iCloud sync delay</strong> — Check your network connection and iCloud settings. Changes may take a few minutes to sync.</li>
+    </ul>
+  </section>
+
+  <!-- Contact -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">✉️</div>
+      <h2>Contact Us</h2>
+    </div>
+    <p>
+      If your issue isn't covered above or you have feedback to share,
+      please reach out by email. We'll get back to you as soon as possible.
+    </p>
+    <div class="highlight">
+      When contacting support, please include your <strong>iOS version</strong>,
+      <strong>device model</strong>, and <strong>steps to reproduce</strong> the issue
+      for faster assistance.
+    </div>
+    <div class="contact-card">
+      <div class="icon">📬</div>
+      <div>
+        <div class="label">Email</div>
+        <div class="value"><a href="mailto:support@hoonslabs.com">support@hoonslabs.com</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy Policy -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">🔒</div>
+      <h2>Privacy Policy</h2>
+    </div>
+    <p>
+      Read the Virmina Privacy Policy at the link below.
+    </p>
+    <p>
+      <a href="https://hoonslabs.github.io/privacy/virmina/">hoonslabs.github.io/privacy/virmina/</a>
+    </p>
+  </section>
+
+</main>
+</div>
+
+<!-- ── Footer ──────────────────────────────── -->
+<footer class="site-footer">
+  <p lang-block="ko">© 2026 Hoon's Labs · <a href="https://hoonslabs.github.io/privacy/virmina/">개인정보 처리방침</a> · <a href="https://hoonslabs.github.io/">hoonslabs.github.io</a></p>
+  <p lang-block="en">© 2026 Hoon's Labs · <a href="https://hoonslabs.github.io/privacy/virmina/">Privacy Policy</a> · <a href="https://hoonslabs.github.io/">hoonslabs.github.io</a></p>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('[lang-block]').forEach(el => {
+      el.classList.toggle('visible', el.getAttribute('lang-block') === lang);
+    });
+    document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  }
+
+  // Detect browser language on first load
+  const preferred = navigator.language.startsWith('ko') ? 'ko' : 'en';
+  setLang(preferred);
+</script>
+</body>
+</html>
