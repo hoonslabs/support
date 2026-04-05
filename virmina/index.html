@@ -683,8 +683,15 @@
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
   }
 
-  // Detect browser language on first load
-  const preferred = navigator.language.startsWith('ko') ? 'ko' : 'en';
+  // URL query parameter takes priority (?lang=en or ?lang=ko / ?lang=kr)
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlLang = urlParams.get('lang');
+  let preferred;
+  if (urlLang) {
+    preferred = (urlLang === 'ko' || urlLang === 'kr') ? 'ko' : 'en';
+  } else {
+    preferred = navigator.language.startsWith('ko') ? 'ko' : 'en';
+  }
   setLang(preferred);
 </script>
 </body>
