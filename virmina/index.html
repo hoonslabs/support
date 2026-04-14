@@ -309,6 +309,7 @@
 <div class="lang-bar">
   <button class="lang-btn active" onclick="setLang('ko')" id="btn-ko">한국어</button>
   <button class="lang-btn"        onclick="setLang('en')" id="btn-en">English</button>
+  <button class="lang-btn"        onclick="setLang('ja')" id="btn-ja">日本語</button>
 </div>
 
 <!-- ── Header ─────────────────────────────────── -->
@@ -317,6 +318,7 @@
   <h1>Virmina</h1>
   <p class="subtitle" lang-block="ko" id="hd-ko">고객 지원</p>
   <p class="subtitle" lang-block="en" id="hd-en">Support</p>
+  <p class="subtitle" lang-block="ja" id="hd-ja">サポート</p>
 </header>
 
 <!-- ══════════════════════════════════════════════
@@ -668,10 +670,183 @@
 </main>
 </div>
 
+<!-- ══════════════════════════════════════════════
+     JAPANESE VERSION
+══════════════════════════════════════════════ -->
+<div lang-block="ja" id="content-ja">
+<main class="container">
+
+  <div class="meta-badge">
+    <span class="dot"></span>
+    最終更新: 2026年3月30日
+  </div>
+
+  <!-- よくある質問 -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">💬</div>
+      <h2>よくある質問（FAQ）</h2>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">ストリークが突然消えました。</p>
+      <p class="faq-a">
+        ストリークは、その日に習慣を完了しないと自動的にリセットされます。
+        うっかり忘れた場合は、<strong>さかのぼり完了</strong>機能で最大3日前まで記録を追加できます。
+        ホーム画面で習慣を長押しするか、習慣の詳細画面で日付を選択してみてください。
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Grace Dayとは何ですか？</p>
+      <p class="faq-a">
+        Grace Dayは、1日休んでもストリークが維持される猶予機能です。
+        完璧じゃなくても続けられるように設計されています。
+        <strong>ポジティブ習慣</strong>にのみ適用でき、回避習慣には使えません。
+        Grace Dayは連続して使用できません。
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">回避習慣（Avoidance Habit）はどのように動作しますか？</p>
+      <p class="faq-a">
+        やめたい悪い習慣を登録すると、その日我慢するとストリークが伸びます。
+        アプリを開いて別途チェックしなくても、日付が変わると自動的に完了処理されます。
+        Grace Dayは回避習慣には適用されません。
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">ウィジェットが空になっているか、データを読み込みません。</p>
+      <p class="faq-a">
+        以下の順に確認してみてください。
+      </p>
+      <ul style="padding-left: 30px; margin: 8px 0 0; font-size: 15px;">
+        <li>アプリを一度開いてデータを同期する。</li>
+        <li>ホーム画面でウィジェットを長押し → <strong>ウィジェットを編集</strong>から設定を保存する。</li>
+        <li>それでも解決しない場合は、ウィジェットを削除して再追加する。</li>
+        <li>iPhoneを再起動すると、ほとんどのウィジェット問題が解決します。</li>
+      </ul>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Apple Health連携が動作しません。</p>
+      <p class="faq-a">
+        現在のバージョンでは、<strong>アプリが開いている間</strong>のみApple Healthのデータを確認します。
+        iOSの設定 → ヘルスケア → データアクセスとデバイス でVirminaに必要な項目
+        （歩数、ワークアウト、睡眠、マインドフルネス）が有効になっているかご確認ください。
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">iCloud同期ができません。</p>
+      <p class="faq-a">
+        同期が機能するには、2台のデバイスがともに<strong>同じApple IDでiCloudにサインイン</strong>されている必要があります。
+        iOSの設定 → [ご自身の名前] → iCloud でVirminaがオンになっているかご確認ください。
+        インターネット接続もあわせてご確認ください。変更の反映には数分かかる場合があります。
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">習慣データをバックアップしたり移行したりできますか？</p>
+      <p class="faq-a">
+        アプリ内の<strong>設定 → データのエクスポート</strong>から、習慣と記録の全データをJSONファイルとして保存できます。
+        機種変更や再インストール後は<strong>設定 → データのインポート</strong>で復元できます。
+        iCloudをご利用中の場合は、別途バックアップなしで自動復元されます。
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">アプリを削除するとデータも消えますか？</p>
+      <p class="faq-a">
+        端末内のローカルデータはアプリ削除時に削除されます。
+        iCloudにサインインしていた場合、CloudKitに保存されたデータは保持され、
+        再インストール後に自動復元されます。確実な保管のために、事前にJSONエクスポートをおすすめします。
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">通知が届きません。</p>
+      <p class="faq-a">
+        iOSの設定 → 通知 → Virminaで通知が許可されているかご確認ください。
+        アプリ内の各習慣の詳細画面で通知時刻が設定されているかもご確認ください。
+        おやすみモードや集中モードが有効の場合、通知がブロックされることがあります。
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Siriやショートカットはどうやって使いますか？</p>
+      <p class="faq-a">
+        iOS 16以降で「Virminaで[習慣名]を完了して」とSiriに話しかけるか、
+        ショートカットアプリからVirminaのアクションを追加できます。
+        対応アクション：習慣を完了、今日をスキップ、ストリークを確認、今日の進捗を確認、習慣を追加。
+      </p>
+    </div>
+  </section>
+
+  <!-- 一般的なトラブルシューティング -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">🔧</div>
+      <h2>一般的なトラブルシューティング</h2>
+    </div>
+
+    <div class="highlight">
+      ほとんどの問題は<strong>アプリを完全に終了して再起動</strong>するか、<strong>iPhoneを再起動</strong>することで解決します。
+    </div>
+
+    <ul>
+      <li><strong>アプリが重い・フリーズする</strong> — アプリを完全に終了（アプリスイッチャーで上にスワイプ）して再起動してください。</li>
+      <li><strong>ウィジェットが更新されない</strong> — アプリを開くとウィジェットデータが更新されます。ウィジェットの設定を保存すると即座に反映されます。</li>
+      <li><strong>ライブアクティビティが表示されない</strong> — iOSの設定 → Virmina → ライブアクティビティを許可がオンになっているかご確認ください。</li>
+      <li><strong>iCloud同期の遅延</strong> — ネットワーク状態とiCloudの設定をご確認ください。変更の反映には数分かかる場合があります。</li>
+    </ul>
+  </section>
+
+  <!-- お問い合わせ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">✉️</div>
+      <h2>お問い合わせ</h2>
+    </div>
+    <p>
+      FAQで解決しない問題やご意見がある場合は、メールでお気軽にお問い合わせください。
+      できるだけ早くご返信いたします。
+    </p>
+    <div class="highlight">
+      お問い合わせの際は<strong>iOSのバージョン</strong>、<strong>デバイスのモデル</strong>、<strong>問題の再現手順</strong>をお知らせいただくと、より迅速にサポートできます。
+    </div>
+    <div class="contact-card">
+      <div class="icon">📬</div>
+      <div>
+        <div class="label">メール</div>
+        <div class="value"><a href="mailto:hoons.labs@gmail.com">hoons.labs@gmail.com</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- プライバシーポリシー -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">🔒</div>
+      <h2>プライバシーポリシー</h2>
+    </div>
+    <p>
+      Virminaのプライバシーポリシーは以下のリンクからご確認いただけます。
+    </p>
+    <p>
+      <a href="https://hoonslabs.github.io/privacy/virmina/">hoonslabs.github.io/privacy/virmina/</a>
+    </p>
+  </section>
+
+</main>
+</div>
+
 <!-- ── Footer ──────────────────────────────── -->
 <footer class="site-footer">
   <p lang-block="ko">© 2026 Hoon's Labs · <a href="https://hoonslabs.github.io/privacy/virmina/">개인정보 처리방침</a> · <a href="https://hoonslabs.github.io/">hoonslabs.github.io</a></p>
   <p lang-block="en">© 2026 Hoon's Labs · <a href="https://hoonslabs.github.io/privacy/virmina/">Privacy Policy</a> · <a href="https://hoonslabs.github.io/">hoonslabs.github.io</a></p>
+  <p lang-block="ja">© 2026 Hoon's Labs · <a href="https://hoonslabs.github.io/privacy/virmina/">プライバシーポリシー</a> · <a href="https://hoonslabs.github.io/">hoonslabs.github.io</a></p>
 </footer>
 
 <script>
@@ -681,16 +856,22 @@
     });
     document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
     document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
   }
 
-  // URL query parameter takes priority (?lang=en or ?lang=ko / ?lang=kr)
+  // URL param > 브라우저 언어
   const urlParams = new URLSearchParams(window.location.search);
   const urlLang = urlParams.get('lang');
   let preferred;
   if (urlLang) {
-    preferred = (urlLang === 'ko' || urlLang === 'kr') ? 'ko' : 'en';
+    if (urlLang === 'ko' || urlLang === 'kr') preferred = 'ko';
+    else if (urlLang === 'ja') preferred = 'ja';
+    else preferred = 'en';
   } else {
-    preferred = navigator.language.startsWith('ko') ? 'ko' : 'en';
+    const nav = navigator.language;
+    if (nav.startsWith('ko')) preferred = 'ko';
+    else if (nav.startsWith('ja')) preferred = 'ja';
+    else preferred = 'en';
   }
   setLang(preferred);
 </script>
