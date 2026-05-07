@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Emvron</title>
+  <meta name="description" content="Emvron Support / 지원 센터 / サポート" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --amber:        #D97706;
+      --amber-bg:     #FEF3C7;
+      --indigo:       #7C3AED;
+      --indigo-bg:    #EDE9FE;
+      --mint:         #16A34A;
+      --mint-bg:      #DCFCE7;
+      --orange:       #EA580C;
+      --orange-bg:    #FFF7ED;
+      --bg:           #F8FAFC;
+      --surface:      #FFFFFF;
+      --text:         #0F172A;
+      --muted:        #64748B;
+      --border:       #E2E8F0;
+      --radius:       12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --amber:        #FFADAD;
+        --amber-bg:     rgba(255,173,173,0.1);
+        --indigo:       #BDB2FF;
+        --indigo-bg:    rgba(189,178,255,0.1);
+        --mint:         #CAFFBF;
+        --mint-bg:      rgba(202,255,191,0.1);
+        --orange:       #FFD6A5;
+        --orange-bg:    rgba(255,214,165,0.1);
+        --bg:           #0F172A;
+        --surface:      #1E293B;
+        --text:         #F1F5F9;
+        --muted:        #94A3B8;
+        --border:       #334155;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    /* ── Language Toggle ── */
+    .lang-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 24px;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      padding: 5px 16px;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-btn.active {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: #fff;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+      color: #fff;
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+
+    .logo-mark {
+      width: 64px;
+      height: 64px;
+      background: rgba(255, 173, 173, 0.15);
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,173,173,0.2);
+    }
+
+    .site-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      color: #FFADAD;
+    }
+
+    .site-header .subtitle {
+      font-size: 14px;
+      opacity: 0.7;
+      font-weight: 400;
+      color: #F1F5F9;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Category Header ── */
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 40px 0 16px;
+    }
+
+    .cat-header:first-of-type { margin-top: 0; }
+
+    .cat-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .cat-header h2 {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--muted);
+    }
+
+    /* ── FAQ Item ── */
+    .faq {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 20px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: background 0.15s;
+    }
+
+    .faq-q:hover { background: color-mix(in srgb, var(--amber) 4%, var(--surface)); }
+
+    .faq-q .chevron {
+      font-size: 12px;
+      color: var(--muted);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .faq.open .faq-q .chevron { transform: rotate(180deg); }
+
+    .faq-a {
+      display: none;
+      padding: 0 24px 20px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .faq.open .faq-a { display: block; }
+
+    .faq-a p { margin-bottom: 10px; color: var(--muted); }
+    .faq-a p:last-child { margin-bottom: 0; }
+    .faq-a ul { padding-left: 20px; }
+    .faq-a li { margin-bottom: 6px; }
+    .faq-a strong { color: var(--text); }
+
+    /* ── Highlight Box ── */
+    .highlight {
+      background: color-mix(in srgb, var(--mint) 10%, var(--surface));
+      border-left: 3px solid var(--mint);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
+    /* ── Contact Card ── */
+    .contact-section {
+      background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+      border-radius: 16px;
+      padding: 40px 32px;
+      margin-top: 48px;
+      text-align: center;
+      color: #F1F5F9;
+    }
+
+    .contact-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #FFADAD;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .contact-section .desc {
+      font-size: 14px;
+      color: rgba(241,245,249,0.7);
+      margin-bottom: 28px;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FFADAD;
+      color: #0F172A;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .contact-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .response-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: rgba(241,245,249,0.5);
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .site-footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid transparent; }
+    .site-footer a:hover { border-color: var(--muted); }
+
+    /* ── Lang visibility ── */
+    [lang-block] { display: none; }
+    [lang-block].visible { display: block; }
+
+    @media (max-width: 600px) {
+      .site-header { padding: 40px 20px 36px; }
+      .faq-q { padding: 16px 18px; }
+      .faq-a { padding: 0 18px 16px; padding-top: 14px; }
+      .contact-section { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Language Toggle -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">English</button>
+  <button class="lang-btn"        onclick="setLang('ko')" id="btn-ko">한국어</button>
+  <button class="lang-btn"        onclick="setLang('ja')" id="btn-ja">日本語</button>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="logo-mark">⏰</div>
+  <h1>Emvron</h1>
+  <p class="subtitle" lang-block="en" id="hd-en">Support Center</p>
+  <p class="subtitle" lang-block="ko" id="hd-ko">지원 센터</p>
+  <p class="subtitle" lang-block="ja" id="hd-ja">サポートセンター</p>
+</header>
+
+<!-- ══════════════════════════════════════════════
+     ENGLISH VERSION
+══════════════════════════════════════════════ -->
+<div lang-block="en" id="content-en">
+<main class="container">
+
+  <!-- Getting Started -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#FEF3C7;">🚀</div>
+    <h2>Getting Started</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I add my first job?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Tap the <strong>Settings</strong> tab → <strong>Manage Workplaces</strong> → tap the <strong>+</strong> button.
+      Enter your job name, hourly wage, and choose a color. Your first job is always free.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What is the difference between Pattern Mode and Flexible Mode?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>Pattern Mode</strong> is for rotating shift workers (e.g., Day → Evening → Night → Off). You define a repeating cycle and Emvron automatically fills your entire calendar.</p>
+      <p><strong>Flexible Mode</strong> is for part-timers and irregular schedules. You enter shifts manually day-by-day, or set weekly recurring shifts for a job.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Can I use Emvron without signing into iCloud?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Yes. Emvron is fully functional without iCloud. All your data is stored locally on your device.
+      iCloud sync is optional and only activates when you are signed into iCloud on your device.</p>
+    </div>
+  </div>
+
+  <!-- Schedule -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EDE9FE;">📅</div>
+    <h2>Schedule Management</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How does Pattern Mode work?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Go to <strong>Settings → Manage Workplaces</strong> and select your job. Under <strong>Pattern Mode</strong>, define your shift rotation (e.g., 2 days on / 2 days off, or D-E-N-Off cycles) and set the cycle start date.
+      Emvron's PatternResolver engine automatically generates your full-year schedule from there.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Can I have multiple jobs?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Yes. <strong>Emvron Pro</strong> supports multiple jobs. You can add a second job from <strong>Settings → Manage Workplaces → +</strong>.
+      Each job has its own color, and on days with multiple shifts, Emvron stacks them and calculates your combined income.</p>
+      <p>The free plan allows one job only.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I edit or delete a specific shift?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Tap any date on the <strong>Calendar</strong> tab to open the shift detail sheet. From there you can edit the shift times, add notes, or delete that individual shift record.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What is an overnight shift and how does Emvron handle it?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>An overnight shift starts on one day and ends the next (e.g., 22:00 – 06:00). Emvron uses <strong>ShiftDate</strong> objects to handle date-boundary crossings correctly — your income and alarm are attributed to the shift start date, and duration is calculated accurately across midnight.</p>
+    </div>
+  </div>
+
+  <!-- Income -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#DCFCE7;">💰</div>
+    <h2>Income &amp; Earnings</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How is my pay calculated?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Emvron multiplies your hourly wage by worked hours, automatically accounting for break time. Overtime rules (US: 1.5× after 8 hours/day or 40 hours/week) are applied based on your region settings.</p>
+      <p>Korean users can also enable the <strong>주휴수당 (Weekly Holiday Allowance)</strong> calculation for part-time jobs that meet the 15-hour weekly threshold.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What is the real-time income gauge on the Today tab?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>When you clock in, the <strong>Income</strong> gauge ticks up in real time — showing exactly how much you've earned since your shift started. It updates every second so you can see your earnings grow as you work.</p>
+      <p>This is Emvron's core dopamine-driven UX: income first, schedule second.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I clock in and out?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>On the <strong>Today</strong> tab, tap <strong>Clock In</strong> when your shift starts and <strong>Clock Out</strong> when it ends. Emvron records your actual hours and updates your income calculation accordingly.</p>
+      <p>If you forget to clock out, Emvron sends a reminder notification 30 minutes after your scheduled end time.</p>
+    </div>
+  </div>
+
+  <!-- Alarms -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#FFF7ED;">⏰</div>
+    <h2>Alarms &amp; Notifications</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How does Smart Alarm Sync work?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Emvron reads your upcoming shift schedule and automatically creates system alarms in your iPhone's Clock app.
+      When your schedule changes, Emvron updates or removes alarms to stay in sync — no manual alarm management needed.</p>
+      <div class="highlight">
+        Alarm sync happens automatically every time you open the app (Fail-Safe Scan), so your alarms are always up to date even if you changed shifts while the app was closed.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Why doesn't Emvron create alarms in my Clock app?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Smart Alarm Sync requires permission to manage alarms. Make sure you granted permission during onboarding. If not, go to <strong>Settings (iOS) → Emvron → Allow Managing Alarms</strong> and enable it.</p>
+      <p>Also ensure at least one job with an upcoming shift is configured.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What is the Fail-Safe Scan?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Every time you open Emvron, it runs a background scan to verify that all scheduled alarms match your current shift data. Any orphaned or outdated alarms are automatically cleaned up. This ensures 100% alarm reliability even after reboots, schedule edits, or overnight clock-in sessions.</p>
+    </div>
+  </div>
+
+  <!-- Subscription -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EDE9FE;">⭐</div>
+    <h2>Emvron Pro</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What is included in Emvron Pro?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <ul>
+        <li><strong>Multiple Jobs</strong> — add unlimited jobs and track combined income</li>
+        <li><strong>Income Simulator</strong> — project monthly earnings from your schedule</li>
+        <li><strong>iCloud Sync</strong> — sync across all your Apple devices</li>
+        <li><strong>All future Pro features</strong> included automatically</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Is there a free trial?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Yes. The <strong>Yearly plan</strong> includes a <strong>7-day free trial</strong>. You will not be charged until the trial ends. Cancel anytime before the trial period ends to avoid being billed.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I cancel my subscription?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Subscriptions are managed by Apple. To cancel:</p>
+      <ul>
+        <li>Open the <strong>Settings</strong> app on your iPhone</li>
+        <li>Tap your Apple ID name → <strong>Subscriptions</strong></li>
+        <li>Find <strong>Emvron</strong> and tap <strong>Cancel Subscription</strong></li>
+      </ul>
+      <p>You will retain Pro access until the end of the current billing period.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I restore my purchase on a new device?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Go to <strong>Settings → Upgrade to Pro → Restore Purchase</strong>. Sign in with the same Apple ID you used to purchase, and your Pro membership will be restored instantly.</p>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-section">
+    <h2>Still need help?</h2>
+    <p class="desc">Can't find the answer you're looking for? Send us an email and we'll get back to you.</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">
+      📧 &nbsp;Contact Support
+    </a>
+    <p class="response-note">We respond within 5 business days.</p>
+  </div>
+
+</main>
+</div><!-- /content-en -->
+
+<!-- ══════════════════════════════════════════════
+     KOREAN VERSION
+══════════════════════════════════════════════ -->
+<div lang-block="ko" id="content-ko">
+<main class="container">
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#FEF3C7;">🚀</div>
+    <h2>시작하기</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      첫 번째 직장을 어떻게 추가하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>설정</strong> 탭 → <strong>직장 관리</strong> → <strong>+</strong> 버튼을 탭하세요.
+      직장 이름, 시급, 색상을 입력하면 됩니다. 첫 번째 직장은 항상 무료입니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      패턴 모드와 플렉시블 모드의 차이점이 무엇인가요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>패턴 모드</strong>는 교대 근무자(주간→저녁→야간→휴무 등 순환)를 위한 모드입니다. 반복 사이클을 한 번 설정하면 Emvron이 전체 캘린더를 자동으로 채워줍니다.</p>
+      <p><strong>플렉시블 모드</strong>는 파트타임·아르바이트 등 불규칙한 일정에 맞는 모드입니다. 날짜별로 직접 입력하거나, 요일 반복 근무를 설정할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      iCloud 없이도 Emvron을 사용할 수 있나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>네, 가능합니다. Emvron은 iCloud 없이도 완전하게 작동합니다. 모든 데이터는 기기에 로컬로 저장됩니다.
+      iCloud 동기화는 선택 사항이며, 기기에서 iCloud 로그인 상태일 때만 활성화됩니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EDE9FE;">📅</div>
+    <h2>근무 일정 관리</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      패턴 모드는 어떻게 설정하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>설정 → 직장 관리</strong>에서 직장을 선택한 후 <strong>패턴 모드</strong>에서 근무 순환을 설정합니다 (예: 2일 근무/2일 휴무, 또는 주간-저녁-야간-휴무 사이클). 사이클 시작일을 지정하면 Emvron이 연간 일정을 자동으로 생성합니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      여러 직장을 등록할 수 있나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>네, <strong>Emvron Pro</strong>에서 가능합니다. <strong>설정 → 직장 관리 → +</strong>로 두 번째 직장을 추가하세요.
+      각 직장은 고유한 색상을 가지며, 같은 날 여러 근무가 겹치면 Emvron이 자동으로 합산 수입을 계산합니다.</p>
+      <p>무료 플랜은 직장 1개만 지원합니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      특정 근무를 수정하거나 삭제하려면 어떻게 하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>캘린더</strong> 탭에서 날짜를 탭하면 근무 상세 시트가 열립니다. 거기서 시간 수정, 메모 추가, 또는 해당 근무 삭제가 가능합니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      야간 근무(자정 통과 근무)는 어떻게 처리되나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>야간 근무(예: 22:00~06:00)는 하루가 바뀌는 경계를 넘습니다. Emvron은 <strong>ShiftDate</strong> 객체를 사용하여 날짜 경계를 정확하게 처리하며, 수입과 알람은 근무 시작일 기준으로 집계됩니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#DCFCE7;">💰</div>
+    <h2>수입 계산</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      급여는 어떻게 계산되나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>시급 × 근무 시간(휴게 시간 자동 차감)으로 계산됩니다. 지역 설정에 따라 초과 근무 수당(미국: 일 8시간 또는 주 40시간 초과 시 1.5배)이 자동 적용됩니다.</p>
+      <p>한국 유저는 주 15시간 이상 파트타임 직장에 대해 <strong>주휴수당 자동 산정</strong>을 활성화할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Today 탭의 실시간 수입 게이지는 무엇인가요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>출근 후 <strong>수입 게이지</strong>가 매 초마다 실시간으로 올라갑니다. 근무를 시작한 이후 지금까지 번 금액이 즉시 반영되는 것입니다.</p>
+      <p>이것이 Emvron의 핵심 철학입니다 — 수입을 먼저, 일정은 그 다음.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      출근·퇴근은 어떻게 기록하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>Today</strong> 탭에서 근무 시작 시 <strong>출근</strong>, 종료 시 <strong>퇴근</strong>을 탭하세요. 실제 근무 시간이 기록되고 수입 계산에 반영됩니다.</p>
+      <p>퇴근 등록을 잊으면 예정 종료 시간 30분 후에 알림이 발송됩니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#FFF7ED;">⏰</div>
+    <h2>알람 및 알림</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      스마트 알람 동기화는 어떻게 작동하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Emvron이 예정된 근무 일정을 읽어 iPhone 시계 앱에 시스템 알람을 자동으로 생성합니다. 일정이 변경되면 알람도 자동으로 업데이트 또는 삭제됩니다.</p>
+      <div class="highlight">
+        앱을 열 때마다 페일세이프 스캔이 실행되어 알람 데이터가 항상 최신 상태로 유지됩니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      시계 앱에 알람이 생성되지 않아요.
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>스마트 알람 동기화는 알람 관리 권한이 필요합니다. 온보딩에서 허용하지 않은 경우,
+      <strong>설정(iOS) → Emvron → 알람 관리 허용</strong>에서 활성화해 주세요.</p>
+      <p>예정된 근무가 있는 직장이 최소 1개 이상 설정되어 있어야 합니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      페일세이프 스캔이란 무엇인가요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>앱을 열 때마다 백그라운드에서 모든 예약 알람과 현재 근무 데이터를 대조합니다. 고아 알람이나 오래된 알람은 자동으로 정리됩니다. 재부팅, 일정 수정, 야간 출근 후에도 알람의 100% 신뢰성을 보장합니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EDE9FE;">⭐</div>
+    <h2>Emvron Pro</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Emvron Pro에는 무엇이 포함되나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <ul>
+        <li><strong>다중 직장</strong> — 여러 직장 추가 및 합산 수입 추적</li>
+        <li><strong>수입 시뮬레이터</strong> — 일정 기반 월 예상 수입 계산</li>
+        <li><strong>iCloud 동기화</strong> — 모든 Apple 기기 간 동기화</li>
+        <li><strong>향후 모든 Pro 기능</strong> 자동 포함</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      무료 체험 기간이 있나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>네. <strong>연간 플랜</strong>은 <strong>7일 무료 체험</strong>을 제공합니다. 체험 기간이 끝나기 전까지 요금이 청구되지 않습니다. 체험 기간 내에 언제든지 취소할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      구독을 취소하려면 어떻게 하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>구독은 Apple에서 관리합니다. 취소 방법:</p>
+      <ul>
+        <li>iPhone <strong>설정</strong> 앱 열기</li>
+        <li>Apple ID 이름 탭 → <strong>구독</strong></li>
+        <li><strong>Emvron</strong> 찾아 <strong>구독 취소</strong> 탭</li>
+      </ul>
+      <p>현재 결제 기간이 끝날 때까지 Pro 기능을 계속 이용할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      새 기기에서 구독을 복원하려면 어떻게 하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>설정 → Pro 업그레이드 → 구매 복원</strong>을 탭하세요. 구매 시 사용한 Apple ID로 로그인하면 Pro 멤버십이 즉시 복원됩니다.</p>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <h2>추가 도움이 필요하신가요?</h2>
+    <p class="desc">찾는 답변이 없으신가요? 이메일로 문의해 주시면 답변드립니다.</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">
+      📧 &nbsp;문의하기
+    </a>
+    <p class="response-note">영업일 기준 5일 이내 답변드립니다.</p>
+  </div>
+
+</main>
+</div><!-- /content-ko -->
+
+<!-- ══════════════════════════════════════════════
+     JAPANESE VERSION
+══════════════════════════════════════════════ -->
+<div lang-block="ja" id="content-ja">
+<main class="container">
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#FEF3C7;">🚀</div>
+    <h2>はじめに</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      最初の職場はどのように追加しますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>設定</strong>タブ → <strong>職場を管理</strong> → <strong>+</strong>ボタンをタップします。
+      職場名、時給、カラーを入力してください。最初の職場は常に無料です。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      パターンモードとフレキシブルモードの違いは何ですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>パターンモード</strong>はシフトワーカー（日勤→夕勤→夜勤→休日などの循環勤務）向けです。繰り返しサイクルを設定すると、Emvronが年間カレンダーを自動生成します。</p>
+      <p><strong>フレキシブルモード</strong>はパートタイムや不規則なスケジュール向けです。日ごとに手動入力するか、曜日ごとの繰り返し勤務を設定できます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      iCloudなしでEmvronを使用できますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>はい、可能です。EmvronはiCloudなしでも完全に動作します。すべてのデータはデバイスにローカル保存されます。
+      iCloud同期はオプションであり、デバイスでiCloudにサインインしている場合のみ有効になります。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EDE9FE;">📅</div>
+    <h2>スケジュール管理</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      パターンモードはどのように設定しますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>設定 → 職場を管理</strong>から職場を選択し、<strong>パターンモード</strong>でシフトローテーションを設定します（例：2日勤務/2日休み、日勤-夕勤-夜勤-休日サイクルなど）。サイクル開始日を設定すると、Emvronが年間スケジュールを自動生成します。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      複数の職場を登録できますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>はい、<strong>Emvron Pro</strong>で可能です。<strong>設定 → 職場を管理 → +</strong>から2つ目の職場を追加できます。
+      各職場は固有のカラーを持ち、同じ日に複数のシフトがある場合は収入が合算されます。</p>
+      <p>無料プランは職場1つのみです。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      特定のシフトを編集・削除するには？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>カレンダー</strong>タブで日付をタップするとシフト詳細シートが開きます。そこから時間の編集、メモの追加、またはシフトの削除ができます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      夜勤（日またぎシフト）はどのように処理されますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>夜勤（例：22:00〜06:00）は日付をまたぎます。Emvronは<strong>ShiftDate</strong>オブジェクトを使用して日付境界を正確に処理し、収入とアラームはシフト開始日に帰属します。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#DCFCE7;">💰</div>
+    <h2>収入・給与</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      給与はどのように計算されますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>時給×勤務時間（休憩時間を自動控除）で計算されます。地域設定に基づいて残業代（米国：1日8時間または週40時間超で1.5倍）が自動適用されます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Todayタブのリアルタイム収入ゲージとは何ですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>出勤すると<strong>収入ゲージ</strong>が毎秒リアルタイムで上昇します。シフト開始からの現在の獲得額が即座に反映されます。</p>
+      <p>これがEmvronの基本理念です — 収入ファースト、スケジュールはその次。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      出退勤はどのように記録しますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>Today</strong>タブでシフト開始時に<strong>出勤</strong>、終了時に<strong>退勤</strong>をタップします。実際の勤務時間が記録され、収入計算に反映されます。</p>
+      <p>退勤を忘れた場合、予定終了時刻の30分後にリマインダー通知が届きます。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#FFF7ED;">⏰</div>
+    <h2>アラーム・通知</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      スマートアラーム同期はどのように機能しますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Emvronが予定シフトを読み取り、iPhoneの時計アプリにシステムアラームを自動作成します。スケジュールが変更されるとアラームも自動更新・削除されます。</p>
+      <div class="highlight">
+        アプリを開くたびにフェイルセーフスキャンが実行され、アラームデータが常に最新に保たれます。
+      </div>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      時計アプリにアラームが作成されません。
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>スマートアラーム同期にはアラーム管理の権限が必要です。オンボーディングで許可しなかった場合は、<strong>設定（iOS）→ Emvron → アラームの管理を許可</strong>で有効にしてください。</p>
+      <p>また、予定シフトのある職場が少なくとも1つ設定されている必要があります。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      フェイルセーフスキャンとは何ですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>アプリを開くたびにバックグラウンドで全アラームと現在のシフトデータを照合します。孤立したアラームや古いアラームは自動的に削除されます。再起動・スケジュール変更・夜勤後でも100%のアラーム信頼性を保証します。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EDE9FE;">⭐</div>
+    <h2>Emvron Pro</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Emvron Proには何が含まれますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <ul>
+        <li><strong>複数職場</strong> — 複数の職場を追加して合算収入を管理</li>
+        <li><strong>収入シミュレーター</strong> — スケジュールベースの月次予想収入を計算</li>
+        <li><strong>iCloud同期</strong> — すべてのAppleデバイス間で同期</li>
+        <li><strong>将来のすべてのPro機能</strong>が自動的に含まれる</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      無料トライアルはありますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>はい。<strong>年間プラン</strong>には<strong>7日間の無料トライアル</strong>が含まれます。トライアル終了まで料金は発生しません。トライアル期間内はいつでもキャンセルできます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      サブスクリプションをキャンセルするには？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>サブスクリプションはAppleが管理します。キャンセル手順：</p>
+      <ul>
+        <li>iPhoneの<strong>設定</strong>アプリを開く</li>
+        <li>Apple ID名をタップ → <strong>サブスクリプション</strong></li>
+        <li><strong>Emvron</strong>を探して<strong>サブスクリプションをキャンセル</strong>をタップ</li>
+      </ul>
+      <p>現在の請求期間が終了するまでPro機能を引き続き利用できます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      新しいデバイスで購入を復元するには？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>設定 → Proにアップグレード → 購入を復元</strong>をタップします。購入時のApple IDでサインインすると、Proメンバーシップが即座に復元されます。</p>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <h2>さらにサポートが必要ですか？</h2>
+    <p class="desc">お探しの回答が見つからない場合は、メールでお問い合わせください。</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">
+      📧 &nbsp;お問い合わせ
+    </a>
+    <p class="response-note">営業日5日以内にご返答いたします。</p>
+  </div>
+
+</main>
+</div><!-- /content-ja -->
+
+<footer class="site-footer">
+  <p>© 2026 Emvron. All rights reserved. &nbsp;·&nbsp;
+  <a href="../privacy/">Privacy Policy</a> &nbsp;·&nbsp;
+  <a href="mailto:hoons.labs@gmail.com">Contact</a>
+  </p>
+</footer>
+
+<script>
+  function toggle(btn) {
+    const faq = btn.closest('.faq');
+    faq.classList.toggle('open');
+  }
+
+  function setLang(lang) {
+    document.querySelectorAll('[lang-block]').forEach(el => {
+      el.classList.toggle('visible', el.id.endsWith('-' + lang));
+    });
+    ['en','ko','ja'].forEach(l => {
+      document.getElementById('btn-' + l).classList.toggle('active', l === lang);
+    });
+    document.documentElement.lang = lang;
+    localStorage.setItem('emvron-lang', lang);
+  }
+
+  (function () {
+    const params  = new URLSearchParams(window.location.search);
+    const urlLang = params.get('lang');
+    if (['en','ko','ja'].includes(urlLang)) { setLang(urlLang); return; }
+
+    const saved = localStorage.getItem('emvron-lang');
+    if (['en','ko','ja'].includes(saved)) { setLang(saved); return; }
+
+    const nav = navigator.language;
+    if (nav.startsWith('ko')) { setLang('ko'); return; }
+    if (nav.startsWith('ja')) { setLang('ja'); return; }
+    setLang('en');
+  })();
+</script>
+
+</body>
+</html>
