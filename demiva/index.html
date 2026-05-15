@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Demiva</title>
+  <meta name="description" content="Demiva Support · 지원 센터 · サポートセンター" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:    #7A9BB8;
+      --primary-lt: #A8C4DB;
+      --accent:     #D98A7B;
+      --mint:       #16A34A;
+      --mint-bg:    #DCFCE7;
+      --bg:         #FAF9F6;
+      --surface:    #FFFFFF;
+      --text:       #33363F;
+      --muted:      #64748B;
+      --border:     #E2E8F0;
+      --radius:     12px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --mint-bg: rgba(202,255,191,0.08);
+        --bg:      #1C1C1E;
+        --surface: #2C2C2E;
+        --text:    #F2F2F7;
+        --muted:   #8E8E93;
+        --border:  #3C3C3E;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    /* ── Language Bar ── */
+    .lang-bar {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center;
+      padding: 10px 16px; gap: 6px;
+      overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+      direction: ltr;
+    }
+    .lang-bar::-webkit-scrollbar { display: none; }
+    .lang-btn {
+      padding: 5px 14px; border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: transparent; color: var(--muted);
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      transition: all 0.2s; white-space: nowrap; flex-shrink: 0;
+    }
+    .lang-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+    /* ── Header ── */
+    .site-header {
+      background: linear-gradient(135deg, #2C3E50 0%, #1a2533 100%);
+      color: #fff; padding: 56px 24px 48px; text-align: center;
+    }
+    .logo-mark {
+      width: 64px; height: 64px;
+      background: rgba(122,155,184,0.18); border-radius: 18px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 32px; margin-bottom: 16px;
+      backdrop-filter: blur(8px); border: 1px solid rgba(122,155,184,0.25);
+    }
+    .site-header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; color: var(--primary-lt); }
+    .site-header .subtitle { font-size: 14px; opacity: 0.75; color: #F1F5F9; }
+
+    /* ── Layout ── */
+    .container { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+
+    /* ── Category Header ── */
+    .cat-header { display: flex; align-items: center; gap: 10px; margin: 40px 0 16px; }
+    .cat-header:first-of-type { margin-top: 0; }
+    .cat-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .cat-header h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); }
+
+    /* ── FAQ ── */
+    .faq { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+    .faq-q {
+      width: 100%; background: none; border: none; text-align: left;
+      padding: 18px 22px; font-size: 15px; font-weight: 600; color: var(--text);
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+      transition: background 0.15s;
+    }
+    [dir="rtl"] .faq-q { text-align: right; }
+    .faq-q:hover { background: color-mix(in srgb, var(--primary) 4%, var(--surface)); }
+    .faq-q .chevron { font-size: 11px; color: var(--muted); transition: transform 0.2s; flex-shrink: 0; }
+    .faq.open .faq-q .chevron { transform: rotate(180deg); }
+    .faq-a {
+      display: none; padding: 0 22px 18px;
+      color: var(--muted); font-size: 15px; line-height: 1.7;
+      border-top: 1px solid var(--border); padding-top: 14px;
+    }
+    .faq.open .faq-a { display: block; }
+    .faq-a p { margin-bottom: 10px; color: var(--muted); }
+    .faq-a p:last-child { margin-bottom: 0; }
+    .faq-a ul { padding-left: 20px; }
+    [dir="rtl"] .faq-a ul { padding-left: 0; padding-right: 20px; }
+    .faq-a li { margin-bottom: 6px; }
+    .faq-a strong { color: var(--text); }
+
+    /* ── Highlight ── */
+    .highlight {
+      background: var(--mint-bg); border-left: 3px solid var(--mint);
+      border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 14px;
+    }
+    [dir="rtl"] .highlight { border-left: none; border-right: 3px solid var(--mint); border-radius: 8px 0 0 8px; }
+
+    /* ── Contact Section ── */
+    .contact-section {
+      background: linear-gradient(135deg, #2C3E50 0%, #1a2533 100%);
+      border-radius: 16px; padding: 40px 32px; margin-top: 48px;
+      text-align: center; color: #F1F5F9;
+    }
+    .contact-section h2 { font-size: 22px; font-weight: 700; color: var(--primary-lt); margin-bottom: 8px; letter-spacing: -0.3px; }
+    .contact-section .desc { font-size: 14px; color: rgba(241,245,249,0.7); margin-bottom: 28px; }
+    .contact-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--primary-lt); color: #1a2533;
+      font-weight: 700; font-size: 15px; padding: 14px 28px;
+      border-radius: 50px; text-decoration: none; border: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .contact-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .response-note { margin-top: 16px; font-size: 13px; color: rgba(241,245,249,0.5); }
+
+    /* ── Footer ── */
+    .site-footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+    .site-footer a { color: var(--muted); text-decoration: none; }
+    .site-footer a:hover { color: var(--primary); }
+
+    /* ── Lang visibility ── */
+    [lang-block] { display: none; }
+    [lang-block].visible { display: block; }
+
+    @media (max-width: 600px) {
+      .site-header { padding: 40px 20px 36px; }
+      .faq-q { padding: 15px 18px; }
+      .faq-a { padding: 0 18px 15px; padding-top: 13px; }
+      .contact-section { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Language Bar -->
+<div class="lang-bar" dir="ltr">
+  <button class="lang-btn active" onclick="setLang('en')"      id="btn-en">English</button>
+  <button class="lang-btn"        onclick="setLang('ko')"      id="btn-ko">한국어</button>
+  <button class="lang-btn"        onclick="setLang('ja')"      id="btn-ja">日本語</button>
+  <button class="lang-btn"        onclick="setLang('zh-hans')" id="btn-zh-hans">简体中文</button>
+  <button class="lang-btn"        onclick="setLang('zh-hant')" id="btn-zh-hant">繁體中文</button>
+  <button class="lang-btn"        onclick="setLang('id')"      id="btn-id">Bahasa</button>
+  <button class="lang-btn"        onclick="setLang('ar')"      id="btn-ar">عربي</button>
+  <button class="lang-btn"        onclick="setLang('fa')"      id="btn-fa">فارسی</button>
+  <button class="lang-btn"        onclick="setLang('he')"      id="btn-he">עברית</button>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="logo-mark">📅</div>
+  <h1>Demiva</h1>
+  <p class="subtitle" lang-block id="hd-en">Support Center</p>
+  <p class="subtitle" lang-block id="hd-ko">지원 센터</p>
+  <p class="subtitle" lang-block id="hd-ja">サポートセンター</p>
+  <p class="subtitle" lang-block id="hd-zh-hans">帮助中心</p>
+  <p class="subtitle" lang-block id="hd-zh-hant">協助中心</p>
+  <p class="subtitle" lang-block id="hd-id">Pusat Bantuan</p>
+  <p class="subtitle" lang-block id="hd-ar">مركز الدعم</p>
+  <p class="subtitle" lang-block id="hd-fa">مرکز پشتیبانی</p>
+  <p class="subtitle" lang-block id="hd-he">מרכז תמיכה</p>
+</header>
+
+<!-- ═══════════════════════════════════════════
+     ENGLISH
+═══════════════════════════════════════════ -->
+<div lang-block id="content-en">
+<main class="container">
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EFF6FF;">🚀</div>
+    <h2>Getting Started</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">How do I add my first item?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Tap the <strong>+</strong> button (bottom-right) on the main screen. Give the item a name, choose an icon and color, then set the cycle — how often this task repeats. Tap <strong>Save</strong> and your item appears in the list.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">What cycle types are available?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Demiva supports four cycle types:</p>
+      <ul>
+        <li><strong>Flexible</strong> — every N days / weeks / months (e.g. every 3 months)</li>
+        <li><strong>Weekly</strong> — specific days of the week (e.g. every Monday &amp; Thursday)</li>
+        <li><strong>Monthly</strong> — a fixed day each month (e.g. the 15th)</li>
+        <li><strong>Yearly</strong> — a fixed date each year, with optional alternative calendar support (lunar, Islamic, Persian, Hebrew)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">How is Demiva different from a habit tracker?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Demiva is designed for <strong>long-cycle, easy-to-forget tasks</strong> — things you don't do every day but need to remember: car maintenance, medical checkups, seasonal cleaning, and so on.</p>
+      <p>Unlike streak-based habit apps, Demiva doesn't create guilt. It simply tells you how many days have passed — neutral and factual.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#F0FDF4;">📝</div>
+    <h2>Logging &amp; Records</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">How do I record a completion?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Tap the <strong>Record</strong> button on any item card. A sheet appears where you can optionally add a short memo (up to 100 characters). Tap <strong>Save</strong> to log the completion, or tap <strong>Record without note</strong> to skip the memo.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">What happens if I log the same item twice today?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Demiva will show a confirmation alert asking if you really mean to log a second time today. This prevents accidental duplicate records. You can confirm to proceed or cancel.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Can I set a past date as the last completion?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Yes. When adding a new item, the <strong>Last Done</strong> date picker lets you select any past date. This is useful for items you already track elsewhere and want to migrate into Demiva accurately.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#FFF7ED;">🔔</div>
+    <h2>Notifications</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">How do I enable notifications for an item?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>When adding or editing an item, enable the <strong>Notification</strong> toggle and set the time. You can also choose <strong>lead days</strong> — get reminded 1, 3, or 7 days before the due date, in addition to the due date itself.</p>
+      <div class="highlight">If notifications aren't arriving, check <strong>iOS Settings → Demiva → Notifications</strong> and make sure notifications are allowed.</div>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">What are lead day notifications?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Lead day notifications let you receive advance reminders before a task is due. For example, if you enable <strong>3 days before</strong>, you'll get a notification three days ahead — useful for tasks that need preparation time like scheduling an appointment or buying supplies.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Why aren't I receiving notifications?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Check the following:</p>
+      <ul>
+        <li>Go to <strong>iOS Settings → Demiva → Notifications</strong> and confirm notifications are enabled.</li>
+        <li>Make sure the item has its notification toggle turned on.</li>
+        <li>Demiva can schedule up to <strong>60 notifications</strong> total. If you have many items, some lower-priority ones may be deferred.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#FDF4FF;">🗓️</div>
+    <h2>Calendar Support</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Which calendar systems does Demiva support?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>For yearly and monthly cycle types, Demiva supports five calendar systems:</p>
+      <ul>
+        <li><strong>Gregorian</strong> — standard international calendar</li>
+        <li><strong>Chinese Lunar</strong> — used for Korean/Chinese traditional dates</li>
+        <li><strong>Islamic (Umm al-Qura)</strong> — used in Saudi Arabia and other Islamic regions</li>
+        <li><strong>Persian</strong> — used in Iran and Afghanistan</li>
+        <li><strong>Hebrew</strong> — supports all 13 months including leap-year months</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">How do I track a lunar calendar event like Chuseok or Lunar New Year?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>When adding an item, select <strong>Yearly</strong> as the cycle type, then tap the calendar selector and choose <strong>Chinese Lunar</strong>. Set the lunar month and day. Demiva will calculate the correct Gregorian date each year automatically.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#F0FDF4;">⏸️</div>
+    <h2>Snooze &amp; Skip</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">What is the snooze feature?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Snooze lets you intentionally defer an overdue item without feeling like you "missed" it. Swipe left on a card and tap <strong>Snooze</strong>. Choose 1 week, 1 month, or a custom date. While snoozed, the item shows no overdue badge and notifications are paused.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">How do I cancel a snooze?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>On a snoozed item card, tap the <strong>Cancel</strong> link next to the "Snoozed until…" text. The item returns to its normal state immediately.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EFF6FF;">📱</div>
+    <h2>Widgets</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">How do I add a Demiva widget to my home screen?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Long-press an empty area of your home screen → tap <strong>+</strong> (top-left) → search for <strong>Demiva</strong> → choose a widget size and tap <strong>Add Widget</strong>.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">What does the widget show?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>The <strong>Small</strong> widget shows the item most in need of attention — the one most overdue relative to its cycle. It displays the item icon, name, and elapsed days with a color-coded status badge.</p>
+      <p>The <strong>Lock Screen</strong> (Accessory Rectangular) widget shows the item name and elapsed days in a compact format.</p>
+      <p>Tapping either widget opens the app directly to that item.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#FDF4FF;">⭐</div>
+    <h2>Demiva Premium</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">What's included in Demiva Premium?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <ul>
+        <li><strong>Unlimited items</strong> — free plan is limited to 5 items</li>
+        <li><strong>All future premium features</strong> — automatically included</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">How do I restore my purchase on a new device?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Go to <strong>Settings → Upgrade to Premium → Restore Purchase</strong>. Sign in with the same Apple ID you used to purchase, and your Premium will be restored instantly.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">How do I cancel my subscription?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Subscriptions are managed by Apple:</p>
+      <ul>
+        <li>Open the <strong>Settings</strong> app on your iPhone</li>
+        <li>Tap your Apple ID name → <strong>Subscriptions</strong></li>
+        <li>Find <strong>Demiva</strong> and tap <strong>Cancel Subscription</strong></li>
+      </ul>
+      <p>You retain Premium access until the end of the current billing period.</p>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <h2>Still need help?</h2>
+    <p class="desc">Can't find the answer? Send us an email and we'll get back to you.</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">📧 &nbsp;Contact Support</a>
+    <p class="response-note">We respond within 5 business days.</p>
+  </div>
+
+</main>
+</div><!-- /content-en -->
+
+<!-- ═══════════════════════════════════════════
+     KOREAN
+═══════════════════════════════════════════ -->
+<div lang-block id="content-ko">
+<main class="container">
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EFF6FF;">🚀</div>
+    <h2>시작하기</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">첫 번째 항목을 어떻게 추가하나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>메인 화면 우측 하단의 <strong>+</strong> 버튼을 탭하세요. 이름, 아이콘, 색상을 선택하고 주기(얼마나 자주 반복되는지)를 설정한 뒤 <strong>저장</strong>을 탭하면 목록에 항목이 추가됩니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">어떤 주기 유형을 지원하나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Demiva는 네 가지 주기 유형을 지원합니다:</p>
+      <ul>
+        <li><strong>직접 설정</strong> — N일 / 주 / 개월마다 (예: 3개월마다)</li>
+        <li><strong>매주</strong> — 특정 요일마다 (예: 매주 월·목)</li>
+        <li><strong>매월</strong> — 매월 특정 날짜 (예: 15일)</li>
+        <li><strong>매년</strong> — 매년 특정 날짜, 음력·이슬람력·페르시아력·히브리력 선택 가능</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Demiva는 습관 추적 앱과 어떻게 다른가요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Demiva는 매일 하는 일이 아닌 <strong>"잊기 쉬운 중장기 반복 업무"</strong>를 위한 앱입니다. 자동차 점검, 건강검진, 계절 대청소 같은 일들을 관리합니다.</p>
+      <p>스트릭 기반 앱과 달리 Demiva는 죄책감을 주지 않습니다. 경과 사실을 담담하게 알려줄 뿐입니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#F0FDF4;">📝</div>
+    <h2>기록하기</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">완료를 어떻게 기록하나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>카드의 <strong>기록</strong> 버튼을 탭하세요. 선택적으로 짧은 메모(최대 100자)를 추가할 수 있는 시트가 표시됩니다. <strong>저장</strong>을 탭하거나, 메모 없이 기록하려면 <strong>메모 없이 기록</strong>을 탭하세요.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">오늘 같은 항목을 두 번 기록하면 어떻게 되나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Demiva가 오늘 이미 기록했음을 알리는 확인 알럿을 표시합니다. 실수로 중복 기록하는 것을 방지합니다. 계속 진행하거나 취소할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">과거 날짜를 마지막 완료일로 설정할 수 있나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>네. 항목 추가 시 <strong>마지막 수행일</strong> 날짜 피커에서 과거 날짜를 선택할 수 있습니다. 이미 다른 곳에서 관리하던 항목을 Demiva로 정확하게 가져올 때 유용합니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#FFF7ED;">🔔</div>
+    <h2>알림</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">항목 알림을 어떻게 설정하나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>항목 추가 또는 편집 시 <strong>알림</strong> 토글을 켜고 시간을 설정하세요. 예정일 당일 외에 1일·3일·7일 전에 미리 알림을 받는 <strong>선행 알람</strong>도 선택할 수 있습니다.</p>
+      <div class="highlight">알림이 오지 않으면 <strong>iOS 설정 → Demiva → 알림</strong>에서 허용 여부를 확인해 주세요.</div>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">선행 알람이란 무엇인가요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>예정일 이전에 미리 받는 알림입니다. 예를 들어 <strong>3일 전</strong>을 활성화하면 예정일 3일 전에 알림이 옵니다. 예약 잡기나 물건 구매 등 준비가 필요한 업무에 유용합니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">알림이 오지 않아요. 어떻게 해야 하나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <ul>
+        <li><strong>iOS 설정 → Demiva → 알림</strong>에서 알림이 허용되어 있는지 확인하세요.</li>
+        <li>해당 항목의 알림 토글이 켜져 있는지 확인하세요.</li>
+        <li>Demiva는 총 <strong>60개</strong>의 알림을 예약할 수 있습니다. 항목이 많으면 우선순위가 낮은 항목의 알림이 지연될 수 있습니다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#FDF4FF;">🗓️</div>
+    <h2>다달력 지원</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">어떤 달력 체계를 지원하나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>연간·월간 주기 유형에서 다음 5가지 달력을 지원합니다:</p>
+      <ul>
+        <li><strong>그레고리력</strong> — 표준 양력</li>
+        <li><strong>음력 (한중)</strong> — 한국·중국 전통 날짜</li>
+        <li><strong>이슬람력 (움 알쿠라)</strong> — 사우디아라비아 등 이슬람권</li>
+        <li><strong>페르시아력</strong> — 이란·아프가니스탄</li>
+        <li><strong>히브리력</strong> — 윤달(13월) 포함 전체 지원</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">추석·설날 같은 음력 날짜를 어떻게 추적하나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>항목 추가 시 주기를 <strong>매년</strong>으로 선택하고, 달력 선택기에서 <strong>음력 (한중)</strong>을 고른 뒤 음력 월·일을 설정하세요. Demiva가 매년 자동으로 올바른 양력 날짜를 계산합니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#F0FDF4;">⏸️</div>
+    <h2>스누즈 &amp; 미루기</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">스누즈 기능이란 무엇인가요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>초과된 항목을 의도적으로 미룰 수 있는 기능입니다. 카드를 왼쪽으로 스와이프하고 <strong>미루기</strong>를 탭하세요. 1주일·1개월·직접 날짜 중 선택합니다. 스누즈 중에는 초과 뱃지가 사라지고 알림이 일시 중지됩니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">스누즈를 취소하려면 어떻게 하나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>스누즈된 카드에서 "스누즈 중: …" 옆의 <strong>해제</strong>를 탭하면 즉시 원래 상태로 돌아옵니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EFF6FF;">📱</div>
+    <h2>위젯</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">홈 화면에 Demiva 위젯을 어떻게 추가하나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>홈 화면 빈 곳을 길게 누르고 → <strong>+</strong>(좌측 상단) → <strong>Demiva</strong> 검색 → 위젯 크기 선택 → <strong>위젯 추가</strong>.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">위젯에는 무엇이 표시되나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p><strong>스몰</strong> 위젯은 주기 대비 가장 오래된 항목을 표시합니다. 아이콘, 이름, 경과일, 색상 상태 뱃지가 표시됩니다.</p>
+      <p><strong>잠금화면</strong>(Accessory Rectangular) 위젯은 항목 이름과 경과일을 간결하게 표시합니다.</p>
+      <p>위젯을 탭하면 해당 항목으로 바로 이동합니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#FDF4FF;">⭐</div>
+    <h2>Demiva 프리미엄</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Demiva 프리미엄에는 무엇이 포함되나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <ul>
+        <li><strong>무제한 항목</strong> — 무료는 최대 5개</li>
+        <li><strong>향후 모든 프리미엄 기능</strong> 자동 포함</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">새 기기에서 구매를 복원하려면 어떻게 하나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p><strong>설정 → 프리미엄 업그레이드 → 구매 복원</strong>을 탭하세요. 구매 시 사용한 Apple ID로 로그인하면 즉시 복원됩니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">구독을 취소하려면 어떻게 하나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>구독은 Apple에서 관리합니다:</p>
+      <ul>
+        <li>iPhone <strong>설정</strong> 앱 열기</li>
+        <li>Apple ID 이름 탭 → <strong>구독</strong></li>
+        <li><strong>Demiva</strong> → <strong>구독 취소</strong></li>
+      </ul>
+      <p>현재 결제 기간이 끝날 때까지 프리미엄 기능을 계속 이용할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <h2>추가 도움이 필요하신가요?</h2>
+    <p class="desc">찾는 답변이 없으신가요? 이메일로 문의해 주세요.</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">📧 &nbsp;문의하기</a>
+    <p class="response-note">영업일 기준 5일 이내에 답변드립니다.</p>
+  </div>
+
+</main>
+</div><!-- /content-ko -->
+
+<!-- ═══════════════════════════════════════════
+     JAPANESE
+═══════════════════════════════════════════ -->
+<div lang-block id="content-ja">
+<main class="container">
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EFF6FF;">🚀</div>
+    <h2>はじめに</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">最初のアイテムはどのように追加しますか？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>メイン画面右下の <strong>+</strong> ボタンをタップします。名前、アイコン、色を選択してサイクル（どのくらいの頻度で繰り返すか）を設定し、<strong>保存</strong>をタップするとリストに追加されます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">どのようなサイクルタイプが利用できますか？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Demivaは4つのサイクルタイプをサポートしています：</p>
+      <ul>
+        <li><strong>フレキシブル</strong> — N日・週・ヶ月ごと（例：3ヶ月ごと）</li>
+        <li><strong>毎週</strong> — 特定の曜日（例：毎週月・木曜日）</li>
+        <li><strong>毎月</strong> — 毎月特定の日（例：15日）</li>
+        <li><strong>毎年</strong> — 毎年特定の日付。旧暦・イスラム暦・ペルシャ暦・ヘブライ暦も選択可能</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Demivaは習慣トラッカーとどう違いますか？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Demivaは<strong>忘れがちな中長期の繰り返しタスク</strong>のためのアプリです。車の点検、健康診断、季節の掃除など、毎日ではないが重要なことを管理します。</p>
+      <p>ストリーク型のアプリと違い、Demivaは罪悪感を与えません。経過した日数を淡々と伝えるだけです。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#F0FDF4;">📝</div>
+    <h2>記録する</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">完了はどのように記録しますか？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>カードの<strong>記録</strong>ボタンをタップします。任意でメモ（最大100文字）を追加できるシートが表示されます。<strong>保存</strong>をタップするか、<strong>メモなしで記録</strong>をタップしてスキップできます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">今日同じアイテムを2回記録するとどうなりますか？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>本当に2回目の記録を行うかどうか確認アラートが表示されます。誤った重複記録を防ぐためです。続けるかキャンセルするかを選べます。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#FFF7ED;">🔔</div>
+    <h2>通知</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">アイテムの通知はどのように設定しますか？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>アイテムの追加・編集時に<strong>通知</strong>トグルをオンにして時刻を設定します。期日当日のほか、1日・3日・7日前に事前通知を受け取る<strong>事前通知</strong>も設定できます。</p>
+      <div class="highlight">通知が届かない場合は、<strong>iOS設定 → Demiva → 通知</strong>で許可されているか確認してください。</div>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">事前通知とは何ですか？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>期日の前に受け取れる早期リマインダーです。例えば<strong>3日前</strong>を有効にすると、期日の3日前に通知が届きます。予約の手配や準備が必要なタスクに便利です。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#FDF4FF;">🗓️</div>
+    <h2>カレンダーサポート</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">どのカレンダーシステムをサポートしていますか？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>年間・月間サイクルタイプで5つのカレンダーシステムをサポートしています：</p>
+      <ul>
+        <li><strong>グレゴリオ暦</strong> — 標準的な国際カレンダー</li>
+        <li><strong>旧暦（中国・韓国）</strong> — 伝統的な東アジアの日付</li>
+        <li><strong>イスラム暦（ウム・アル＝クラー）</strong> — サウジアラビア等</li>
+        <li><strong>ペルシャ暦</strong> — イラン・アフガニスタン</li>
+        <li><strong>ヘブライ暦</strong> — うるう月（13ヶ月）完全対応</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#F0FDF4;">⏸️</div>
+    <h2>スヌーズ &amp; 延期</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">スヌーズ機能とは何ですか？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>期限超過のアイテムを意図的に先延ばしできる機能です。カードを左にスワイプして<strong>スヌーズ</strong>をタップ。1週間・1ヶ月・カスタム日から選択します。スヌーズ中は超過バッジが消え、通知も一時停止されます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">スヌーズをキャンセルするには？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>スヌーズ中のカードで「スヌーズ中: …」の横の<strong>解除</strong>をタップすると、すぐに通常状態に戻ります。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#FDF4FF;">⭐</div>
+    <h2>Demiva プレミアム</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Demivaプレミアムには何が含まれますか？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <ul>
+        <li><strong>無制限のアイテム</strong> — 無料は最大5件</li>
+        <li><strong>将来のすべてのプレミアム機能</strong>が自動的に含まれる</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">新しいデバイスで購入を復元するには？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p><strong>設定 → プレミアムにアップグレード → 購入を復元</strong>をタップします。購入時のApple IDでサインインすると即座に復元されます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">サブスクリプションをキャンセルするには？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>サブスクリプションはAppleが管理します：</p>
+      <ul>
+        <li>iPhoneの<strong>設定</strong>アプリを開く</li>
+        <li>Apple ID名をタップ → <strong>サブスクリプション</strong></li>
+        <li><strong>Demiva</strong>を選択 → <strong>サブスクリプションをキャンセル</strong></li>
+      </ul>
+      <p>現在の請求期間が終了するまでプレミアム機能をご利用いただけます。</p>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <h2>さらにサポートが必要ですか？</h2>
+    <p class="desc">お探しの回答が見つからない場合は、メールでお問い合わせください。</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">📧 &nbsp;お問い合わせ</a>
+    <p class="response-note">営業日5日以内にご返答いたします。</p>
+  </div>
+
+</main>
+</div><!-- /content-ja -->
+
+<!-- ═══════════════════════════════════════════
+     SIMPLIFIED CHINESE
+═══════════════════════════════════════════ -->
+<div lang-block id="content-zh-hans">
+<main class="container">
+
+  <div class="cat-header"><div class="cat-icon" style="background:#EFF6FF;">🚀</div><h2>入门</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">如何添加第一个项目？<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>点击主屏幕右下角的 <strong>+</strong> 按钮。设置名称、图标、颜色和周期（多久重复一次），然后点击<strong>保存</strong>即可。</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">支持哪些周期类型？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <ul>
+        <li><strong>灵活</strong> — 每 N 天/周/月（例如每 3 个月）</li>
+        <li><strong>每周</strong> — 指定星期几（例如每周一和周四）</li>
+        <li><strong>每月</strong> — 每月固定日期（例如 15 日）</li>
+        <li><strong>每年</strong> — 每年固定日期，支持农历、伊斯兰历、波斯历、希伯来历</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FFF7ED;">🔔</div><h2>通知</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">如何为项目设置通知？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>添加或编辑项目时，开启<strong>通知</strong>开关并设置时间。还可以选择<strong>提前提醒</strong>（到期前 1、3 或 7 天）。</p>
+      <div class="highlight">如未收到通知，请检查 <strong>iOS 设置 → Demiva → 通知</strong> 是否已允许。</div>
+    </div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FDF4FF;">🗓️</div><h2>多历法支持</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">如何追踪农历日期（如春节、清明）？<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>添加项目时选择<strong>每年</strong>周期，然后在日历选择器中选择<strong>农历</strong>，设置农历月份和日期。Demiva 将每年自动计算对应的公历日期。</p></div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#F0FDF4;">⏸️</div><h2>推迟</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">什么是推迟功能？<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>推迟功能让您有意延后已逾期的项目。向左滑动卡片并点击<strong>推迟</strong>，选择 1 周、1 个月或自定义日期。推迟期间不显示逾期徽章，通知也会暂停。</p></div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FDF4FF;">⭐</div><h2>Demiva 高级版</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">高级版包含哪些内容？<span class="chevron">▼</span></button>
+    <div class="faq-a"><ul><li><strong>无限项目</strong> — 免费版最多 5 个</li><li><strong>未来所有高级功能</strong>自动包含</li></ul></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">如何在新设备上恢复购买？<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>前往<strong>设置 → 升级高级版 → 恢复购买</strong>，使用购买时的 Apple ID 登录即可立即恢复。</p></div>
+  </div>
+
+  <div class="contact-section">
+    <h2>还需要帮助？</h2>
+    <p class="desc">没有找到答案？发送邮件给我们，我们会尽快回复。</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">📧 &nbsp;联系支持</a>
+    <p class="response-note">我们将在 5 个工作日内回复。</p>
+  </div>
+
+</main>
+</div><!-- /content-zh-hans -->
+
+<!-- ═══════════════════════════════════════════
+     TRADITIONAL CHINESE
+═══════════════════════════════════════════ -->
+<div lang-block id="content-zh-hant">
+<main class="container">
+
+  <div class="cat-header"><div class="cat-icon" style="background:#EFF6FF;">🚀</div><h2>入門</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">如何新增第一個項目？<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>點選主畫面右下角的 <strong>+</strong> 按鈕。設定名稱、圖示、顏色和週期（多久重複一次），然後點選<strong>儲存</strong>即可。</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">支援哪些週期類型？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <ul>
+        <li><strong>彈性</strong> — 每 N 天/週/月（例如每 3 個月）</li>
+        <li><strong>每週</strong> — 指定星期幾（例如每週一和週四）</li>
+        <li><strong>每月</strong> — 每月固定日期（例如 15 日）</li>
+        <li><strong>每年</strong> — 每年固定日期，支援農曆、伊斯蘭曆、波斯曆、希伯來曆</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FFF7ED;">🔔</div><h2>通知</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">如何為項目設定通知？<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>新增或編輯項目時，開啟<strong>通知</strong>開關並設定時間。還可以選擇<strong>提前提醒</strong>（到期前 1、3 或 7 天）。</p>
+      <div class="highlight">如未收到通知，請檢查 <strong>iOS 設定 → Demiva → 通知</strong> 是否已允許。</div>
+    </div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FDF4FF;">🗓️</div><h2>多曆法支援</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">如何追蹤農曆日期（如農曆新年、清明）？<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>新增項目時選擇<strong>每年</strong>週期，在日曆選擇器中選擇<strong>農曆</strong>，設定農曆月份和日期。Demiva 將每年自動計算對應的公曆日期。</p></div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FDF4FF;">⭐</div><h2>Demiva 進階版</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">進階版包含哪些內容？<span class="chevron">▼</span></button>
+    <div class="faq-a"><ul><li><strong>無限項目</strong> — 免費版最多 5 個</li><li><strong>未來所有進階功能</strong>自動包含</li></ul></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">如何在新裝置上復原購買？<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>前往<strong>設定 → 升級進階版 → 復原購買</strong>，使用購買時的 Apple ID 登入即可立即復原。</p></div>
+  </div>
+
+  <div class="contact-section">
+    <h2>還需要幫助？</h2>
+    <p class="desc">沒有找到答案？發送郵件給我們，我們會盡快回覆。</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">📧 &nbsp;聯絡支援</a>
+    <p class="response-note">我們將在 5 個工作天內回覆。</p>
+  </div>
+
+</main>
+</div><!-- /content-zh-hant -->
+
+<!-- ═══════════════════════════════════════════
+     INDONESIAN
+═══════════════════════════════════════════ -->
+<div lang-block id="content-id">
+<main class="container">
+
+  <div class="cat-header"><div class="cat-icon" style="background:#EFF6FF;">🚀</div><h2>Memulai</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Bagaimana cara menambahkan item pertama?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>Ketuk tombol <strong>+</strong> di kanan bawah layar utama. Masukkan nama, pilih ikon dan warna, lalu atur siklus (seberapa sering tugas berulang). Ketuk <strong>Simpan</strong> untuk menambahkan ke daftar.</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Jenis siklus apa saja yang tersedia?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <ul>
+        <li><strong>Fleksibel</strong> — setiap N hari/minggu/bulan (mis. setiap 3 bulan)</li>
+        <li><strong>Mingguan</strong> — hari tertentu setiap minggu (mis. Senin &amp; Kamis)</li>
+        <li><strong>Bulanan</strong> — tanggal tetap setiap bulan (mis. tanggal 15)</li>
+        <li><strong>Tahunan</strong> — tanggal tetap setiap tahun, dengan dukungan kalender Hijriah, Persia, Ibrani</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FFF7ED;">🔔</div><h2>Notifikasi</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Bagaimana cara mengaktifkan notifikasi?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Saat menambah atau mengedit item, aktifkan tombol <strong>Notifikasi</strong> dan atur waktunya. Anda juga bisa memilih <strong>notifikasi lebih awal</strong> (1, 3, atau 7 hari sebelum jatuh tempo).</p>
+      <div class="highlight">Jika notifikasi tidak muncul, periksa <strong>Pengaturan iOS → Demiva → Notifikasi</strong>.</div>
+    </div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FDF4FF;">⭐</div><h2>Demiva Premium</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Apa yang termasuk dalam Demiva Premium?<span class="chevron">▼</span></button>
+    <div class="faq-a"><ul><li><strong>Item tak terbatas</strong> — paket gratis maksimal 5 item</li><li><strong>Semua fitur premium mendatang</strong> otomatis termasuk</li></ul></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Bagaimana cara memulihkan pembelian di perangkat baru?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>Buka <strong>Pengaturan → Upgrade Premium → Pulihkan Pembelian</strong>. Masuk dengan Apple ID yang sama saat membeli, dan Premium akan dipulihkan segera.</p></div>
+  </div>
+
+  <div class="contact-section">
+    <h2>Masih butuh bantuan?</h2>
+    <p class="desc">Tidak menemukan jawabannya? Kirim email dan kami akan membalas.</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">📧 &nbsp;Hubungi Dukungan</a>
+    <p class="response-note">Kami merespons dalam 5 hari kerja.</p>
+  </div>
+
+</main>
+</div><!-- /content-id -->
+
+<!-- ═══════════════════════════════════════════
+     ARABIC (RTL)
+═══════════════════════════════════════════ -->
+<div lang-block id="content-ar" dir="rtl">
+<main class="container">
+
+  <div class="cat-header"><div class="cat-icon" style="background:#EFF6FF;">🚀</div><h2>البدء</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">كيف أضيف أول عنصر؟<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>اضغط على زر <strong>+</strong> في أسفل يسار الشاشة الرئيسية. أدخل الاسم واختر الأيقونة واللون والدورة (كم مرة تتكرر المهمة). اضغط <strong>حفظ</strong> لإضافته إلى القائمة.</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">ما أنواع الدورات المتاحة؟<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <ul>
+        <li><strong>مرن</strong> — كل N يوم / أسبوع / شهر (مثل: كل 3 أشهر)</li>
+        <li><strong>أسبوعي</strong> — أيام محددة من الأسبوع (مثل: الاثنين والخميس)</li>
+        <li><strong>شهري</strong> — يوم ثابت من كل شهر (مثل: اليوم 15)</li>
+        <li><strong>سنوي</strong> — تاريخ ثابت كل عام، مع دعم التقويم الهجري والفارسي والعبري</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FFF7ED;">🔔</div><h2>الإشعارات</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">كيف أفعّل الإشعارات لعنصر ما؟<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>عند إضافة أو تعديل عنصر، فعّل مفتاح <strong>الإشعار</strong> وحدد الوقت. يمكنك أيضاً اختيار <strong>التذكير المبكر</strong> (قبل 1 أو 3 أو 7 أيام من موعد الاستحقاق).</p>
+      <div class="highlight">إذا لم تصلك الإشعارات، تحقق من <strong>إعدادات iOS ← Demiva ← الإشعارات</strong>.</div>
+    </div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FDF4FF;">🗓️</div><h2>دعم التقويمات</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">كيف أتابع تاريخاً هجرياً مثل رمضان أو عيد الأضحى؟<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>عند إضافة عنصر، اختر دورة <strong>سنوية</strong>، ثم في محدد التقويم اختر <strong>التقويم الهجري</strong>، وحدد الشهر واليوم الهجريين. سيحسب Demiva تلقائياً التاريخ الميلادي المقابل كل عام.</p></div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FDF4FF;">⭐</div><h2>Demiva Premium</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">ما المميزات المدفوعة في Demiva؟<span class="chevron">▼</span></button>
+    <div class="faq-a"><ul><li><strong>عناصر غير محدودة</strong> — الخطة المجانية تقتصر على 5 عناصر</li><li><strong>جميع الميزات المميزة المستقبلية</strong> مدرجة تلقائياً</li></ul></div>
+  </div>
+
+  <div class="contact-section">
+    <h2>هل تحتاج مساعدة إضافية؟</h2>
+    <p class="desc">لم تجد إجابتك؟ أرسل لنا بريداً إلكترونياً وسنرد عليك.</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">📧 &nbsp;تواصل مع الدعم</a>
+    <p class="response-note">نهدف إلى الرد خلال 5 أيام عمل.</p>
+  </div>
+
+</main>
+</div><!-- /content-ar -->
+
+<!-- ═══════════════════════════════════════════
+     PERSIAN (RTL)
+═══════════════════════════════════════════ -->
+<div lang-block id="content-fa" dir="rtl">
+<main class="container">
+
+  <div class="cat-header"><div class="cat-icon" style="background:#EFF6FF;">🚀</div><h2>شروع</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">چطور اولین مورد را اضافه کنم؟<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>دکمه <strong>+</strong> را در گوشه پایین سمت چپ صفحه اصلی لمس کنید. نام، آیکون، رنگ و چرخه (هر چند وقت یک‌بار تکرار می‌شود) را تنظیم کنید، سپس <strong>ذخیره</strong> را بزنید.</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">چه نوع چرخه‌هایی در دسترس هستند؟<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <ul>
+        <li><strong>انعطاف‌پذیر</strong> — هر N روز/هفته/ماه (مثلاً هر ۳ ماه)</li>
+        <li><strong>هفتگی</strong> — روزهای خاصی از هفته (مثلاً دوشنبه و پنج‌شنبه)</li>
+        <li><strong>ماهانه</strong> — روز ثابت هر ماه (مثلاً روز ۱۵)</li>
+        <li><strong>سالانه</strong> — تاریخ ثابت هر سال، با پشتیبانی از تقویم فارسی، هجری و عبری</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FFF7ED;">🔔</div><h2>اعلان‌ها</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">چطور اعلان‌ها را فعال کنم؟<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>هنگام افزودن یا ویرایش مورد، کلید <strong>اعلان</strong> را روشن کنید و زمان را تنظیم کنید. همچنین می‌توانید <strong>اعلان پیش‌هنگام</strong> (۱، ۳ یا ۷ روز قبل از موعد) را انتخاب کنید.</p>
+      <div class="highlight">اگر اعلان‌ها نمی‌رسند، <strong>تنظیمات iOS ← Demiva ← اعلان‌ها</strong> را بررسی کنید.</div>
+    </div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FDF4FF;">🗓️</div><h2>پشتیبانی از تقویم</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">چطور یک رویداد تقویم فارسی مثل نوروز را ردیابی کنم؟<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>هنگام افزودن مورد، چرخه <strong>سالانه</strong> را انتخاب کنید، سپس در انتخابگر تقویم <strong>تقویم فارسی</strong> را بزنید و ماه و روز شمسی را تنظیم کنید. Demiva هر سال تاریخ میلادی معادل را به صورت خودکار محاسبه می‌کند.</p></div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FDF4FF;">⭐</div><h2>Demiva پریمیوم</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">پریمیوم Demiva شامل چه چیزهایی است؟<span class="chevron">▼</span></button>
+    <div class="faq-a"><ul><li><strong>موارد نامحدود</strong> — نسخه رایگان حداکثر ۵ مورد</li><li><strong>تمام ویژگی‌های پریمیوم آینده</strong> به صورت خودکار شامل می‌شود</li></ul></div>
+  </div>
+
+  <div class="contact-section">
+    <h2>هنوز به کمک نیاز دارید؟</h2>
+    <p class="desc">جواب را پیدا نکردید؟ ایمیل بفرستید و ما پاسخ خواهیم داد.</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">📧 &nbsp;تماس با پشتیبانی</a>
+    <p class="response-note">هدف ما پاسخ در ۵ روز کاری است.</p>
+  </div>
+
+</main>
+</div><!-- /content-fa -->
+
+<!-- ═══════════════════════════════════════════
+     HEBREW (RTL)
+═══════════════════════════════════════════ -->
+<div lang-block id="content-he" dir="rtl">
+<main class="container">
+
+  <div class="cat-header"><div class="cat-icon" style="background:#EFF6FF;">🚀</div><h2>תחילת עבודה</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">כיצד מוסיפים את הפריט הראשון?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>הקש על כפתור ה-<strong>+</strong> בפינה הימנית התחתונה של המסך הראשי. הגדר שם, אייקון, צבע ומחזור (כמה זמן עובר בין חזרות), ואז הקש <strong>שמור</strong>.</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">אילו סוגי מחזורים זמינים?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <ul>
+        <li><strong>גמיש</strong> — כל N ימים/שבועות/חודשים (למשל כל 3 חודשים)</li>
+        <li><strong>שבועי</strong> — ימים ספציפיים בשבוע (למשל שני ורביעי)</li>
+        <li><strong>חודשי</strong> — יום קבוע בכל חודש (למשל ה-15)</li>
+        <li><strong>שנתי</strong> — תאריך קבוע בכל שנה, עם תמיכה בלוח עברי, הג'רי ופרסי</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FFF7ED;">🔔</div><h2>התראות</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">כיצד מפעילים התראות לפריט?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>בעת הוספה או עריכה של פריט, הפעל את מתג <strong>ההתראה</strong> והגדר שעה. ניתן גם לבחור <strong>התראה מוקדמת</strong> (1, 3 או 7 ימים לפני מועד היעד).</p>
+      <div class="highlight">אם ההתראות לא מגיעות, בדוק <strong>הגדרות iOS ← Demiva ← התראות</strong>.</div>
+    </div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FDF4FF;">🗓️</div><h2>תמיכה בלוחות שנה</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">כיצד עוקבים אחר תאריך עברי כמו ראש השנה או פסח?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>בעת הוספת פריט, בחר מחזור <strong>שנתי</strong>, ואז בבוחר הלוח שנה בחר <strong>לוח עברי</strong> והגדר את החודש והיום העבריים. Demiva יחשב אוטומטית את התאריך הגרגוריאני המתאים מדי שנה.</p></div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon" style="background:#FDF4FF;">⭐</div><h2>Demiva פרמיום</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">מה כולל Demiva פרמיום?<span class="chevron">▼</span></button>
+    <div class="faq-a"><ul><li><strong>פריטים ללא הגבלה</strong> — החינמי מוגבל ל-5 פריטים</li><li><strong>כל תכונות הפרמיום העתידיות</strong> כלולות אוטומטית</li></ul></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">כיצד משחזרים רכישה במכשיר חדש?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>עבור אל <strong>הגדרות ← שדרג לפרמיום ← שחזר רכישה</strong>. היכנס עם אותו Apple ID ששימש לרכישה, והפרמיום ישוחזר מיד.</p></div>
+  </div>
+
+  <div class="contact-section">
+    <h2>עדיין זקוק לעזרה?</h2>
+    <p class="desc">לא מצאת את התשובה? שלח לנו אימייל ונחזור אליך.</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">📧 &nbsp;צור קשר עם התמיכה</a>
+    <p class="response-note">אנו שואפים להשיב תוך 5 ימי עסקים.</p>
+  </div>
+
+</main>
+</div><!-- /content-he -->
+
+<footer class="site-footer">
+  <p>© 2026 Demiva. All rights reserved. &nbsp;·&nbsp;
+    <a href="../privacy/">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="mailto:hoons.labs@gmail.com">hoons.labs@gmail.com</a>
+  </p>
+</footer>
+
+<script>
+  const LANGS = ['en','ko','ja','zh-hans','zh-hant','id','ar','fa','he'];
+  const RTL   = ['ar','fa','he'];
+
+  function toggle(btn) {
+    btn.closest('.faq').classList.toggle('open');
+  }
+
+  function setLang(lang) {
+    document.querySelectorAll('[lang-block]').forEach(el => {
+      el.classList.toggle('visible', el.id.endsWith('-' + lang));
+    });
+    LANGS.forEach(l => {
+      const btn = document.getElementById('btn-' + l);
+      if (btn) btn.classList.toggle('active', l === lang);
+    });
+    document.documentElement.lang = lang;
+    document.documentElement.dir = RTL.includes(lang) ? 'rtl' : 'ltr';
+    const active = document.getElementById('btn-' + lang);
+    if (active) active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    localStorage.setItem('demiva-lang', lang);
+  }
+
+  (function () {
+    const params  = new URLSearchParams(window.location.search);
+    const urlLang = params.get('lang');
+    if (LANGS.includes(urlLang)) { setLang(urlLang); return; }
+
+    const saved = localStorage.getItem('demiva-lang');
+    if (LANGS.includes(saved)) { setLang(saved); return; }
+
+    const nav = navigator.language || '';
+    if (nav.startsWith('ko'))                       { setLang('ko');      return; }
+    if (nav.startsWith('ja'))                       { setLang('ja');      return; }
+    if (/^zh-(TW|HK|MO|Hant)/i.test(nav))          { setLang('zh-hant'); return; }
+    if (nav.startsWith('zh'))                       { setLang('zh-hans'); return; }
+    if (nav.startsWith('id') || nav.startsWith('ms')) { setLang('id');   return; }
+    if (nav.startsWith('ar'))                       { setLang('ar');      return; }
+    if (nav.startsWith('fa'))                       { setLang('fa');      return; }
+    if (nav.startsWith('he') || nav.startsWith('iw')) { setLang('he');   return; }
+    setLang('en');
+  })();
+</script>
+
+</body>
+</html>
