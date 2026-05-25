@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Tookly</title>
+  <meta name="description" content="Tookly Support / 지원 센터 — FAQ and contact" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --indigo:       #5B5BD6;
+      --indigo-dark:  #4444B8;
+      --indigo-soft:  #E6E6F8;
+      --success:      #3DA67E;
+      --success-soft: #D4EFE5;
+      --warm:         #E8A44B;
+      --canvas:       #F6F5F2;
+      --surface:      #FFFFFF;
+      --text:         #1A1814;
+      --text-sec:     #776E65;
+      --muted:        #9E978F;
+      --border:       #E8E4DF;
+      --radius:       12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --canvas:  #16151A;
+        --surface: #1F1E26;
+        --text:    #F0EDE8;
+        --border:  #2E2C38;
+        --muted:   #7A7587;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--canvas); color: var(--text);
+      line-height: 1.7; font-size: 16px;
+    }
+
+    /* Language Toggle */
+    .lang-bar {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      display: flex; justify-content: flex-end;
+      padding: 10px 24px; gap: 8px;
+    }
+    .lang-btn {
+      padding: 5px 16px; border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: transparent; color: var(--muted);
+      font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+    }
+    .lang-btn.active { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+
+    /* Header */
+    .site-header {
+      background: linear-gradient(160deg, var(--indigo) 0%, var(--indigo-dark) 60%, #2D2D99 100%);
+      color: #fff; padding: 56px 24px 48px; text-align: center;
+    }
+    .logo-mark {
+      width: 64px; height: 64px;
+      background: rgba(255,255,255,0.15); border-radius: 18px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 32px; margin-bottom: 16px; backdrop-filter: blur(8px);
+    }
+    .site-header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .site-header .subtitle { font-size: 14px; opacity: 0.8; }
+
+    /* Layout */
+    .container { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+
+    /* Section label */
+    .section-label {
+      font-size: 12px; font-weight: 700; letter-spacing: 1.4px;
+      text-transform: uppercase; color: var(--indigo);
+      margin-bottom: 16px; margin-top: 40px;
+    }
+    .section-label:first-child { margin-top: 0; }
+
+    /* FAQ Card */
+    .faq-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: 8px; overflow: hidden;
+    }
+    .faq-question {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 20px; cursor: pointer;
+      font-size: 15px; font-weight: 600; color: var(--text);
+      user-select: none; gap: 12px;
+    }
+    .faq-question:hover { background: color-mix(in srgb, var(--indigo) 3%, var(--surface)); }
+    .faq-chevron {
+      font-size: 11px; color: var(--muted);
+      transition: transform 0.22s; flex-shrink: 0;
+    }
+    .faq-card.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer {
+      display: none; padding: 0 20px 18px;
+      font-size: 14px; color: var(--text-sec); line-height: 1.75;
+      border-top: 1px solid var(--border);
+    }
+    .faq-card.open .faq-answer { display: block; padding-top: 16px; }
+
+    .faq-answer p { margin-bottom: 10px; }
+    .faq-answer p:last-child { margin-bottom: 0; }
+    .faq-answer ul { padding-left: 18px; margin-bottom: 10px; }
+    .faq-answer li { margin-bottom: 5px; }
+    .faq-answer strong { color: var(--text); font-weight: 600; }
+
+    /* Tip box inside FAQ */
+    .tip {
+      background: color-mix(in srgb, var(--success) 8%, var(--surface));
+      border-left: 3px solid var(--success);
+      border-radius: 0 8px 8px 0; padding: 12px 16px;
+      margin-top: 12px; font-size: 13px;
+    }
+    .tip.note {
+      background: color-mix(in srgb, var(--indigo) 7%, var(--surface));
+      border-color: var(--indigo);
+    }
+
+    /* Contact section */
+    .contact-section {
+      background: linear-gradient(160deg, var(--indigo) 0%, var(--indigo-dark) 100%);
+      border-radius: 20px; padding: 40px 32px; margin-top: 48px;
+      color: #fff; text-align: center;
+    }
+    .contact-section h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.4px; margin-bottom: 10px; }
+    .contact-section p { font-size: 15px; opacity: 0.8; margin-bottom: 28px; line-height: 1.65; }
+
+    .contact-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.15);
+      border: 1.5px solid rgba(255,255,255,0.35);
+      border-radius: 14px; padding: 14px 24px;
+      color: #fff; font-size: 15px; font-weight: 600;
+      text-decoration: none; transition: background 0.2s;
+      backdrop-filter: blur(8px);
+    }
+    .contact-btn:hover { background: rgba(255,255,255,0.25); border-color: transparent; }
+
+    .contact-note { font-size: 13px; opacity: 0.6; margin-top: 16px; }
+
+    /* Footer */
+    .site-footer {
+      text-align: center; padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px; color: var(--muted);
+    }
+    .site-footer a { color: var(--muted); }
+    .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 10px; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 13px; }
+    .footer-links a:hover { color: var(--indigo); }
+
+    /* Language visibility */
+    [lang-block] { display: none; }
+    [lang-block].visible { display: block; }
+
+    @media (max-width: 600px) {
+      .contact-section { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">English</button>
+  <button class="lang-btn"        onclick="setLang('ko')" id="btn-ko">한국어</button>
+</div>
+
+<header class="site-header">
+  <div class="logo-mark">💊</div>
+  <h1>Tookly</h1>
+  <p class="subtitle" lang-block="en" id="hd-en">Support Center</p>
+  <p class="subtitle" lang-block="ko" id="hd-ko">지원 센터</p>
+</header>
+
+<!-- ══ ENGLISH ══ -->
+<div lang-block="en" id="content-en">
+<main class="container">
+
+  <div class="section-label">Getting Started</div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      How do I add a medication?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>Tap the <strong>+</strong> button on the Home screen. Fill in the medication name, dose, and unit. Then add a schedule — tap "Add Schedule" to set the time and days of the week.</p>
+      <p>You can also pick a color, set a condition tag (e.g. "ADHD"), and configure the alarm style (Gentle or Nagging) per schedule.</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      How do I mark a dose as taken?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>On the Home screen, tap the <strong>check button</strong> next to any medication in the "Up Next" section. The medication will move to the "Completed" section and a HealthKit record is written if you've granted permission.</p>
+      <p>You can undo a dose within a short window using the Undo toast that appears at the bottom of the screen.</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      What is PRN (As Needed)?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p><strong>PRN</strong> stands for "pro re nata" — a medication you take only when symptoms arise, not on a fixed schedule. Toggle <strong>As Needed (PRN)</strong> when adding a medication, and no reminders will be set.</p>
+      <p>PRN medications appear on the Home screen so you can log them manually. You can also set a minimum interval (e.g. no more than once every 4 hours) and a weekly maximum count as safety guardrails.</p>
+    </div>
+  </div>
+
+  <div class="section-label">Reminders</div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      What's the difference between Gentle and Nagging reminders?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p><strong>Gentle:</strong> A single notification at the scheduled time. It rings once and waits.</p>
+      <p><strong>Nagging:</strong> Multiple follow-up notifications are pre-scheduled within a set window (e.g. every 10 minutes for up to 3 times) to keep reminding you until you log the dose. Ideal for critical medications you can't afford to miss.</p>
+      <div class="tip note">You can set a default style in Settings → Notification Style, and override it per schedule when adding a medication.</div>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      My reminders aren't arriving. What should I check?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>Check the following:</p>
+      <ul>
+        <li>Go to <strong>Settings → Tookly → Notifications</strong> and make sure notifications are enabled.</li>
+        <li>Check if <strong>Focus Mode</strong> is filtering Tookly. Go to Settings → Focus and allow Tookly in each Focus you use.</li>
+        <li>Make sure the medication has an active schedule (not PRN) and the correct days of the week are selected.</li>
+        <li>iOS allows a maximum of 64 scheduled notifications. If you have many medications or schedules, some distant reminders may be deferred until closer ones fire.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-label">Data &amp; Privacy</div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      Is my medication data private?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>Yes. All medication data stays on your device (or in your private iCloud if enabled). No medication names, doses, or health records are ever sent to our servers or to Firebase.</p>
+      <div class="tip">Tookly uses Firebase only for anonymous usage events (e.g. "dose taken" — no name/dose included) and crash reports to help us fix bugs.</div>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      How does iCloud sync work?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>If you're signed into the same iCloud account on multiple devices, your medications and logs sync automatically via Apple's CloudKit. No setup needed.</p>
+      <p>If iCloud is not available, Tookly works fully offline — all data stays local on your device.</p>
+      <p>To check iCloud status, go to <strong>Tookly → Settings → iCloud</strong>.</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      How do I export my data?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>Go to <strong>Settings → Export Data</strong>. Tookly generates a CSV file with all your medication logs that you can share, save to Files, or email to yourself or your doctor.</p>
+    </div>
+  </div>
+
+  <div class="section-label">Features</div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      What is a streak?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>A streak counts how many consecutive days you've taken all your scheduled medications. You can see your streak in the History tab. Keeping a streak is a great motivator to stay consistent with your medication routine.</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      How do I track medication stock and refills?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>When adding or editing a medication, enable <strong>Track Stock Count</strong>. Enter your current count and a refill threshold (e.g. alert when fewer than 7 doses remain). Tookly will warn you on the Home screen when your supply is running low.</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      How do I delete or archive a medication?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>Open the medication (tap the edit icon on the Home screen), scroll to the bottom, and tap <strong>Archive Medication</strong>. Archived medications are hidden from the Home screen but their logs are preserved in History.</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      Does Tookly work with Apple Health?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>Yes. With your permission, Tookly writes a log to Apple Health each time you mark a dose as taken. This is write-only — Tookly does not read any data from Health.</p>
+      <p>To connect, go to <strong>Settings → HealthKit → Connect to Health</strong>.</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      Can I use Family Sharing / Guardian mode?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>Guardian mode (Family Sharing) allows a caregiver to view another family member's medication schedule and logs via iCloud sharing. Go to <strong>Settings → Family Sharing</strong> to set it up.</p>
+      <div class="tip note">Family Sharing requires both devices to be signed into iCloud and on iOS 18.6 or later.</div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-section">
+    <h2>Need more help?</h2>
+    <p>Couldn't find the answer? Send us an email and we'll get back to you within 5 business days.</p>
+    <a class="contact-btn" href="mailto:hoons.labs@gmail.com?subject=Tookly%20Support">
+      ✉️ &nbsp;hoons.labs@gmail.com
+    </a>
+    <p class="contact-note">Please include your iOS version and app version (Settings → scroll to bottom) to help us respond faster.</p>
+  </div>
+
+</main>
+</div>
+
+<!-- ══ KOREAN ══ -->
+<div lang-block="ko" id="content-ko">
+<main class="container">
+
+  <div class="section-label">시작하기</div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      약을 추가하려면 어떻게 하나요?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>홈 화면 우측 상단의 <strong>+</strong> 버튼을 누르세요. 약 이름, 용량, 단위를 입력한 뒤 "Add Schedule"을 눌러 알림 시간과 요일을 설정하세요.</p>
+      <p>색상 선택, 질환 태그(예: "ADHD") 입력, 스케줄별 알림 스타일(Gentle 또는 Nagging) 설정도 가능합니다.</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      복약 완료는 어떻게 표시하나요?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>홈 화면 "Up Next" 섹션에서 해당 약의 <strong>체크 버튼</strong>을 탭하세요. 약이 "Completed" 섹션으로 이동하고, 권한이 있는 경우 Apple 건강 앱에 기록이 추가됩니다.</p>
+      <p>화면 하단에 표시되는 실행 취소 토스트로 잠깐 동안 복약 기록을 취소할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      PRN(필요시 복용)이란 무엇인가요?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p><strong>PRN</strong>은 "pro re nata"의 약자로, 증상이 있을 때만 복용하는 약을 의미합니다. 약 추가 시 <strong>As Needed (PRN)</strong> 토글을 켜면 알림이 설정되지 않습니다.</p>
+      <p>PRN 약은 홈 화면에 표시되어 직접 기록할 수 있습니다. 최소 복용 간격(예: 4시간에 1회 이하)과 주간 최대 복용 횟수를 안전 가이드로 설정할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="section-label">알림</div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      Gentle과 Nagging 알림의 차이는 무엇인가요?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p><strong>Gentle:</strong> 지정된 시간에 알림 1회 전송. 한 번만 울리고 기다립니다.</p>
+      <p><strong>Nagging:</strong> 설정한 간격과 횟수(예: 10분 간격으로 최대 3회)로 후속 알림을 미리 예약합니다. 복약을 놓치면 안 되는 중요한 약에 적합합니다.</p>
+      <div class="tip note">설정 → 알림 스타일에서 기본값을 지정하고, 약을 추가할 때 스케줄별로 개별 설정할 수 있습니다.</div>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      알림이 오지 않아요. 어떻게 확인해야 하나요?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>아래 항목을 확인해 주세요.</p>
+      <ul>
+        <li><strong>설정 → Tookly → 알림</strong>에서 알림이 켜져 있는지 확인하세요.</li>
+        <li><strong>집중 모드</strong>가 Tookly 알림을 차단하고 있는지 확인하세요. 설정 → 집중 모드에서 각 모드의 허용 앱에 Tookly를 추가하세요.</li>
+        <li>해당 약에 활성 스케줄(PRN 아님)이 있고, 올바른 요일이 선택되어 있는지 확인하세요.</li>
+        <li>iOS는 최대 64개의 예약 알림을 허용합니다. 스케줄이 많은 경우 먼 미래의 알림 일부가 지연될 수 있습니다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-label">데이터 및 개인정보</div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      복약 데이터는 안전한가요?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>네. 모든 복약 데이터는 기기(또는 iCloud 활성화 시 나의 개인 iCloud)에만 저장됩니다. 약 이름, 용량, 건강 기록은 당사 서버나 Firebase로 전송되지 않습니다.</p>
+      <div class="tip">Tookly는 익명 사용 이벤트(예: "복약 완료" — 이름/용량 미포함)와 버그 수정을 위한 충돌 보고에만 Firebase를 사용합니다.</div>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      iCloud 동기화는 어떻게 작동하나요?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>동일한 iCloud 계정으로 로그인된 기기들 간에 복약 데이터와 기록이 Apple CloudKit을 통해 자동으로 동기화됩니다. 별도 설정이 필요 없습니다.</p>
+      <p>iCloud를 사용하지 않는 경우 Tookly는 완전한 오프라인 모드로 작동하며, 모든 데이터가 기기에 로컬로 저장됩니다.</p>
+      <p>iCloud 상태는 <strong>Tookly → 설정 → iCloud</strong>에서 확인하세요.</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      데이터를 내보내려면 어떻게 하나요?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p><strong>설정 → 데이터 내보내기</strong>를 탭하세요. 복약 기록이 담긴 CSV 파일을 생성하여 파일 앱에 저장하거나, 의사에게 이메일로 전송할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="section-label">기능</div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      스트릭(streak)이란 무엇인가요?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>스트릭은 예약된 모든 약을 빠짐없이 복용한 연속 일수입니다. 히스토리 탭에서 스트릭을 확인할 수 있습니다. 스트릭을 유지하는 것은 복약 루틴을 꾸준히 지키는 데 좋은 동기부여가 됩니다.</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      약 재고와 리필 알림은 어떻게 설정하나요?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>약을 추가하거나 편집할 때 <strong>재고 수량 추적</strong>을 활성화하세요. 현재 재고 수량과 리필 임계값(예: 7회 분량 남았을 때 알림)을 입력하면 홈 화면에서 재고 부족 경고를 받을 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      약을 삭제하거나 보관하려면 어떻게 하나요?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>홈 화면에서 약의 편집 아이콘을 탭한 뒤, 아래로 스크롤하여 <strong>약 보관</strong>을 탭하세요. 보관된 약은 홈 화면에서 숨겨지지만 복약 기록은 히스토리에 보존됩니다.</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      Apple 건강 앱과 연동되나요?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>네. 권한을 허용하면 복약 완료 시 Apple 건강 앱에 기록이 자동으로 추가됩니다. 쓰기 전용으로, Tookly는 건강 앱에서 어떠한 데이터도 읽지 않습니다.</p>
+      <p>연동하려면 <strong>설정 → HealthKit → 건강 앱 연결</strong>을 탭하세요.</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      가족 공유(보호자 모드)를 사용할 수 있나요?
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>보호자 모드(Family Sharing)를 사용하면 보호자가 iCloud 공유를 통해 가족의 복약 일정과 기록을 확인할 수 있습니다. <strong>설정 → 가족 공유</strong>에서 설정하세요.</p>
+      <div class="tip note">두 기기 모두 iCloud에 로그인되어 있고 iOS 18.6 이상이어야 합니다.</div>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-section">
+    <h2>더 도움이 필요하신가요?</h2>
+    <p>찾는 답을 찾지 못하셨나요? 이메일로 문의주시면 영업일 5일 이내에 답변드립니다.</p>
+    <a class="contact-btn" href="mailto:hoons.labs@gmail.com?subject=Tookly%20%EC%A7%80%EC%9B%90">
+      ✉️ &nbsp;hoons.labs@gmail.com
+    </a>
+    <p class="contact-note">빠른 답변을 위해 iOS 버전과 앱 버전(설정 → 하단)을 함께 알려주시면 감사하겠습니다.</p>
+  </div>
+
+</main>
+</div>
+
+<footer class="site-footer">
+  <p>© 2026 Tookly by Hoon's Labs.</p>
+  <div class="footer-links">
+    <a href="../privacy/tookly/" id="link-privacy">Privacy Policy</a>
+    <a href="mailto:hoons.labs@gmail.com">hoons.labs@gmail.com</a>
+  </div>
+</footer>
+
+<script>
+  function toggle(el) {
+    el.closest('.faq-card').classList.toggle('open');
+  }
+
+  function setLang(lang) {
+    document.querySelectorAll('[lang-block]').forEach(el => {
+      el.classList.toggle('visible', el.id.endsWith('-' + lang));
+    });
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+    document.getElementById('link-privacy').textContent = lang === 'ko' ? '개인정보 처리방침' : 'Privacy Policy';
+    document.documentElement.lang = lang;
+    localStorage.setItem('tookly-lang', lang);
+  }
+
+  (function () {
+    const params  = new URLSearchParams(window.location.search);
+    const urlLang = params.get('lang');
+    if (['en','ko'].includes(urlLang)) { setLang(urlLang); return; }
+    const saved = localStorage.getItem('tookly-lang');
+    if (['en','ko'].includes(saved)) { setLang(saved); return; }
+    setLang(navigator.language.startsWith('ko') ? 'ko' : 'en');
+  })();
+</script>
+
+</body>
+</html>
