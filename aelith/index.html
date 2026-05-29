@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Aelith</title>
+  <meta name="description" content="Aelith Support / 지원 센터 / サポート" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:      #5B5EF4;
+      --primary-bg:   #EEF2FF;
+      --violet:       #7C3AED;
+      --violet-bg:    #EDE9FE;
+      --mint:         #10B981;
+      --mint-bg:      #D1FAE5;
+      --sky:          #0EA5E9;
+      --sky-bg:       #E0F2FE;
+      --bg:           #F8FAFC;
+      --surface:      #FFFFFF;
+      --text:         #0F172A;
+      --muted:        #64748B;
+      --border:       #E2E8F0;
+      --radius:       12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --primary:      #818CF8;
+        --primary-bg:   rgba(129,140,248,0.1);
+        --violet:       #C4B5FD;
+        --violet-bg:    rgba(196,181,253,0.1);
+        --mint:         #6EE7B7;
+        --mint-bg:      rgba(110,231,183,0.1);
+        --sky:          #38BDF8;
+        --sky-bg:       rgba(56,189,248,0.1);
+        --bg:           #0F172A;
+        --surface:      #1E293B;
+        --text:         #F1F5F9;
+        --muted:        #94A3B8;
+        --border:       #334155;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    /* ── Language Toggle ── */
+    .lang-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 24px;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      padding: 5px 16px;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+      color: #fff;
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+
+    .logo-mark {
+      width: 64px;
+      height: 64px;
+      background: rgba(165, 180, 252, 0.15);
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(165, 180, 252, 0.2);
+    }
+
+    .site-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      color: #A5B4FC;
+    }
+
+    .site-header .subtitle {
+      font-size: 14px;
+      opacity: 0.7;
+      font-weight: 400;
+      color: #F1F5F9;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Category Header ── */
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 40px 0 16px;
+    }
+
+    .cat-header:first-of-type { margin-top: 0; }
+
+    .cat-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .cat-header h2 {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--muted);
+    }
+
+    /* ── FAQ Item ── */
+    .faq {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 20px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: background 0.15s;
+    }
+
+    .faq-q:hover { background: color-mix(in srgb, var(--primary) 4%, var(--surface)); }
+
+    .faq-q .chevron {
+      font-size: 12px;
+      color: var(--muted);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .faq.open .faq-q .chevron { transform: rotate(180deg); }
+
+    .faq-a {
+      display: none;
+      padding: 0 24px 20px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .faq.open .faq-a { display: block; }
+
+    .faq-a p { margin-bottom: 10px; color: var(--muted); }
+    .faq-a p:last-child { margin-bottom: 0; }
+    .faq-a ul { padding-left: 20px; }
+    .faq-a li { margin-bottom: 6px; }
+    .faq-a strong { color: var(--text); }
+
+    /* ── Highlight Box ── */
+    .highlight {
+      background: color-mix(in srgb, var(--mint) 10%, var(--surface));
+      border-left: 3px solid var(--mint);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
+    /* ── Contact Card ── */
+    .contact-section {
+      background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+      border-radius: 16px;
+      padding: 40px 32px;
+      margin-top: 48px;
+      text-align: center;
+      color: #F1F5F9;
+    }
+
+    .contact-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #A5B4FC;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .contact-section .desc {
+      font-size: 14px;
+      color: rgba(241,245,249,0.7);
+      margin-bottom: 28px;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #818CF8;
+      color: #0F172A;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .contact-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .response-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: rgba(241,245,249,0.5);
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .site-footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid transparent; }
+    .site-footer a:hover { border-color: var(--muted); }
+
+    /* ── Lang visibility ── */
+    [lang-block] { display: none; }
+    [lang-block].visible { display: block; }
+
+    @media (max-width: 600px) {
+      .site-header { padding: 40px 20px 36px; }
+      .faq-q { padding: 16px 18px; }
+      .faq-a { padding: 0 18px 16px; padding-top: 14px; }
+      .contact-section { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Language Toggle -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">English</button>
+  <button class="lang-btn"        onclick="setLang('ko')" id="btn-ko">한국어</button>
+  <button class="lang-btn"        onclick="setLang('ja')" id="btn-ja">日本語</button>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="logo-mark">📻</div>
+  <h1>Aelith</h1>
+  <p class="subtitle" lang-block="en" id="hd-en">Support Center</p>
+  <p class="subtitle" lang-block="ko" id="hd-ko">지원 센터</p>
+  <p class="subtitle" lang-block="ja" id="hd-ja">サポートセンター</p>
+</header>
+
+<!-- ══════════════════════════════════════════════
+     ENGLISH VERSION
+══════════════════════════════════════════════ -->
+<div lang-block="en" id="content-en">
+<main class="container">
+
+  <!-- Getting Started -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EEF2FF;">🚀</div>
+    <h2>Getting Started</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I start listening to a station?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Tap any station from the <strong>Home</strong>, <strong>Search</strong>, or <strong>Favorites</strong> tab to start playing instantly.
+      A mini player appears at the bottom of the screen so you can keep browsing while listening.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I find a specific station?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Tap the <strong>Search</strong> tab and type the station name, city, or keyword.
+      You can also browse by country or genre in the <strong>Explore</strong> tab.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Does Aelith work without an internet connection?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>No — Aelith streams live radio over the internet, so an active internet connection (Wi-Fi or cellular) is required to play stations.
+      Your favorites list and app settings are available offline.</p>
+    </div>
+  </div>
+
+  <!-- Stations & Playback -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#E0F2FE;">📡</div>
+    <h2>Stations &amp; Playback</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Why won't a station play?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Some stations may be temporarily offline or their stream URL may have changed. Try these steps:</p>
+      <ul>
+        <li>Check your internet connection</li>
+        <li>Tap the station again to retry</li>
+        <li>Try a different station — if others work, the specific station may be down</li>
+      </ul>
+      <div class="highlight">
+        Aelith uses the Radio Browser API, an open-source directory. Occasionally a station's stream goes offline — this is outside our control.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I stop or pause playback?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Tap the <strong>play/stop button</strong> in the mini player at the bottom of the screen, or open the full player and tap the button there.
+      Live radio streams cannot be paused — stopping will end the stream.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Can I listen in the background or with the screen locked?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Yes. Aelith continues playing when you leave the app or lock your screen.
+      You can control playback from the Lock Screen or Control Center using the Now Playing controls.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      The stream keeps buffering or cutting out. What can I do?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Buffering is usually caused by a slow connection or the station's server. Try:</p>
+      <ul>
+        <li>Switch to Wi-Fi if you're on cellular</li>
+        <li>Move to an area with better signal</li>
+        <li>Stop and restart the stream — tap the station again</li>
+        <li>Try a different station to confirm it's not your connection</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Favorites -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#D1FAE5;">❤️</div>
+    <h2>Favorites</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I add a station to Favorites?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Tap the <strong>heart icon</strong> next to any station in search results, on the Home tab, or inside the full player.
+      The station will appear in your <strong>Favorites</strong> tab instantly.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What is the 20-favorite limit on the free plan?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>The free version of Aelith allows up to <strong>20 saved favorites</strong>. Once you reach the limit, you'll need to remove a station before adding a new one.</p>
+      <p>Upgrade to <strong>Aelith Pro</strong> for unlimited favorites — plus iCloud sync, podcasts, and more.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I remove a station from Favorites?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Tap the <strong>heart icon</strong> again on any favorited station to remove it. You can also swipe left on a station in the <strong>Favorites</strong> tab to delete it.</p>
+    </div>
+  </div>
+
+  <!-- Explore -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EDE9FE;">🌍</div>
+    <h2>Explore</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I browse stations by country or genre?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Go to the <strong>Explore</strong> tab. You'll see a list of countries and genres. Tap any country or genre to see its stations.</p>
+      <p>Tap <strong>See all countries</strong> to browse the full list of over 200 countries.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I save a country or genre for quick access?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>Long-press</strong> a country to save it — it will appear in your <strong>Saved</strong> section at the top of the Explore tab.
+      For genres, tap the <strong>bookmark icon</strong> next to a genre chip to save it.</p>
+    </div>
+  </div>
+
+  <!-- Widget -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#E0F2FE;">📱</div>
+    <h2>Widget</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I add the Aelith widget to my Home Screen?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Long-press your Home Screen → tap <strong>+</strong> in the top-left corner → search for <strong>Aelith</strong> → choose a widget size and tap <strong>Add Widget</strong>.</p>
+      <p>The widget shows your recently played station and lets you tap to open the app directly.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What is the Live Activity?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>When you start playing a station, Aelith shows a <strong>Live Activity</strong> on your Lock Screen and in Dynamic Island (iPhone 14 Pro and later).
+      It displays the station name and lets you stop playback without unlocking your phone.</p>
+    </div>
+  </div>
+
+  <!-- Aelith Pro -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EDE9FE;">⭐</div>
+    <h2>Aelith Pro</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What is included in Aelith Pro?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <ul>
+        <li><strong>Unlimited Favorites</strong> — save as many stations as you want</li>
+        <li><strong>iCloud Sync</strong> — keep favorites in sync across all your Apple devices</li>
+        <li><strong>Podcasts</strong> — access podcast stations and on-demand content</li>
+        <li><strong>Listening History</strong> — see recently played stations (coming in v1.2)</li>
+        <li><strong>Apple Watch App</strong> — control playback from your wrist (coming in v1.3)</li>
+        <li><strong>All future Pro features</strong> included automatically</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Is there a free trial?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Yes. The <strong>Yearly plan</strong> includes a <strong>7-day free trial</strong>. You will not be charged until the trial ends. Cancel anytime before the trial period ends to avoid being billed.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I cancel my subscription?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Subscriptions are managed by Apple. To cancel:</p>
+      <ul>
+        <li>Open the <strong>Settings</strong> app on your iPhone</li>
+        <li>Tap your Apple ID name → <strong>Subscriptions</strong></li>
+        <li>Find <strong>Aelith</strong> and tap <strong>Cancel Subscription</strong></li>
+      </ul>
+      <p>You will retain Pro access until the end of the current billing period.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I restore my purchase on a new device?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Go to <strong>Settings → Upgrade to Pro → Restore Purchase</strong>. Sign in with the same Apple ID you used to purchase, and your Pro membership will be restored instantly.</p>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-section">
+    <h2>Still need help?</h2>
+    <p class="desc">Can't find the answer you're looking for? Send us an email and we'll get back to you.</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">
+      📧 &nbsp;Contact Support
+    </a>
+    <p class="response-note">We respond within 5 business days.</p>
+  </div>
+
+</main>
+</div><!-- /content-en -->
+
+<!-- ══════════════════════════════════════════════
+     KOREAN VERSION
+══════════════════════════════════════════════ -->
+<div lang-block="ko" id="content-ko">
+<main class="container">
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EEF2FF;">🚀</div>
+    <h2>시작하기</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      방송국을 어떻게 청취하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>홈</strong>, <strong>검색</strong>, 또는 <strong>즐겨찾기</strong> 탭에서 방송국을 탭하면 바로 재생됩니다.
+      화면 하단에 미니 플레이어가 나타나므로 청취하면서 계속 탐색할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      특정 방송국을 어떻게 찾나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>검색</strong> 탭에서 방송국 이름, 도시, 또는 키워드를 입력하세요.
+      <strong>탐색</strong> 탭에서는 나라별·장르별로 방송국을 찾을 수도 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      인터넷 없이 Aelith를 사용할 수 있나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Aelith는 인터넷으로 라이브 라디오를 스트리밍하므로 방송국 재생에는 Wi-Fi 또는 셀룰러 연결이 필요합니다.
+      즐겨찾기 목록과 앱 설정은 오프라인에서도 확인할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#E0F2FE;">📡</div>
+    <h2>방송국 및 재생</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      방송국이 재생되지 않아요.
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>일부 방송국은 일시적으로 오프라인 상태이거나 스트림 URL이 변경되었을 수 있습니다. 다음을 시도해 보세요.</p>
+      <ul>
+        <li>인터넷 연결 확인</li>
+        <li>방송국을 다시 탭하여 재시도</li>
+        <li>다른 방송국을 시도 — 다른 방송국이 재생되면 해당 방송국이 일시 중단 상태일 수 있습니다</li>
+      </ul>
+      <div class="highlight">
+        Aelith는 오픈소스 디렉토리인 Radio Browser API를 사용합니다. 간혹 방송국 스트림이 오프라인이 될 수 있으며 이는 저희 통제 범위 밖입니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      재생을 어떻게 중지하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>화면 하단 미니 플레이어의 <strong>재생/정지 버튼</strong>을 탭하거나, 전체 플레이어를 열어 버튼을 탭하세요.
+      라이브 라디오는 일시 정지가 불가능하며, 정지 시 스트리밍이 종료됩니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      화면을 잠근 상태에서도 청취할 수 있나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>네. 앱을 나가거나 화면을 잠가도 계속 재생됩니다.
+      잠금 화면 또는 제어 센터의 재생 중 컨트롤로 재생을 제어할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      스트리밍이 자꾸 끊겨요.
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>버퍼링은 보통 느린 연결이나 방송국 서버 문제로 발생합니다. 다음을 시도해 보세요.</p>
+      <ul>
+        <li>셀룰러 사용 중이라면 Wi-Fi로 전환</li>
+        <li>신호가 더 강한 곳으로 이동</li>
+        <li>스트리밍을 중지 후 재시작 — 방송국을 다시 탭</li>
+        <li>다른 방송국을 시도하여 연결 문제인지 확인</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#D1FAE5;">❤️</div>
+    <h2>즐겨찾기</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      방송국을 즐겨찾기에 추가하려면 어떻게 하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>검색 결과, 홈 탭, 또는 전체 플레이어에서 방송국 옆 <strong>하트 아이콘</strong>을 탭하세요.
+      방송국이 즉시 <strong>즐겨찾기</strong> 탭에 추가됩니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      무료 플랜의 즐겨찾기 20개 제한은 무엇인가요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Aelith 무료 버전에서는 최대 <strong>즐겨찾기 20개</strong>까지 저장할 수 있습니다. 한도에 도달하면 새 방송국을 추가하기 전에 기존 방송국을 삭제해야 합니다.</p>
+      <p><strong>Aelith Pro</strong>로 업그레이드하면 즐겨찾기 무제한 + iCloud 동기화, 팟캐스트 등을 이용할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      즐겨찾기에서 방송국을 제거하려면 어떻게 하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>즐겨찾기된 방송국의 <strong>하트 아이콘</strong>을 다시 탭하면 제거됩니다. <strong>즐겨찾기</strong> 탭에서 방송국을 왼쪽으로 스와이프하여 삭제할 수도 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EDE9FE;">🌍</div>
+    <h2>탐색</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      나라별·장르별로 방송국을 어떻게 탐색하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>탐색</strong> 탭으로 이동하면 나라와 장르 목록이 표시됩니다. 원하는 나라 또는 장르를 탭하면 해당 방송국을 볼 수 있습니다.</p>
+      <p><strong>전체 나라 보기</strong>를 탭하면 200개 이상의 국가 전체 목록을 확인할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      나라나 장르를 빠르게 접근할 수 있도록 저장하려면?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>나라를 <strong>길게 누르면</strong> 저장됩니다 — 탐색 탭 상단의 <strong>저장됨</strong> 섹션에 표시됩니다.
+      장르는 장르 칩 옆 <strong>북마크 아이콘</strong>을 탭하여 저장하세요.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#E0F2FE;">📱</div>
+    <h2>위젯</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      홈 화면에 Aelith 위젯을 추가하려면 어떻게 하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>홈 화면을 길게 누른 후 → 왼쪽 상단의 <strong>+</strong> 탭 → <strong>Aelith</strong> 검색 → 위젯 크기 선택 → <strong>위젯 추가</strong>를 탭하세요.</p>
+      <p>위젯에는 최근 재생한 방송국이 표시되며, 탭하면 앱이 바로 열립니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Live Activity는 무엇인가요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>방송국 재생을 시작하면 Aelith가 잠금 화면 및 다이나믹 아일랜드(iPhone 14 Pro 이상)에 <strong>Live Activity</strong>를 표시합니다.
+      방송국 이름이 나타나고, 화면 잠금 해제 없이 재생을 중지할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EDE9FE;">⭐</div>
+    <h2>Aelith Pro</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Aelith Pro에는 무엇이 포함되나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <ul>
+        <li><strong>즐겨찾기 무제한</strong> — 원하는 만큼 방송국 저장</li>
+        <li><strong>iCloud 동기화</strong> — 모든 Apple 기기 간 즐겨찾기 동기화</li>
+        <li><strong>팟캐스트</strong> — 팟캐스트 방송국 및 온디맨드 콘텐츠 접근</li>
+        <li><strong>청취 기록</strong> — 최근 재생 방송국 확인 (v1.2 예정)</li>
+        <li><strong>Apple Watch 앱</strong> — 손목에서 재생 제어 (v1.3 예정)</li>
+        <li><strong>향후 모든 Pro 기능</strong> 자동 포함</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      무료 체험 기간이 있나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>네. <strong>연간 플랜</strong>은 <strong>7일 무료 체험</strong>을 제공합니다. 체험 기간이 끝나기 전까지 요금이 청구되지 않습니다. 체험 기간 내에 언제든지 취소할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      구독을 취소하려면 어떻게 하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>구독은 Apple에서 관리합니다. 취소 방법:</p>
+      <ul>
+        <li>iPhone <strong>설정</strong> 앱 열기</li>
+        <li>Apple ID 이름 탭 → <strong>구독</strong></li>
+        <li><strong>Aelith</strong> 찾아 <strong>구독 취소</strong> 탭</li>
+      </ul>
+      <p>현재 결제 기간이 끝날 때까지 Pro 기능을 계속 이용할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      새 기기에서 구독을 복원하려면 어떻게 하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>설정 → Pro 업그레이드 → 구매 복원</strong>을 탭하세요. 구매 시 사용한 Apple ID로 로그인하면 Pro 멤버십이 즉시 복원됩니다.</p>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <h2>추가 도움이 필요하신가요?</h2>
+    <p class="desc">찾는 답변이 없으신가요? 이메일로 문의해 주시면 답변드립니다.</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">
+      📧 &nbsp;문의하기
+    </a>
+    <p class="response-note">영업일 기준 5일 이내 답변드립니다.</p>
+  </div>
+
+</main>
+</div><!-- /content-ko -->
+
+<!-- ══════════════════════════════════════════════
+     JAPANESE VERSION
+══════════════════════════════════════════════ -->
+<div lang-block="ja" id="content-ja">
+<main class="container">
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EEF2FF;">🚀</div>
+    <h2>はじめに</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      放送局を聴くにはどうすればいいですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>ホーム</strong>、<strong>検索</strong>、または<strong>お気に入り</strong>タブから放送局をタップするとすぐに再生が始まります。
+      画面下部にミニプレイヤーが表示されるので、聴きながら引き続きブラウジングできます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      特定の放送局を見つけるにはどうすればいいですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>検索</strong>タブで放送局名、都市、またはキーワードを入力してください。
+      <strong>探索</strong>タブでは国別・ジャンル別でも放送局を探せます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      インターネットなしでAelithを使用できますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Aelithはインターネット経由でライブラジオをストリーミングするため、放送局の再生にはWi-Fiまたはモバイルデータ通信が必要です。
+      お気に入りリストとアプリ設定はオフラインでも確認できます。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#E0F2FE;">📡</div>
+    <h2>放送局・再生</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      放送局が再生されません。
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>一部の放送局は一時的にオフラインになっているか、ストリームURLが変更されている場合があります。次をお試しください：</p>
+      <ul>
+        <li>インターネット接続を確認する</li>
+        <li>放送局をもう一度タップして再試行する</li>
+        <li>別の放送局を試す — 他が再生できれば、その放送局が一時停止中の可能性があります</li>
+      </ul>
+      <div class="highlight">
+        Aelithはオープンソースディレクトリの Radio Browser API を使用しています。放送局のストリームが一時的にオフラインになることがあり、これは当社の制御外です。
+      </div>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      再生を停止するにはどうすればいいですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>画面下部のミニプレイヤーの<strong>再生/停止ボタン</strong>をタップするか、フルプレイヤーを開いてボタンをタップしてください。
+      ライブラジオは一時停止できません。停止するとストリーミングが終了します。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      画面をロックした状態でも聴き続けられますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>はい。アプリを離れたり画面をロックしても再生は続きます。
+      ロック画面またはコントロールセンターの再生中コントロールから操作できます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      ストリーミングが頻繁に途切れます。
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>バッファリングは通常、接続が遅い場合や放送局のサーバーに問題がある場合に発生します。次をお試しください：</p>
+      <ul>
+        <li>モバイルデータ通信中はWi-Fiに切り替える</li>
+        <li>電波の良い場所に移動する</li>
+        <li>ストリームを停止してから再開する — 放送局をもう一度タップ</li>
+        <li>別の放送局を試して接続の問題かどうか確認する</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#D1FAE5;">❤️</div>
+    <h2>お気に入り</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      放送局をお気に入りに追加するには？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>検索結果、ホームタブ、またはフルプレイヤーで放送局横の<strong>ハートアイコン</strong>をタップしてください。
+      放送局は即座に<strong>お気に入り</strong>タブに追加されます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      無料プランのお気に入り20件制限とは何ですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Aelithの無料版では最大<strong>20件のお気に入り</strong>を保存できます。上限に達した場合、新しい放送局を追加する前に既存の放送局を削除する必要があります。</p>
+      <p><strong>Aelith Pro</strong>にアップグレードすると、お気に入り無制限+iCloud同期、ポッドキャストなどが利用できます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      お気に入りから放送局を削除するには？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>お気に入り済みの放送局の<strong>ハートアイコン</strong>を再度タップすると削除されます。<strong>お気に入り</strong>タブで放送局を左にスワイプして削除することもできます。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EDE9FE;">🌍</div>
+    <h2>探索</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      国別・ジャンル別に放送局を探索するには？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>探索</strong>タブに移動すると、国とジャンルの一覧が表示されます。任意の国またはジャンルをタップするとその放送局が表示されます。</p>
+      <p><strong>すべての国を見る</strong>をタップすると、200か国以上の全リストを確認できます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      国やジャンルをクイックアクセスのために保存するには？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>国を<strong>長押し</strong>すると保存されます — 探索タブ上部の<strong>保存済み</strong>セクションに表示されます。
+      ジャンルはジャンルチップ横の<strong>ブックマークアイコン</strong>をタップして保存します。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#E0F2FE;">📱</div>
+    <h2>ウィジェット</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      ホーム画面にAelithウィジェットを追加するには？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>ホーム画面を長押し → 左上の<strong>+</strong>をタップ → <strong>Aelith</strong>を検索 → ウィジェットサイズを選択 → <strong>ウィジェットを追加</strong>をタップします。</p>
+      <p>ウィジェットには最近再生した放送局が表示され、タップするとアプリが直接開きます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Live Activityとは何ですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>放送局の再生を開始すると、Aelithはロック画面とDynamic Island（iPhone 14 Pro以降）に<strong>Live Activity</strong>を表示します。
+      放送局名が表示され、画面ロック解除なしに再生を停止できます。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:#EDE9FE;">⭐</div>
+    <h2>Aelith Pro</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Aelith Proには何が含まれますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <ul>
+        <li><strong>お気に入り無制限</strong> — 好きなだけ放送局を保存</li>
+        <li><strong>iCloud同期</strong> — すべてのAppleデバイス間でお気に入りを同期</li>
+        <li><strong>ポッドキャスト</strong> — ポッドキャスト放送局とオンデマンドコンテンツへのアクセス</li>
+        <li><strong>聴取履歴</strong> — 最近再生した放送局の確認（v1.2で予定）</li>
+        <li><strong>Apple Watchアプリ</strong> — 手首から再生を操作（v1.3で予定）</li>
+        <li><strong>将来のすべてのPro機能</strong>が自動的に含まれる</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      無料トライアルはありますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>はい。<strong>年間プラン</strong>には<strong>7日間の無料トライアル</strong>が含まれます。トライアル終了まで料金は発生しません。トライアル期間内はいつでもキャンセルできます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      サブスクリプションをキャンセルするには？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>サブスクリプションはAppleが管理します。キャンセル手順：</p>
+      <ul>
+        <li>iPhoneの<strong>設定</strong>アプリを開く</li>
+        <li>Apple ID名をタップ → <strong>サブスクリプション</strong></li>
+        <li><strong>Aelith</strong>を探して<strong>サブスクリプションをキャンセル</strong>をタップ</li>
+      </ul>
+      <p>現在の請求期間が終了するまでPro機能を引き続き利用できます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      新しいデバイスで購入を復元するには？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>設定 → Proにアップグレード → 購入を復元</strong>をタップします。購入時のApple IDでサインインすると、Proメンバーシップが即座に復元されます。</p>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <h2>さらにサポートが必要ですか？</h2>
+    <p class="desc">お探しの回答が見つからない場合は、メールでお問い合わせください。</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">
+      📧 &nbsp;お問い合わせ
+    </a>
+    <p class="response-note">営業日5日以内にご返答いたします。</p>
+  </div>
+
+</main>
+</div><!-- /content-ja -->
+
+<footer class="site-footer">
+  <p>© 2026 Aelith. All rights reserved. &nbsp;·&nbsp;
+  <a href="../privacy/">Privacy Policy</a> &nbsp;·&nbsp;
+  <a href="mailto:hoons.labs@gmail.com">Contact</a>
+  </p>
+</footer>
+
+<script>
+  function toggle(btn) {
+    const faq = btn.closest('.faq');
+    faq.classList.toggle('open');
+  }
+
+  function setLang(lang) {
+    document.querySelectorAll('[lang-block]').forEach(el => {
+      el.classList.toggle('visible', el.id.endsWith('-' + lang));
+    });
+    ['en','ko','ja'].forEach(l => {
+      document.getElementById('btn-' + l).classList.toggle('active', l === lang);
+    });
+    document.documentElement.lang = lang;
+    localStorage.setItem('aelith-lang', lang);
+  }
+
+  (function () {
+    const params  = new URLSearchParams(window.location.search);
+    const urlLang = params.get('lang');
+    if (['en','ko','ja'].includes(urlLang)) { setLang(urlLang); return; }
+
+    const saved = localStorage.getItem('aelith-lang');
+    if (['en','ko','ja'].includes(saved)) { setLang(saved); return; }
+
+    const nav = navigator.language;
+    if (nav.startsWith('ko')) { setLang('ko'); return; }
+    if (nav.startsWith('ja')) { setLang('ja'); return; }
+    setLang('en');
+  })();
+</script>
+
+</body>
+</html>
