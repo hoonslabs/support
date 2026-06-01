@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — OutVault: Private Camera</title>
+  <meta name="description" content="OutVault: Private Camera — Support" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:         #0A0F1E;
+      --ink-soft:    #1C2333;
+      --steel:       #2E3A52;
+      --accent:      #4A90D9;
+      --accent-dark: #2F6DB5;
+      --teal:        #3DBFA8;
+      --amber:       #F0A500;
+      --cream:       #F4F6FA;
+      --surface:     #FFFFFF;
+      --charcoal:    #1A2035;
+      --muted:       #6B7A99;
+      --border:      #DDE3EF;
+      --radius:      12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --cream:   #0D1117;
+        --surface: #161B27;
+        --charcoal:#E8ECF4;
+        --border:  #252D3F;
+        --muted:   #6B7A99;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    /* ── Header ─────────────────────────────────────────── */
+    .site-header {
+      background: linear-gradient(135deg, var(--ink) 0%, var(--steel) 100%);
+      color: #fff;
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+
+    .logo-mark {
+      width: 64px;
+      height: 64px;
+      background: rgba(74,144,217,0.2);
+      border-radius: 18px;
+      border: 1px solid rgba(74,144,217,0.4);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .site-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .site-header .subtitle {
+      font-size: 14px;
+      opacity: 0.7;
+      font-weight: 400;
+    }
+
+    /* ── Main Layout ─────────────────────────────────────── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Meta Badge ──────────────────────────────────────── */
+    .meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    .meta-badge .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    /* ── Section ─────────────────────────────────────────── */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 20px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .section h2 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: -0.3px;
+    }
+
+    /* ── Typography ──────────────────────────────────────── */
+    p { margin-bottom: 14px; color: var(--charcoal); }
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 14px;
+    }
+
+    li { margin-bottom: 6px; }
+
+    strong { color: var(--charcoal); font-weight: 600; }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+      transition: border-color 0.2s;
+    }
+
+    a:hover { border-color: var(--accent); }
+
+    /* ── Highlight Box ───────────────────────────────────── */
+    .highlight {
+      background: color-mix(in srgb, var(--teal) 10%, var(--surface));
+      border-left: 3px solid var(--teal);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 15px;
+    }
+
+    .highlight.warn {
+      background: color-mix(in srgb, var(--amber) 10%, var(--surface));
+      border-color: var(--amber);
+    }
+
+    /* ── FAQ Item ────────────────────────────────────────── */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+    }
+
+    .faq-item:first-child { padding-top: 0; }
+    .faq-item:last-child  { border-bottom: none; padding-bottom: 0; }
+
+    .faq-q {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .faq-q::before {
+      content: "Q";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 22px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .faq-a {
+      font-size: 15px;
+      color: var(--charcoal);
+      line-height: 1.7;
+      padding-left: 30px;
+      margin: 0;
+    }
+
+    /* ── Contact Card ────────────────────────────────────── */
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: linear-gradient(135deg,
+        color-mix(in srgb, var(--accent) 8%, var(--surface)),
+        color-mix(in srgb, var(--teal) 8%, var(--surface))
+      );
+      border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-top: 16px;
+    }
+
+    .contact-card .icon { font-size: 28px; }
+
+    .contact-card .label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .contact-card .value {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    /* ── Footer ──────────────────────────────────────────── */
+    .site-footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .site-footer a { color: var(--muted); }
+
+    /* ── Responsive ──────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .section { padding: 24px 18px; }
+      .site-header { padding: 40px 20px 36px; }
+      .contact-card { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ─────────────────────────────────── -->
+<header class="site-header">
+  <div class="logo-mark">🔒</div>
+  <h1>OutVault: Private Camera</h1>
+  <p class="subtitle">Support</p>
+</header>
+
+<main class="container">
+
+  <div class="meta-badge">
+    <span class="dot"></span>
+    Last updated: June 1, 2026
+  </div>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">💬</div>
+      <h2>Frequently Asked Questions</h2>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Are my photos saved to iOS Photos?</p>
+      <p class="faq-a">
+        No — never. OutVault completely bypasses the iOS Photos library.
+        Every photo and video you capture is stored exclusively inside the app's private
+        sandbox on your device. Nothing is written to your Camera Roll or Photos app.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Where exactly is my media stored?</p>
+      <p class="faq-a">
+        Media files are stored in the app's <strong>Application Support/assets/</strong>
+        directory, protected by <strong>NSFileProtectionComplete</strong> — Apple's highest
+        level of on-device encryption. Files are inaccessible while your device is locked.
+        No other app or person can access these files without unlocking your device and
+        passing Face ID / Passcode.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">How does Face ID unlock work?</p>
+      <p class="faq-a">
+        OutVault requires Face ID or your device Passcode every time you open the app,
+        and again after it moves to the background. Authentication is handled entirely by
+        iOS — the App never sees your biometric data. On the Simulator, authentication is
+        automatically bypassed for development purposes.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">How do I take a photo or record a video?</p>
+      <p class="faq-a">
+        Tap the <strong>camera button</strong> in the gallery to open the camera.
+        Tap the shutter to capture a photo — you'll be returned to the gallery immediately.
+        Press and hold (or tap the record button) to start a video; tap again to stop.
+        After recording, a <em>"Video saved"</em> toast appears and the camera stays open
+        so you can record another clip right away.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">How do I share a photo or video?</p>
+      <p class="faq-a">
+        Open the asset in the detail view and tap the <strong>Share</strong> button.
+        The standard iOS share sheet will appear. <strong>Pro users</strong> can strip all
+        EXIF metadata (location, device, timestamp) before sharing — the share sheet will
+        present a clean, metadata-free copy of the file.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">How do I delete a photo or video?</p>
+      <p class="faq-a">
+        Open the asset in the detail view and tap <strong>Delete</strong>, or long-press
+        a thumbnail in the gallery and choose <strong>Delete</strong> from the context menu.
+        Deletion is permanent — there is no trash or recycle bin.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">What is Auto-Delete? (Pro)</p>
+      <p class="faq-a">
+        Pro users can set an expiration date on any asset. Once the expiration time passes,
+        the App automatically purges the file the next time you launch it, or via a background
+        task. A local notification is sent in advance as a reminder. You control the
+        expiration window individually per asset.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">What is Metadata Editing? (Pro)</p>
+      <p class="faq-a">
+        Pro users can edit the date, memo, author, and location text attached to any asset.
+        The location field is <strong>free-form text</strong> — the App does not access GPS.
+        Edited metadata is stored securely in the app sandbox alongside your media.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">What is EXIF Strip? (Pro)</p>
+      <p class="faq-a">
+        When you share a file, Pro users can choose to remove all embedded EXIF metadata
+        (camera model, GPS coordinates, timestamps, etc.) before the file is handed to
+        the iOS share sheet. The original file stored in your vault remains unchanged.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Will my data be deleted if I delete the app?</p>
+      <p class="faq-a">
+        Yes. All media and metadata stored in the app sandbox is permanently deleted when
+        you uninstall the App. There is no cloud backup unless you have CloudKit sync enabled
+        (a future Pro feature). We recommend exporting important files via the share sheet
+        before uninstalling.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">How do I restore a purchase (Lifetime Pro)?</p>
+      <p class="faq-a">
+        Go to <strong>Settings</strong> in the App and tap <strong>Restore Purchases</strong>.
+        Make sure you are signed in to the App Store with the same Apple ID used for the
+        original purchase. Purchases are managed by RevenueCat and linked to your App Store account.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">The app is showing the wrong date on my photos.</p>
+      <p class="faq-a">
+        OutVault records the capture date at the moment the shutter fires. If the date
+        appears wrong, check your device's date and time settings (Settings → General →
+        Date &amp; Time → Set Automatically). Pro users can also manually correct the date
+        via Metadata Editing.
+      </p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Can I use OutVault on the Simulator?</p>
+      <p class="faq-a">
+        Yes. On the iOS Simulator, the camera is replaced by a color-tap UI that generates
+        sample photos in six colors. Face ID is automatically bypassed. You can also seed
+        12 sample photos via <strong>Settings → Debug → Seed Sample Photos</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Troubleshooting -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">🔧</div>
+      <h2>Troubleshooting</h2>
+    </div>
+
+    <div class="highlight">
+      Most issues are resolved by <strong>force-closing the app and reopening it</strong>,
+      or by <strong>restarting your iPhone</strong>.
+    </div>
+
+    <ul>
+      <li><strong>Camera not opening / black screen</strong> — Go to iOS Settings → Privacy &amp;
+          Security → Camera and make sure OutVault has camera permission enabled.
+          Force-close and relaunch the app.</li>
+      <li><strong>Face ID not prompting</strong> — Go to iOS Settings → Face ID &amp; Passcode
+          and confirm your Face ID is enrolled. Force-close the app and try again.</li>
+      <li><strong>Gallery appears empty after reinstall</strong> — Media stored in the app sandbox
+          is deleted with the app. If you had no CloudKit sync, data cannot be recovered.
+          Export important files before uninstalling.</li>
+      <li><strong>Auto-Delete notification not arriving</strong> — Go to iOS Settings →
+          Notifications → OutVault and confirm notifications are allowed. The App maintains
+          a single scheduled notification for the next expiring asset.</li>
+      <li><strong>App is slow or freezing</strong> — Force-close the app (swipe up in the
+          app switcher) and relaunch. Restart your iPhone if the issue persists.</li>
+      <li><strong>Thumbnail not loading in gallery</strong> — Thumbnails are generated and
+          cached on first display. Scroll away and back to retry, or force-close and relaunch.</li>
+    </ul>
+  </section>
+
+  <!-- Contact -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">✉️</div>
+      <h2>Contact Us</h2>
+    </div>
+    <p>
+      If your issue isn't covered above or you have feedback to share,
+      please reach out by email. We'll get back to you as soon as possible.
+    </p>
+    <div class="highlight">
+      When contacting support, please include your <strong>iOS version</strong>,
+      <strong>device model</strong>, and <strong>steps to reproduce</strong> the issue
+      for faster assistance.
+    </div>
+    <div class="contact-card">
+      <div class="icon">📬</div>
+      <div>
+        <div class="label">Email</div>
+        <div class="value"><a href="mailto:hoons.labs@gmail.com">hoons.labs@gmail.com</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy Policy -->
+  <section class="section">
+    <div class="section-header">
+      <div class="section-icon">🔒</div>
+      <h2>Privacy Policy</h2>
+    </div>
+    <p>
+      Read the OutVault Privacy Policy at the link below.
+    </p>
+    <p>
+      <a href="../privacy/outvault/">Privacy Policy →</a>
+    </p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>© 2026 Hoon's Labs &nbsp;·&nbsp; OutVault: Private Camera</p>
+  <p style="margin-top:6px;">
+    <a href="../privacy/outvault/">Privacy Policy</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:hoons.labs@gmail.com">hoons.labs@gmail.com</a>
+  </p>
+</footer>
+
+</body>
+</html>
