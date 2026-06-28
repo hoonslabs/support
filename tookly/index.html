@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Support — Tookly</title>
-  <meta name="description" content="Tookly Support / 지원 센터 — FAQ and contact" />
+  <meta name="description" content="Tookly Support / 지원 센터 / サポート / 支援中心 — FAQ and contact" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -161,6 +161,8 @@
     [lang-block].visible { display: block; }
 
     @media (max-width: 600px) {
+      .lang-bar { gap: 4px; padding: 8px 12px; }
+      .lang-btn { padding: 4px 10px; font-size: 12px; }
       .contact-section { padding: 28px 20px; }
     }
   </style>
@@ -168,15 +170,19 @@
 <body>
 
 <div class="lang-bar">
-  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">English</button>
-  <button class="lang-btn"        onclick="setLang('ko')" id="btn-ko">한국어</button>
+  <button class="lang-btn active" onclick="setLang('en')"      id="btn-en">English</button>
+  <button class="lang-btn"        onclick="setLang('ko')"      id="btn-ko">한국어</button>
+  <button class="lang-btn"        onclick="setLang('ja')"      id="btn-ja">日本語</button>
+  <button class="lang-btn"        onclick="setLang('zh-hant')" id="btn-zh-hant">繁體中文</button>
 </div>
 
 <header class="site-header">
   <div class="logo-mark">💊</div>
   <h1>Tookly</h1>
-  <p class="subtitle" lang-block="en" id="hd-en">Support Center</p>
-  <p class="subtitle" lang-block="ko" id="hd-ko">지원 센터</p>
+  <p class="subtitle" lang-block="en"      id="hd-en">Support Center</p>
+  <p class="subtitle" lang-block="ko"      id="hd-ko">지원 센터</p>
+  <p class="subtitle" lang-block="ja"      id="hd-ja">サポートセンター</p>
+  <p class="subtitle" lang-block="zh-hant" id="hd-zh-hant">支援中心</p>
 </header>
 
 <!-- ══ ENGLISH ══ -->
@@ -202,7 +208,7 @@
       <span class="faq-chevron">▼</span>
     </div>
     <div class="faq-answer">
-      <p>On the Home screen, tap the <strong>check button</strong> next to any medication in the "Up Next" section. The medication will move to the "Completed" section and a HealthKit record is written if you've granted permission.</p>
+      <p>On the Home screen, tap the <strong>check button</strong> next to any medication in the "Up Next" section. The medication will move to the "Completed" section and the log is saved in Tookly.</p>
       <p>You can undo a dose within a short window using the Undo toast that appears at the bottom of the screen.</p>
     </div>
   </div>
@@ -317,12 +323,11 @@
 
   <div class="faq-card">
     <div class="faq-question" onclick="toggle(this)">
-      Does Tookly work with Apple Health?
+      Does Tookly sync outside the app?
       <span class="faq-chevron">▼</span>
     </div>
     <div class="faq-answer">
-      <p>Yes. With your permission, Tookly writes a log to Apple Health each time you mark a dose as taken. This is write-only — Tookly does not read any data from Health.</p>
-      <p>To connect, go to <strong>Settings → HealthKit → Connect to Health</strong>.</p>
+      <p>Not in version 1.0. Tookly stores medication schedules and dose logs locally on your device, with optional iCloud sync when enabled.</p>
     </div>
   </div>
 
@@ -337,7 +342,6 @@
     </div>
   </div>
 
-  <!-- Contact -->
   <div class="contact-section">
     <h2>Need more help?</h2>
     <p>Couldn't find the answer? Send us an email and we'll get back to you within 5 business days.</p>
@@ -373,7 +377,7 @@
       <span class="faq-chevron">▼</span>
     </div>
     <div class="faq-answer">
-      <p>홈 화면 "Up Next" 섹션에서 해당 약의 <strong>체크 버튼</strong>을 탭하세요. 약이 "Completed" 섹션으로 이동하고, 권한이 있는 경우 Apple 건강 앱에 기록이 추가됩니다.</p>
+      <p>홈 화면 "Up Next" 섹션에서 해당 약의 <strong>체크 버튼</strong>을 탭하세요. 약이 "Completed" 섹션으로 이동하고 기록은 Tookly에 저장됩니다.</p>
       <p>화면 하단에 표시되는 실행 취소 토스트로 잠깐 동안 복약 기록을 취소할 수 있습니다.</p>
     </div>
   </div>
@@ -488,12 +492,11 @@
 
   <div class="faq-card">
     <div class="faq-question" onclick="toggle(this)">
-      Apple 건강 앱과 연동되나요?
+      앱 밖으로도 동기화되나요?
       <span class="faq-chevron">▼</span>
     </div>
     <div class="faq-answer">
-      <p>네. 권한을 허용하면 복약 완료 시 Apple 건강 앱에 기록이 자동으로 추가됩니다. 쓰기 전용으로, Tookly는 건강 앱에서 어떠한 데이터도 읽지 않습니다.</p>
-      <p>연동하려면 <strong>설정 → HealthKit → 건강 앱 연결</strong>을 탭하세요.</p>
+      <p>버전 1.0에서는 연동하지 않습니다. Tookly는 복약 일정과 기록을 기기에 로컬로 저장하며, 사용자가 활성화한 경우 iCloud로 동기화합니다.</p>
     </div>
   </div>
 
@@ -508,7 +511,6 @@
     </div>
   </div>
 
-  <!-- Contact -->
   <div class="contact-section">
     <h2>더 도움이 필요하신가요?</h2>
     <p>찾는 답을 찾지 못하셨나요? 이메일로 문의주시면 영업일 5일 이내에 답변드립니다.</p>
@@ -516,6 +518,344 @@
       ✉️ &nbsp;hoons.labs@gmail.com
     </a>
     <p class="contact-note">빠른 답변을 위해 iOS 버전과 앱 버전(설정 → 하단)을 함께 알려주시면 감사하겠습니다.</p>
+  </div>
+
+</main>
+</div>
+
+<!-- ══ JAPANESE ══ -->
+<div lang-block="ja" id="content-ja">
+<main class="container">
+
+  <div class="section-label">はじめに</div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      薬を追加するにはどうすればいいですか？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>ホーム画面の<strong>+</strong>ボタンをタップしてください。薬の名前、用量、単位を入力した後、「Add Schedule」をタップしてリマインダーの時間と曜日を設定します。</p>
+      <p>色の選択、疾患タグ（例：「ADHD」）の入力、スケジュールごとのアラームスタイル（GentleまたはNagging）の設定も可能です。</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      服薬完了はどのようにマークしますか？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>ホーム画面の「Up Next」セクションで、対象の薬の<strong>チェックボタン</strong>をタップしてください。薬が「Completed」セクションに移動し、記録はTooklyに保存されます。</p>
+      <p>画面下部に表示されるUndoトーストで、しばらくの間、服薬記録を取り消すことができます。</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      PRN（頓服）とは何ですか？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p><strong>PRN</strong>は「pro re nata」の略で、決まったスケジュールではなく、症状が出たときだけ服用する薬のことです。薬の追加時に<strong>As Needed (PRN)</strong>トグルをONにすると、リマインダーは設定されません。</p>
+      <p>PRN薬はホーム画面に表示され、手動で記録できます。最小服用間隔（例：4時間に1回以下）と週間最大服用回数を安全ガイドとして設定することもできます。</p>
+    </div>
+  </div>
+
+  <div class="section-label">リマインダー</div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      GentleとNaggingリマインダーの違いは何ですか？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p><strong>Gentle：</strong>スケジュールされた時間に通知1回のみ送信されます。1回鳴って待機します。</p>
+      <p><strong>Nagging：</strong>設定した間隔と回数（例：10分ごとに最大3回）でフォローアップ通知が事前にスケジュールされ、服薬を記録するまでリマインドし続けます。飲み忘れが許されない重要な薬に最適です。</p>
+      <div class="tip note">設定 → 通知スタイルでデフォルトを設定し、薬を追加する際にスケジュールごとに個別設定することもできます。</div>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      リマインダーが届きません。どこを確認すればいいですか？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>以下を確認してください：</p>
+      <ul>
+        <li><strong>設定 → Tookly → 通知</strong>で通知が有効になっているか確認してください。</li>
+        <li><strong>集中モード</strong>がTooklyをフィルタリングしていないか確認してください。設定 → 集中モードで各モードの許可アプリにTooklyを追加してください。</li>
+        <li>薬にアクティブなスケジュール（PRNではない）があり、正しい曜日が選択されているか確認してください。</li>
+        <li>iOSはスケジュール済み通知を最大64件まで許可します。スケジュールが多い場合、遠い将来のリマインダーは延期される場合があります。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-label">データとプライバシー</div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      服薬データは安全ですか？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>はい。すべての服薬データはお使いのデバイス（またはiCloudが有効な場合はプライベートiCloud）にのみ保存されます。薬の名前、用量、健康記録は当社のサーバーやFirebaseに送信されることはありません。</p>
+      <div class="tip">Tooklyは、匿名使用イベント（例：「服薬完了」— 名前/用量は含まれません）とバグ修正のためのクラッシュレポートにのみFirebaseを使用しています。</div>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      iCloud同期はどのように機能しますか？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>同じiCloudアカウントでサインインした複数のデバイス間で、服薬データと記録がAppleのCloudKitを通じて自動的に同期されます。特別な設定は不要です。</p>
+      <p>iCloudが利用できない場合、Tooklyは完全なオフラインモードで動作し、すべてのデータはデバイスにローカルで保存されます。</p>
+      <p>iCloudの状態は<strong>Tookly → 設定 → iCloud</strong>で確認できます。</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      データをエクスポートするにはどうすればいいですか？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p><strong>設定 → データエクスポート</strong>をタップしてください。すべての服薬記録を含むCSVファイルが生成され、Filesアプリに保存したり、医師にメールで送信したりできます。</p>
+    </div>
+  </div>
+
+  <div class="section-label">機能</div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      ストリークとは何ですか？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>ストリークは、予定されたすべての薬を飲み続けた連続日数です。ヒストリータブでストリークを確認できます。ストリークを維持することは、服薬ルーティンを続けるための良い動機づけになります。</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      薬の在庫とリフィルアラートはどのように設定しますか？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>薬を追加または編集する際に、<strong>在庫数の追跡</strong>を有効にしてください。現在の数量とリフィル閾値（例：残り7回分以下になったらアラート）を入力すると、ホーム画面で在庫不足の警告を受け取ることができます。</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      薬を削除またはアーカイブするにはどうすればいいですか？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>ホーム画面の編集アイコンをタップして薬を開き、下にスクロールして<strong>薬をアーカイブ</strong>をタップしてください。アーカイブされた薬はホーム画面から非表示になりますが、記録はヒストリーに保存されます。</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      アプリ外部と同期できますか？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>バージョン1.0では対応していません。Tooklyは服薬スケジュールと記録をデバイスにローカルで保存し、有効にした場合はiCloudで同期します。</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      ファミリー共有（保護者モード）は使えますか？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>保護者モード（ファミリー共有）を使うと、保護者がiCloud共有を通じて家族の服薬スケジュールと記録を確認できます。<strong>設定 → ファミリー共有</strong>でセットアップしてください。</p>
+      <div class="tip note">両方のデバイスがiCloudにサインインされており、iOS 18.6以降であることが必要です。</div>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <h2>もっと助けが必要ですか？</h2>
+    <p>答えが見つかりませんでしたか？メールでお問い合わせいただければ、5営業日以内にご返答いたします。</p>
+    <a class="contact-btn" href="mailto:hoons.labs@gmail.com?subject=Tookly%20%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88">
+      ✉️ &nbsp;hoons.labs@gmail.com
+    </a>
+    <p class="contact-note">iOSバージョンとアプリバージョン（設定 → 下部にスクロール）をお知らせいただくと、より迅速にご対応できます。</p>
+  </div>
+
+</main>
+</div>
+
+<!-- ══ TRADITIONAL CHINESE ══ -->
+<div lang-block="zh-hant" id="content-zh-hant">
+<main class="container">
+
+  <div class="section-label">開始使用</div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      如何新增藥物？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>點選主畫面的 <strong>+</strong> 按鈕。填寫藥物名稱、劑量和單位，然後點選「Add Schedule」設定提醒時間和星期幾。</p>
+      <p>您也可以選擇顏色、設定病症標籤（例如「ADHD」），以及為每個時程設定鬧鐘樣式（Gentle 或 Nagging）。</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      如何標記服藥完成？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>在主畫面的「Up Next」區塊中，點選對應藥物的<strong>核取按鈕</strong>。藥物將移至「Completed」區塊，記錄即儲存至 Tookly。</p>
+      <p>畫面底部會顯示復原提示，可在短時間內取消服藥記錄。</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      什麼是 PRN（按需服藥）？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p><strong>PRN</strong> 是「pro re nata」的縮寫，指不按固定時程、只在出現症狀時服用的藥物。新增藥物時開啟 <strong>As Needed (PRN)</strong> 切換，將不會設定任何提醒。</p>
+      <p>PRN 藥物會顯示在主畫面，供您手動記錄。您也可以設定最短服用間隔（例如每 4 小時最多一次）和每週最大服用次數作為安全限制。</p>
+    </div>
+  </div>
+
+  <div class="section-label">提醒</div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      Gentle 與 Nagging 提醒有什麼區別？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p><strong>Gentle：</strong>在排程時間發送單次通知。只響一次，靜待您回應。</p>
+      <p><strong>Nagging：</strong>在設定的間隔和次數內（例如每 10 分鐘最多 3 次）預先排程後續通知，持續提醒您直到記錄服藥。適合不能錯過的重要藥物。</p>
+      <div class="tip note">您可在設定 → 通知樣式中設定預設值，並在新增藥物時為各時程個別設定。</div>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      我的提醒沒有收到，該怎麼辦？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>請檢查以下事項：</p>
+      <ul>
+        <li>前往<strong>設定 → Tookly → 通知</strong>，確認通知已開啟。</li>
+        <li>確認<strong>專注模式</strong>是否封鎖了 Tookly。前往設定 → 專注模式，在各模式的允許應用程式中加入 Tookly。</li>
+        <li>確認藥物有有效時程（非 PRN），且已選擇正確的星期幾。</li>
+        <li>iOS 最多允許 64 個排程通知。若您有許多藥物或時程，較遠的提醒可能會延遲，直到較近的提醒觸發後才排入。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-label">資料與隱私</div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      我的服藥資料安全嗎？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>是的。所有服藥資料均保存在您的裝置上（或在啟用 iCloud 時儲存於您的私人 iCloud）。藥物名稱、劑量或健康記錄絕不會傳送至我們的伺服器或 Firebase。</p>
+      <div class="tip">Tookly 僅將 Firebase 用於匿名使用事件（例如「服藥完成」— 不含名稱/劑量）和協助我們修復錯誤的當機報告。</div>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      iCloud 同步如何運作？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>若您在多台裝置上登入相同的 iCloud 帳號，服藥資料和記錄將透過 Apple 的 CloudKit 自動同步。無需額外設定。</p>
+      <p>若 iCloud 無法使用，Tookly 可完全離線運作，所有資料均本機儲存於您的裝置上。</p>
+      <p>如需確認 iCloud 狀態，請前往 <strong>Tookly → 設定 → iCloud</strong>。</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      如何匯出我的資料？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>前往<strong>設定 → 匯出資料</strong>。Tookly 將產生一個包含所有服藥記錄的 CSV 檔案，您可儲存至「檔案」應用程式，或透過電子郵件傳送給自己或醫師。</p>
+    </div>
+  </div>
+
+  <div class="section-label">功能</div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      什麼是連續天數？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>連續天數記錄您連續完成所有排程服藥的天數。您可在「歷史」分頁查看連續天數。保持連續天數是維持規律服藥習慣的良好激勵。</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      如何追蹤庫存和設定補藥提醒？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>新增或編輯藥物時，啟用<strong>追蹤庫存數量</strong>。輸入目前數量和補藥閾值（例如剩餘少於 7 次時提醒），Tookly 將在主畫面顯示庫存不足警告。</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      如何刪除或封存藥物？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>點選主畫面上的編輯圖示開啟藥物，向下滑動並點選<strong>封存藥物</strong>。封存的藥物將從主畫面隱藏，但其記錄仍保留在歷史中。</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      Tookly 能與應用程式外部同步嗎？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>1.0 版本尚不支援。Tookly 將服藥時程和記錄儲存於裝置本機，並在啟用時透過 iCloud 同步。</p>
+    </div>
+  </div>
+
+  <div class="faq-card">
+    <div class="faq-question" onclick="toggle(this)">
+      可以使用家人共享（監護人模式）嗎？
+      <span class="faq-chevron">▼</span>
+    </div>
+    <div class="faq-answer">
+      <p>監護人模式（家人共享）可讓照護者透過 iCloud 共享查看家人的服藥時程和記錄。前往<strong>設定 → 家人共享</strong>進行設定。</p>
+      <div class="tip note">兩台裝置須同時登入 iCloud，並執行 iOS 18.6 或更新版本。</div>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <h2>需要更多協助？</h2>
+    <p>沒有找到答案？請傳送電子郵件給我們，我們將在 5 個工作日內回覆。</p>
+    <a class="contact-btn" href="mailto:hoons.labs@gmail.com?subject=Tookly%20%E6%94%AF%E6%8F%B4">
+      ✉️ &nbsp;hoons.labs@gmail.com
+    </a>
+    <p class="contact-note">請在郵件中告知您的 iOS 版本和應用程式版本（設定 → 滑至底部），以幫助我們更快回應。</p>
   </div>
 
 </main>
@@ -530,6 +870,14 @@
 </footer>
 
 <script>
+  const LANGS = ['en', 'ko', 'ja', 'zh-hant'];
+  const PRIVACY_LABELS = {
+    en: 'Privacy Policy',
+    ko: '개인정보 처리방침',
+    ja: 'プライバシーポリシー',
+    'zh-hant': '隱私權政策'
+  };
+
   function toggle(el) {
     el.closest('.faq-card').classList.toggle('open');
   }
@@ -538,20 +886,25 @@
     document.querySelectorAll('[lang-block]').forEach(el => {
       el.classList.toggle('visible', el.id.endsWith('-' + lang));
     });
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
-    document.getElementById('link-privacy').textContent = lang === 'ko' ? '개인정보 처리방침' : 'Privacy Policy';
-    document.documentElement.lang = lang;
+    LANGS.forEach(l => {
+      document.getElementById('btn-' + l).classList.toggle('active', l === lang);
+    });
+    document.getElementById('link-privacy').textContent = PRIVACY_LABELS[lang] || 'Privacy Policy';
+    document.documentElement.lang = lang === 'zh-hant' ? 'zh-Hant' : lang;
     localStorage.setItem('tookly-lang', lang);
   }
 
   (function () {
     const params  = new URLSearchParams(window.location.search);
     const urlLang = params.get('lang');
-    if (['en','ko'].includes(urlLang)) { setLang(urlLang); return; }
+    if (LANGS.includes(urlLang)) { setLang(urlLang); return; }
     const saved = localStorage.getItem('tookly-lang');
-    if (['en','ko'].includes(saved)) { setLang(saved); return; }
-    setLang(navigator.language.startsWith('ko') ? 'ko' : 'en');
+    if (LANGS.includes(saved)) { setLang(saved); return; }
+    const nav = navigator.language || '';
+    if (nav.startsWith('ko')) { setLang('ko'); return; }
+    if (nav.startsWith('ja')) { setLang('ja'); return; }
+    if (nav === 'zh-TW' || nav === 'zh-HK' || nav.startsWith('zh-Hant')) { setLang('zh-hant'); return; }
+    setLang('en');
   })();
 </script>
 
