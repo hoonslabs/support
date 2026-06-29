@@ -44,7 +44,6 @@
       font-size: 16px;
     }
 
-    /* ── Header ─────────────────────────────────────────── */
     .site-header {
       background: linear-gradient(135deg, var(--ink) 0%, var(--steel) 100%);
       color: #fff;
@@ -53,216 +52,96 @@
     }
 
     .logo-mark {
-      width: 64px;
-      height: 64px;
+      width: 64px; height: 64px;
       background: rgba(74,144,217,0.2);
       border-radius: 18px;
       border: 1px solid rgba(74,144,217,0.4);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 32px;
-      margin-bottom: 16px;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 32px; margin-bottom: 16px;
       backdrop-filter: blur(8px);
     }
 
-    .site-header h1 {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 8px;
-    }
+    .site-header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .site-header .subtitle { font-size: 14px; opacity: 0.7; font-weight: 400; }
 
-    .site-header .subtitle {
-      font-size: 14px;
-      opacity: 0.7;
-      font-weight: 400;
+    .lang-switcher { display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+    .lang-btn {
+      padding: 4px 12px; border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: transparent; color: rgba(255,255,255,0.65);
+      font-size: 12px; font-weight: 500; cursor: pointer;
+      transition: all 0.15s; font-family: inherit;
     }
+    .lang-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .lang-btn.active { background: rgba(255,255,255,0.18); color: #fff; border-color: rgba(255,255,255,0.5); }
 
-    /* ── Main Layout ─────────────────────────────────────── */
-    .container {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 48px 24px 80px;
-    }
+    .container { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
 
-    /* ── Meta Badge ──────────────────────────────────────── */
     .meta-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 6px 14px;
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 40px;
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 6px 14px;
+      font-size: 13px; color: var(--muted); margin-bottom: 40px;
     }
+    .meta-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
 
-    .meta-badge .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--teal);
-    }
-
-    /* ── Section ─────────────────────────────────────────── */
     .section {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 32px;
-      margin-bottom: 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px; margin-bottom: 20px;
     }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
+    .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
     .section-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
+      width: 40px; height: 40px; border-radius: 10px;
       background: color-mix(in srgb, var(--accent) 12%, transparent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
     }
+    .section h2 { font-size: 18px; font-weight: 700; color: var(--charcoal); letter-spacing: -0.3px; }
 
-    .section h2 {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--charcoal);
-      letter-spacing: -0.3px;
-    }
-
-    /* ── Typography ──────────────────────────────────────── */
     p { margin-bottom: 14px; color: var(--charcoal); }
     p:last-child { margin-bottom: 0; }
-
-    ul, ol {
-      padding-left: 20px;
-      margin-bottom: 14px;
-    }
-
+    ul, ol { padding-left: 20px; margin-bottom: 14px; }
     li { margin-bottom: 6px; }
-
     strong { color: var(--charcoal); font-weight: 600; }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
-      transition: border-color 0.2s;
-    }
-
+    a { color: var(--accent); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); transition: border-color 0.2s; }
     a:hover { border-color: var(--accent); }
 
-    /* ── Highlight Box ───────────────────────────────────── */
     .highlight {
       background: color-mix(in srgb, var(--teal) 10%, var(--surface));
       border-left: 3px solid var(--teal);
-      border-radius: 0 8px 8px 0;
-      padding: 14px 18px;
-      margin: 16px 0;
-      font-size: 15px;
+      border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; font-size: 15px;
     }
 
-    .highlight.warn {
-      background: color-mix(in srgb, var(--amber) 10%, var(--surface));
-      border-color: var(--amber);
-    }
-
-    /* ── FAQ Item ────────────────────────────────────────── */
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-      padding: 18px 0;
-    }
-
+    .faq-item { border-bottom: 1px solid var(--border); padding: 18px 0; }
     .faq-item:first-child { padding-top: 0; }
-    .faq-item:last-child  { border-bottom: none; padding-bottom: 0; }
+    .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
 
     .faq-q {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--charcoal);
-      margin-bottom: 8px;
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
+      font-size: 15px; font-weight: 600; color: var(--charcoal);
+      margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;
     }
-
     .faq-q::before {
       content: "Q";
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 22px;
-      height: 22px;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      margin-top: 2px;
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 22px; height: 22px;
+      background: var(--accent); color: #fff;
+      border-radius: 6px; font-size: 11px; font-weight: 700; margin-top: 2px;
     }
+    .faq-a { font-size: 15px; color: var(--charcoal); line-height: 1.7; padding-left: 30px; margin: 0; }
 
-    .faq-a {
-      font-size: 15px;
-      color: var(--charcoal);
-      line-height: 1.7;
-      padding-left: 30px;
-      margin: 0;
-    }
-
-    /* ── Contact Card ────────────────────────────────────── */
     .contact-card {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      background: linear-gradient(135deg,
-        color-mix(in srgb, var(--accent) 8%, var(--surface)),
-        color-mix(in srgb, var(--teal) 8%, var(--surface))
-      );
+      display: flex; align-items: center; gap: 16px;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 8%, var(--surface)), color-mix(in srgb, var(--teal) 8%, var(--surface)));
       border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
-      border-radius: var(--radius);
-      padding: 20px 24px;
-      margin-top: 16px;
+      border-radius: var(--radius); padding: 20px 24px; margin-top: 16px;
     }
-
     .contact-card .icon { font-size: 28px; }
+    .contact-card .label { font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 2px; }
+    .contact-card .value { font-size: 15px; font-weight: 600; color: var(--accent); }
 
-    .contact-card .label {
-      font-size: 12px;
-      color: var(--muted);
-      font-weight: 500;
-      margin-bottom: 2px;
-    }
-
-    .contact-card .value {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--accent);
-    }
-
-    /* ── Footer ──────────────────────────────────────────── */
-    .site-footer {
-      text-align: center;
-      padding: 32px 24px;
-      border-top: 1px solid var(--border);
-      font-size: 13px;
-      color: var(--muted);
-    }
-
+    .site-footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
     .site-footer a { color: var(--muted); }
 
-    /* ── Responsive ──────────────────────────────────────── */
     @media (max-width: 600px) {
       .section { padding: 24px 18px; }
       .site-header { padding: 40px 20px 36px; }
@@ -272,204 +151,107 @@
 </head>
 <body>
 
-<!-- ── Header ─────────────────────────────────── -->
 <header class="site-header">
   <div class="logo-mark">🔒</div>
   <h1>OutVault: Private Camera</h1>
-  <p class="subtitle">Support</p>
+  <p class="subtitle" data-i18n="subtitle">Support</p>
+  <div class="lang-switcher">
+    <button class="lang-btn" data-lang="en" onclick="applyLang('en')">EN</button>
+    <button class="lang-btn" data-lang="de" onclick="applyLang('de')">DE</button>
+    <button class="lang-btn" data-lang="ja" onclick="applyLang('ja')">日本語</button>
+    <button class="lang-btn" data-lang="fr" onclick="applyLang('fr')">FR</button>
+    <button class="lang-btn" data-lang="ko" onclick="applyLang('ko')">한국어</button>
+  </div>
 </header>
 
 <main class="container">
 
   <div class="meta-badge">
     <span class="dot"></span>
-    Last updated: June 1, 2026
+    <span data-i18n="meta-badge">Last updated: June 1, 2026</span>
   </div>
 
   <!-- FAQ -->
   <section class="section">
-    <div class="section-header">
-      <div class="section-icon">💬</div>
-      <h2>Frequently Asked Questions</h2>
-    </div>
+    <div class="section-header"><div class="section-icon">💬</div><h2 data-i18n="faq-heading">Frequently Asked Questions</h2></div>
 
     <div class="faq-item">
-      <p class="faq-q">Are my photos saved to iOS Photos?</p>
-      <p class="faq-a">
-        No — never. OutVault completely bypasses the iOS Photos library.
-        Every photo and video you capture is stored exclusively inside the app's private
-        sandbox on your device. Nothing is written to your Camera Roll or Photos app.
-      </p>
+      <p class="faq-q" data-i18n="faq-q1"></p>
+      <p class="faq-a" data-i18n-html="faq-a1"></p>
     </div>
-
     <div class="faq-item">
-      <p class="faq-q">Where exactly is my media stored?</p>
-      <p class="faq-a">
-        Media files are stored in the app's <strong>Application Support/assets/</strong>
-        directory, protected by <strong>NSFileProtectionComplete</strong> — Apple's highest
-        level of on-device encryption. Files are inaccessible while your device is locked.
-        No other app or person can access these files without unlocking your device and
-        passing Face ID / Passcode.
-      </p>
+      <p class="faq-q" data-i18n="faq-q2"></p>
+      <p class="faq-a" data-i18n-html="faq-a2"></p>
     </div>
-
     <div class="faq-item">
-      <p class="faq-q">How does Face ID unlock work?</p>
-      <p class="faq-a">
-        OutVault requires Face ID or your device Passcode every time you open the app,
-        and again after it moves to the background. Authentication is handled entirely by
-        iOS — the App never sees your biometric data. On the Simulator, authentication is
-        automatically bypassed for development purposes.
-      </p>
+      <p class="faq-q" data-i18n="faq-q3"></p>
+      <p class="faq-a" data-i18n-html="faq-a3"></p>
     </div>
-
     <div class="faq-item">
-      <p class="faq-q">How do I take a photo or record a video?</p>
-      <p class="faq-a">
-        Tap the <strong>camera button</strong> in the gallery to open the camera.
-        Tap the shutter to capture a photo — you'll be returned to the gallery immediately.
-        Press and hold (or tap the record button) to start a video; tap again to stop.
-        After recording, a <em>"Video saved"</em> toast appears and the camera stays open
-        so you can record another clip right away.
-      </p>
+      <p class="faq-q" data-i18n="faq-q4"></p>
+      <p class="faq-a" data-i18n-html="faq-a4"></p>
     </div>
-
     <div class="faq-item">
-      <p class="faq-q">How do I share a photo or video?</p>
-      <p class="faq-a">
-        Open the asset in the detail view and tap the <strong>Share</strong> button.
-        The standard iOS share sheet will appear. <strong>Pro users</strong> can strip all
-        EXIF metadata (location, device, timestamp) before sharing — the share sheet will
-        present a clean, metadata-free copy of the file.
-      </p>
+      <p class="faq-q" data-i18n="faq-q5"></p>
+      <p class="faq-a" data-i18n-html="faq-a5"></p>
     </div>
-
     <div class="faq-item">
-      <p class="faq-q">How do I delete a photo or video?</p>
-      <p class="faq-a">
-        Open the asset in the detail view and tap <strong>Delete</strong>, or long-press
-        a thumbnail in the gallery and choose <strong>Delete</strong> from the context menu.
-        Deletion is permanent — there is no trash or recycle bin.
-      </p>
+      <p class="faq-q" data-i18n="faq-q6"></p>
+      <p class="faq-a" data-i18n-html="faq-a6"></p>
     </div>
-
     <div class="faq-item">
-      <p class="faq-q">What is Auto-Delete? (Pro)</p>
-      <p class="faq-a">
-        Pro users can set an expiration date on any asset. Once the expiration time passes,
-        the App automatically purges the file the next time you launch it, or via a background
-        task. A local notification is sent in advance as a reminder. You control the
-        expiration window individually per asset.
-      </p>
+      <p class="faq-q" data-i18n="faq-q7"></p>
+      <p class="faq-a" data-i18n-html="faq-a7"></p>
     </div>
-
     <div class="faq-item">
-      <p class="faq-q">What is Metadata Editing? (Pro)</p>
-      <p class="faq-a">
-        Pro users can edit the date, memo, author, and location text attached to any asset.
-        The location field is <strong>free-form text</strong> — the App does not access GPS.
-        Edited metadata is stored securely in the app sandbox alongside your media.
-      </p>
+      <p class="faq-q" data-i18n="faq-q8"></p>
+      <p class="faq-a" data-i18n-html="faq-a8"></p>
     </div>
-
     <div class="faq-item">
-      <p class="faq-q">What is EXIF Strip? (Pro)</p>
-      <p class="faq-a">
-        When you share a file, Pro users can choose to remove all embedded EXIF metadata
-        (camera model, GPS coordinates, timestamps, etc.) before the file is handed to
-        the iOS share sheet. The original file stored in your vault remains unchanged.
-      </p>
+      <p class="faq-q" data-i18n="faq-q9"></p>
+      <p class="faq-a" data-i18n-html="faq-a9"></p>
     </div>
-
     <div class="faq-item">
-      <p class="faq-q">Will my data be deleted if I delete the app?</p>
-      <p class="faq-a">
-        Yes. All media and metadata stored in the app sandbox is permanently deleted when
-        you uninstall the App. There is no cloud backup unless you have CloudKit sync enabled
-        (a future Pro feature). We recommend exporting important files via the share sheet
-        before uninstalling.
-      </p>
+      <p class="faq-q" data-i18n="faq-q10"></p>
+      <p class="faq-a" data-i18n-html="faq-a10"></p>
     </div>
-
     <div class="faq-item">
-      <p class="faq-q">How do I restore a purchase (Lifetime Pro)?</p>
-      <p class="faq-a">
-        Go to <strong>Settings</strong> in the App and tap <strong>Restore Purchases</strong>.
-        Make sure you are signed in to the App Store with the same Apple ID used for the
-        original purchase. Purchases are managed by RevenueCat and linked to your App Store account.
-      </p>
+      <p class="faq-q" data-i18n="faq-q11"></p>
+      <p class="faq-a" data-i18n-html="faq-a11"></p>
     </div>
-
     <div class="faq-item">
-      <p class="faq-q">The app is showing the wrong date on my photos.</p>
-      <p class="faq-a">
-        OutVault records the capture date at the moment the shutter fires. If the date
-        appears wrong, check your device's date and time settings (Settings → General →
-        Date &amp; Time → Set Automatically). Pro users can also manually correct the date
-        via Metadata Editing.
-      </p>
+      <p class="faq-q" data-i18n="faq-q12"></p>
+      <p class="faq-a" data-i18n-html="faq-a12"></p>
     </div>
-
     <div class="faq-item">
-      <p class="faq-q">Can I use OutVault on the Simulator?</p>
-      <p class="faq-a">
-        Yes. On the iOS Simulator, the camera is replaced by a color-tap UI that generates
-        sample photos in six colors. Face ID is automatically bypassed. You can also seed
-        12 sample photos via <strong>Settings → Debug → Seed Sample Photos</strong>.
-      </p>
+      <p class="faq-q" data-i18n="faq-q13"></p>
+      <p class="faq-a" data-i18n-html="faq-a13"></p>
     </div>
   </section>
 
   <!-- Troubleshooting -->
   <section class="section">
-    <div class="section-header">
-      <div class="section-icon">🔧</div>
-      <h2>Troubleshooting</h2>
-    </div>
-
-    <div class="highlight">
-      Most issues are resolved by <strong>force-closing the app and reopening it</strong>,
-      or by <strong>restarting your iPhone</strong>.
-    </div>
-
+    <div class="section-header"><div class="section-icon">🔧</div><h2 data-i18n="trouble-heading">Troubleshooting</h2></div>
+    <div class="highlight" data-i18n-html="trouble-hl"></div>
     <ul>
-      <li><strong>Camera not opening / black screen</strong> — Go to iOS Settings → Privacy &amp;
-          Security → Camera and make sure OutVault has camera permission enabled.
-          Force-close and relaunch the app.</li>
-      <li><strong>Face ID not prompting</strong> — Go to iOS Settings → Face ID &amp; Passcode
-          and confirm your Face ID is enrolled. Force-close the app and try again.</li>
-      <li><strong>Gallery appears empty after reinstall</strong> — Media stored in the app sandbox
-          is deleted with the app. If you had no CloudKit sync, data cannot be recovered.
-          Export important files before uninstalling.</li>
-      <li><strong>Auto-Delete notification not arriving</strong> — Go to iOS Settings →
-          Notifications → OutVault and confirm notifications are allowed. The App maintains
-          a single scheduled notification for the next expiring asset.</li>
-      <li><strong>App is slow or freezing</strong> — Force-close the app (swipe up in the
-          app switcher) and relaunch. Restart your iPhone if the issue persists.</li>
-      <li><strong>Thumbnail not loading in gallery</strong> — Thumbnails are generated and
-          cached on first display. Scroll away and back to retry, or force-close and relaunch.</li>
+      <li data-i18n-html="trouble-li1"></li>
+      <li data-i18n-html="trouble-li2"></li>
+      <li data-i18n-html="trouble-li3"></li>
+      <li data-i18n-html="trouble-li4"></li>
+      <li data-i18n-html="trouble-li5"></li>
+      <li data-i18n-html="trouble-li6"></li>
     </ul>
   </section>
 
   <!-- Contact -->
   <section class="section">
-    <div class="section-header">
-      <div class="section-icon">✉️</div>
-      <h2>Contact Us</h2>
-    </div>
-    <p>
-      If your issue isn't covered above or you have feedback to share,
-      please reach out by email. We'll get back to you as soon as possible.
-    </p>
-    <div class="highlight">
-      When contacting support, please include your <strong>iOS version</strong>,
-      <strong>device model</strong>, and <strong>steps to reproduce</strong> the issue
-      for faster assistance.
-    </div>
+    <div class="section-header"><div class="section-icon">✉️</div><h2 data-i18n="contact-heading">Contact Us</h2></div>
+    <p data-i18n-html="contact-p1"></p>
+    <div class="highlight" data-i18n-html="contact-hl"></div>
     <div class="contact-card">
       <div class="icon">📬</div>
       <div>
-        <div class="label">Email</div>
+        <div class="label" data-i18n="contact-label">Email</div>
         <div class="value"><a href="mailto:hoons.labs@gmail.com">hoons.labs@gmail.com</a></div>
       </div>
     </div>
@@ -477,28 +259,297 @@
 
   <!-- Privacy Policy -->
   <section class="section">
-    <div class="section-header">
-      <div class="section-icon">🔒</div>
-      <h2>Privacy Policy</h2>
-    </div>
-    <p>
-      Read the OutVault Privacy Policy at the link below.
-    </p>
-    <p>
-      <a href="../privacy/outvault/">Privacy Policy →</a>
-    </p>
+    <div class="section-header"><div class="section-icon">🔒</div><h2 data-i18n="privacy-heading">Privacy Policy</h2></div>
+    <p data-i18n="privacy-p1"></p>
+    <p><a href="../../privacy/outvault/" data-i18n="privacy-link">Privacy Policy →</a></p>
   </section>
 
 </main>
 
 <footer class="site-footer">
-  <p>© 2026 Hoon's Labs &nbsp;·&nbsp; OutVault: Private Camera</p>
+  <p data-i18n="footer-copy">© 2026 Hoon's Labs · OutVault: Private Camera</p>
   <p style="margin-top:6px;">
-    <a href="../privacy/outvault/">Privacy Policy</a>
+    <a href="../../privacy/outvault/" data-i18n="footer-privacy">Privacy Policy</a>
     &nbsp;·&nbsp;
     <a href="mailto:hoons.labs@gmail.com">hoons.labs@gmail.com</a>
   </p>
 </footer>
 
+<script>
+const T = {
+  en: {
+    'subtitle': 'Support',
+    'meta-badge': 'Last updated: June 1, 2026',
+    'faq-heading': 'Frequently Asked Questions',
+    'faq-q1': 'Are my photos saved to iOS Photos?',
+    'faq-a1': 'No — never. OutVault completely bypasses the iOS Photos library. Every photo and video you capture is stored exclusively inside the app\'s private sandbox on your device. Nothing is written to your Camera Roll or Photos app.',
+    'faq-q2': 'Where exactly is my media stored?',
+    'faq-a2': 'Media files are stored in the app\'s <strong>Application Support/assets/</strong> directory, protected by <strong>NSFileProtectionComplete</strong> — Apple\'s highest level of on-device encryption. Files are inaccessible while your device is locked. No other app or person can access these files without unlocking your device and passing Face ID / Passcode.',
+    'faq-q3': 'How does Face ID unlock work?',
+    'faq-a3': 'OutVault requires Face ID or your device Passcode every time you open the app, and again after it moves to the background. Authentication is handled entirely by iOS — the App never sees your biometric data. On the Simulator, authentication is automatically bypassed for development purposes.',
+    'faq-q4': 'How do I take a photo or record a video?',
+    'faq-a4': 'Tap the <strong>camera button</strong> in the gallery to open the camera. Tap the shutter to capture a photo — you\'ll be returned to the gallery immediately. Press and hold (or tap the record button) to start a video; tap again to stop. After recording, a <em>"Video saved"</em> toast appears and the camera stays open so you can record another clip right away.',
+    'faq-q5': 'How do I share a photo or video?',
+    'faq-a5': 'Open the asset in the detail view and tap the <strong>Share</strong> button. The standard iOS share sheet will appear. <strong>Pro users</strong> can strip all EXIF metadata (location, device, timestamp) before sharing — the share sheet will present a clean, metadata-free copy of the file.',
+    'faq-q6': 'How do I delete a photo or video?',
+    'faq-a6': 'Open the asset in the detail view and tap <strong>Delete</strong>, or long-press a thumbnail in the gallery and choose <strong>Delete</strong> from the context menu. Deletion is permanent — there is no trash or recycle bin.',
+    'faq-q7': 'What is Auto-Delete? (Pro)',
+    'faq-a7': 'Pro users can set an expiration date on any asset. Once the expiration time passes, the App automatically purges the file the next time you launch it, or via a background task. A local notification is sent in advance as a reminder. You control the expiration window individually per asset.',
+    'faq-q8': 'What is Metadata Editing? (Pro)',
+    'faq-a8': 'Pro users can edit the date, memo, author, and location text attached to any asset. The location field is <strong>free-form text</strong> — the App does not access GPS. Edited metadata is stored securely in the app sandbox alongside your media.',
+    'faq-q9': 'What is EXIF Strip? (Pro)',
+    'faq-a9': 'When you share a file, Pro users can choose to remove all embedded EXIF metadata (camera model, GPS coordinates, timestamps, etc.) before the file is handed to the iOS share sheet. The original file stored in your vault remains unchanged.',
+    'faq-q10': 'Will my data be deleted if I delete the app?',
+    'faq-a10': 'Yes. All media and metadata stored in the app sandbox is permanently deleted when you uninstall the App. There is no cloud backup unless you have CloudKit sync enabled (a future Pro feature). We recommend exporting important files via the share sheet before uninstalling.',
+    'faq-q11': 'How do I restore a purchase (Lifetime Pro)?',
+    'faq-a11': 'Go to <strong>Settings</strong> in the App and tap <strong>Restore Purchases</strong>. Make sure you are signed in to the App Store with the same Apple ID used for the original purchase. Purchases are managed by RevenueCat and linked to your App Store account.',
+    'faq-q12': 'The app is showing the wrong date on my photos.',
+    'faq-a12': 'OutVault records the capture date at the moment the shutter fires. If the date appears wrong, check your device\'s date and time settings (Settings → General → Date &amp; Time → Set Automatically). Pro users can also manually correct the date via Metadata Editing.',
+    'faq-q13': 'Can I use OutVault on the Simulator?',
+    'faq-a13': 'Yes. On the iOS Simulator, the camera is replaced by a color-tap UI that generates sample photos in six colors. Face ID is automatically bypassed. You can also seed 12 sample photos via <strong>Settings → Debug → Seed Sample Photos</strong>.',
+    'trouble-heading': 'Troubleshooting',
+    'trouble-hl': 'Most issues are resolved by <strong>force-closing the app and reopening it</strong>, or by <strong>restarting your iPhone</strong>.',
+    'trouble-li1': '<strong>Camera not opening / black screen</strong> — Go to iOS Settings → Privacy &amp; Security → Camera and make sure OutVault has camera permission enabled. Force-close and relaunch the app.',
+    'trouble-li2': '<strong>Face ID not prompting</strong> — Go to iOS Settings → Face ID &amp; Passcode and confirm your Face ID is enrolled. Force-close the app and try again.',
+    'trouble-li3': '<strong>Gallery appears empty after reinstall</strong> — Media stored in the app sandbox is deleted with the app. If you had no CloudKit sync, data cannot be recovered. Export important files before uninstalling.',
+    'trouble-li4': '<strong>Auto-Delete notification not arriving</strong> — Go to iOS Settings → Notifications → OutVault and confirm notifications are allowed. The App maintains a single scheduled notification for the next expiring asset.',
+    'trouble-li5': '<strong>App is slow or freezing</strong> — Force-close the app (swipe up in the app switcher) and relaunch. Restart your iPhone if the issue persists.',
+    'trouble-li6': '<strong>Thumbnail not loading in gallery</strong> — Thumbnails are generated and cached on first display. Scroll away and back to retry, or force-close and relaunch.',
+    'contact-heading': 'Contact Us',
+    'contact-p1': 'If your issue isn\'t covered above or you have feedback to share, please reach out by email. We\'ll get back to you as soon as possible.',
+    'contact-hl': 'When contacting support, please include your <strong>iOS version</strong>, <strong>device model</strong>, and <strong>steps to reproduce</strong> the issue for faster assistance.',
+    'contact-label': 'Email',
+    'privacy-heading': 'Privacy Policy',
+    'privacy-p1': 'Read the OutVault Privacy Policy at the link below.',
+    'privacy-link': 'Privacy Policy →',
+    'footer-copy': '© 2026 Hoon\'s Labs · OutVault: Private Camera',
+    'footer-privacy': 'Privacy Policy',
+  },
+
+  de: {
+    'subtitle': 'Support',
+    'meta-badge': 'Zuletzt aktualisiert: 1. Juni 2026',
+    'faq-heading': 'Häufige Fragen',
+    'faq-q1': 'Werden meine Fotos in iOS-Fotos gespeichert?',
+    'faq-a1': 'Nein — niemals. OutVault umgeht die iOS-Fotomediathek vollständig. Jedes Foto und Video, das Sie aufnehmen, wird ausschließlich in der privaten Sandbox der App auf Ihrem Gerät gespeichert. Es wird nichts in Ihre Kamerarolle oder die Fotos-App geschrieben.',
+    'faq-q2': 'Wo genau werden meine Medien gespeichert?',
+    'faq-a2': 'Mediendateien werden im Verzeichnis <strong>Application Support/assets/</strong> der App gespeichert, geschützt durch <strong>NSFileProtectionComplete</strong> — Apples höchstem Standard für On-Device-Verschlüsselung. Dateien sind gesperrt, solange Ihr Gerät gesperrt ist. Keine andere App oder Person kann auf diese Dateien zugreifen, ohne Ihr Gerät zu entsperren und Face ID / Passcode zu passieren.',
+    'faq-q3': 'Wie funktioniert die Face ID-Entsperrung?',
+    'faq-a3': 'OutVault erfordert Face ID oder Ihren Geräte-Passcode jedes Mal, wenn Sie die App öffnen, und erneut, wenn sie in den Hintergrund wechselt. Die Authentifizierung wird vollständig von iOS übernommen — die App sieht Ihre biometrischen Daten niemals. Im Simulator wird die Authentifizierung für Entwicklungszwecke automatisch umgangen.',
+    'faq-q4': 'Wie mache ich ein Foto oder nehme ein Video auf?',
+    'faq-a4': 'Tippen Sie in der Galerie auf die <strong>Kamera-Schaltfläche</strong>, um die Kamera zu öffnen. Tippen Sie auf den Auslöser, um ein Foto aufzunehmen — Sie werden sofort zur Galerie zurückgeführt. Drücken und halten Sie (oder tippen Sie die Aufnahme-Schaltfläche), um ein Video zu starten; tippen Sie erneut, um zu stoppen. Nach der Aufnahme erscheint ein <em>„Video gespeichert"</em>-Toast und die Kamera bleibt offen, sodass Sie sofort einen weiteren Clip aufnehmen können.',
+    'faq-q5': 'Wie teile ich ein Foto oder Video?',
+    'faq-a5': 'Öffnen Sie das Asset in der Detailansicht und tippen Sie auf <strong>Teilen</strong>. Das Standard-iOS-Share-Sheet erscheint. <strong>Pro-Nutzer</strong> können alle EXIF-Metadaten (Standort, Gerät, Zeitstempel) vor dem Teilen entfernen — das Share-Sheet präsentiert dann eine saubere, metadatenfreie Kopie der Datei.',
+    'faq-q6': 'Wie lösche ich ein Foto oder Video?',
+    'faq-a6': 'Öffnen Sie das Asset in der Detailansicht und tippen Sie auf <strong>Löschen</strong>, oder halten Sie ein Thumbnail in der Galerie gedrückt und wählen Sie <strong>Löschen</strong> aus dem Kontextmenü. Das Löschen ist dauerhaft — es gibt keinen Papierkorb.',
+    'faq-q7': 'Was ist Auto-Löschen? (Pro)',
+    'faq-a7': 'Pro-Nutzer können für jedes Asset ein Ablaufdatum festlegen. Sobald die Ablaufzeit verstrichen ist, bereinigt die App die Datei automatisch beim nächsten Start oder über einen Hintergrundtask. Im Voraus wird eine lokale Benachrichtigung als Erinnerung gesendet. Sie steuern das Ablaufintervall individuell pro Asset.',
+    'faq-q8': 'Was ist Metadaten-Bearbeitung? (Pro)',
+    'faq-a8': 'Pro-Nutzer können Datum, Notiz, Autor und Ortstext für jedes Asset bearbeiten. Das Ortsfeld ist <strong>Freitext</strong> — die App greift nicht auf GPS zu. Bearbeitete Metadaten werden sicher in der App-Sandbox neben Ihren Medien gespeichert.',
+    'faq-q9': 'Was ist EXIF Strip? (Pro)',
+    'faq-a9': 'Beim Teilen einer Datei können Pro-Nutzer alle eingebetteten EXIF-Metadaten (Kameramodell, GPS-Koordinaten, Zeitstempel usw.) entfernen, bevor die Datei an das iOS-Share-Sheet übergeben wird. Die im Tresor gespeicherte Originaldatei bleibt unverändert.',
+    'faq-q10': 'Werden meine Daten gelöscht, wenn ich die App deinstalliere?',
+    'faq-a10': 'Ja. Alle in der App-Sandbox gespeicherten Medien und Metadaten werden dauerhaft gelöscht, wenn Sie die App deinstallieren. Es gibt keine Cloud-Sicherung, es sei denn, Sie haben CloudKit-Synchronisierung aktiviert (ein zukünftiges Pro-Feature). Wir empfehlen, wichtige Dateien vor der Deinstallation über das Share-Sheet zu exportieren.',
+    'faq-q11': 'Wie stelle ich einen Kauf wieder her (Lifetime Pro)?',
+    'faq-a11': 'Gehen Sie in der App zu <strong>Einstellungen</strong> und tippen Sie auf <strong>Käufe wiederherstellen</strong>. Stellen Sie sicher, dass Sie mit derselben Apple-ID im App Store angemeldet sind, die für den ursprünglichen Kauf verwendet wurde. Käufe werden von RevenueCat verwaltet und mit Ihrem App Store-Konto verknüpft.',
+    'faq-q12': 'Die App zeigt das falsche Datum bei meinen Fotos an.',
+    'faq-a12': 'OutVault zeichnet das Aufnahmedatum zum Zeitpunkt des Auslösens auf. Wenn das Datum falsch erscheint, überprüfen Sie die Datums- und Zeiteinstellungen Ihres Geräts (Einstellungen → Allgemein → Datum &amp; Uhrzeit → Automatisch). Pro-Nutzer können das Datum auch manuell über die Metadaten-Bearbeitung korrigieren.',
+    'faq-q13': 'Kann ich OutVault im Simulator verwenden?',
+    'faq-a13': 'Ja. Im iOS-Simulator wird die Kamera durch eine Farb-Tap-Oberfläche ersetzt, die Beispielfotos in sechs Farben generiert. Face ID wird automatisch umgangen. Sie können auch 12 Beispielfotos über <strong>Einstellungen → Debug → Beispielfotos hinzufügen</strong> einfügen.',
+    'trouble-heading': 'Fehlerbehebung',
+    'trouble-hl': 'Die meisten Probleme werden durch <strong>erzwungenes Schließen der App und erneutes Öffnen</strong> oder durch <strong>Neustart Ihres iPhones</strong> gelöst.',
+    'trouble-li1': '<strong>Kamera öffnet nicht / schwarzer Bildschirm</strong> — Gehen Sie zu iOS-Einstellungen → Datenschutz &amp; Sicherheit → Kamera und stellen Sie sicher, dass OutVault Kameraberechtigung hat. App schließen und neu starten.',
+    'trouble-li2': '<strong>Face ID erscheint nicht</strong> — Gehen Sie zu iOS-Einstellungen → Face ID &amp; Passcode und bestätigen Sie, dass Face ID eingerichtet ist. App schließen und erneut versuchen.',
+    'trouble-li3': '<strong>Galerie erscheint nach Neuinstallation leer</strong> — In der App-Sandbox gespeicherte Medien werden mit der App gelöscht. Wenn keine CloudKit-Synchronisierung vorhanden war, können Daten nicht wiederhergestellt werden. Wichtige Dateien vor der Deinstallation exportieren.',
+    'trouble-li4': '<strong>Auto-Löschen-Benachrichtigung kommt nicht an</strong> — Gehen Sie zu iOS-Einstellungen → Mitteilungen → OutVault und bestätigen Sie, dass Benachrichtigungen erlaubt sind. Die App verwaltet eine einzelne geplante Benachrichtigung für das nächste ablaufende Asset.',
+    'trouble-li5': '<strong>App ist langsam oder friert ein</strong> — App schließen (im App-Switcher nach oben wischen) und neu starten. iPhone neu starten, wenn das Problem weiterhin besteht.',
+    'trouble-li6': '<strong>Thumbnail lädt nicht in der Galerie</strong> — Thumbnails werden beim ersten Anzeigen generiert und gecacht. Weg- und zurückscrollen zum Wiederholen oder App schließen und neu starten.',
+    'contact-heading': 'Kontakt',
+    'contact-p1': 'Wenn Ihr Problem oben nicht beschrieben wird oder Sie Feedback geben möchten, kontaktieren Sie uns per E-Mail. Wir antworten so schnell wie möglich.',
+    'contact-hl': 'Bitte geben Sie beim Kontakt mit dem Support Ihre <strong>iOS-Version</strong>, Ihr <strong>Gerätemodell</strong> und die <strong>Schritte zur Reproduktion</strong> des Problems an, damit wir schneller helfen können.',
+    'contact-label': 'E-Mail',
+    'privacy-heading': 'Datenschutzerklärung',
+    'privacy-p1': 'Die OutVault-Datenschutzerklärung finden Sie unter folgendem Link.',
+    'privacy-link': 'Datenschutzerklärung →',
+    'footer-copy': '© 2026 Hoon\'s Labs · OutVault: Private Camera',
+    'footer-privacy': 'Datenschutzerklärung',
+  },
+
+  ja: {
+    'subtitle': 'サポート',
+    'meta-badge': '最終更新：2026年6月1日',
+    'faq-heading': 'よくある質問',
+    'faq-q1': '写真はiOSフォトに保存されますか？',
+    'faq-a1': 'いいえ — 絶対にありません。OutVaultはiOSフォトライブラリを完全にバイパスします。撮影したすべての写真と動画は、デバイス上のアプリのプライベートサンドボックスにのみ保存されます。カメラロールやフォトアプリには何も書き込まれません。',
+    'faq-q2': 'メディアはどこに保存されますか？',
+    'faq-a2': 'メディアファイルはアプリの<strong>Application Support/assets/</strong>ディレクトリに保存され、<strong>NSFileProtectionComplete</strong>（Appleの最高レベルのデバイス内暗号化）で保護されています。デバイスがロックされている間、ファイルにはアクセスできません。デバイスのロックを解除してFace ID / パスコードを通過しない限り、他のアプリや人物がこれらのファイルにアクセスすることはできません。',
+    'faq-q3': 'Face IDのロック解除はどのように機能しますか？',
+    'faq-a3': 'OutVaultはアプリを開くたびに、またバックグラウンドに移行した後に、Face IDまたはデバイスのパスコードを要求します。認証はiOSが完全に処理します。アプリが生体認証データを見ることはありません。シミュレーターでは、開発目的で認証が自動的にバイパスされます。',
+    'faq-q4': '写真を撮ったり動画を録画するにはどうすればいいですか？',
+    'faq-a4': 'ギャラリーの<strong>カメラボタン</strong>をタップしてカメラを開きます。シャッターをタップして写真を撮ると、すぐにギャラリーに戻ります。動画を開始するには長押しするか（または録画ボタンをタップ）、停止するにはもう一度タップします。録画後、<em>「動画を保存しました」</em>トーストが表示され、カメラは開いたままなので、すぐに次のクリップを録画できます。',
+    'faq-q5': '写真や動画を共有するにはどうすればいいですか？',
+    'faq-a5': 'アセットを詳細ビューで開き、<strong>共有</strong>ボタンをタップします。標準のiOS共有シートが表示されます。<strong>Proユーザー</strong>は共有前にすべてのEXIFメタデータ（位置情報、デバイス、タイムスタンプ）を削除できます。共有シートにはメタデータのないクリーンなコピーが表示されます。',
+    'faq-q6': '写真や動画を削除するにはどうすればいいですか？',
+    'faq-a6': 'アセットを詳細ビューで開き<strong>削除</strong>をタップするか、ギャラリーのサムネイルを長押ししてコンテキストメニューから<strong>削除</strong>を選択します。削除は恒久的です — ゴミ箱やごみ箱はありません。',
+    'faq-q7': '自動削除とは何ですか？（Pro）',
+    'faq-a7': 'Proユーザーは任意のアセットに有効期限を設定できます。有効期限が過ぎると、次回のアプリ起動時またはバックグラウンドタスクを通じてファイルが自動的に削除されます。事前にリマインダーとしてローカル通知が送信されます。有効期限はアセットごとに個別に設定できます。',
+    'faq-q8': 'メタデータ編集とは何ですか？（Pro）',
+    'faq-a8': 'Proユーザーは任意のアセットに付属する日付、メモ、作成者、場所のテキストを編集できます。場所フィールドは<strong>自由入力テキスト</strong>です — アプリはGPSにアクセスしません。編集されたメタデータはメディアとともにアプリサンドボックスに安全に保存されます。',
+    'faq-q9': 'EXIFストリップとは何ですか？（Pro）',
+    'faq-a9': 'ファイルを共有する際、ProユーザーはiOS共有シートに渡す前に、埋め込まれたすべてのEXIFメタデータ（カメラモデル、GPS座標、タイムスタンプなど）を削除することができます。ボールトに保存されている元のファイルは変更されません。',
+    'faq-q10': 'アプリを削除するとデータも削除されますか？',
+    'faq-a10': 'はい。アプリのサンドボックスに保存されているすべてのメディアとメタデータは、アプリをアンインストールすると永久に削除されます。CloudKit同期が有効な場合（将来のPro機能）を除き、クラウドバックアップはありません。アンインストール前に共有シートを使って重要なファイルをエクスポートすることをお勧めします。',
+    'faq-q11': '購入を復元するにはどうすればいいですか？（Lifetime Pro）',
+    'faq-a11': 'アプリの<strong>設定</strong>に移動し、<strong>購入を復元</strong>をタップします。元の購入に使用したものと同じApple IDでApp Storeにサインインしていることを確認してください。購入はRevenueCatによって管理され、App Storeアカウントに紐付けられています。',
+    'faq-q12': 'アプリが写真に間違った日付を表示しています。',
+    'faq-a12': 'OutVaultはシャッターが切れた瞬間の撮影日時を記録します。日付が間違って表示される場合は、デバイスの日付と時刻設定を確認してください（設定 → 一般 → 日付と時刻 → 自動設定）。Proユーザーはメタデータ編集で日付を手動で修正することもできます。',
+    'faq-q13': 'シミュレーターでOutVaultを使用できますか？',
+    'faq-a13': 'はい。iOSシミュレーターでは、カメラが6色のサンプル写真を生成するカラータップUIに置き換えられます。Face IDは自動的にバイパスされます。<strong>設定 → Debug → サンプル写真を追加</strong>から12枚のサンプル写真を追加することもできます。',
+    'trouble-heading': 'トラブルシューティング',
+    'trouble-hl': 'ほとんどの問題は、<strong>アプリを強制終了して再起動する</strong>か、<strong>iPhoneを再起動する</strong>ことで解決します。',
+    'trouble-li1': '<strong>カメラが開かない / 黒い画面</strong> — iOSの設定 → プライバシーとセキュリティ → カメラに移動し、OutVaultのカメラ許可が有効になっていることを確認してください。アプリを強制終了して再起動します。',
+    'trouble-li2': '<strong>Face IDが表示されない</strong> — iOSの設定 → Face IDとパスコードに移動し、Face IDが登録されていることを確認してください。アプリを強制終了してもう一度お試しください。',
+    'trouble-li3': '<strong>再インストール後にギャラリーが空になっている</strong> — アプリのサンドボックスに保存されたメディアはアプリと一緒に削除されます。CloudKit同期がない場合、データは復元できません。アンインストール前に重要なファイルをエクスポートしてください。',
+    'trouble-li4': '<strong>自動削除の通知が届かない</strong> — iOSの設定 → 通知 → OutVaultに移動し、通知が許可されていることを確認してください。アプリは次に期限切れになるアセットに対して単一のスケジュール通知を管理します。',
+    'trouble-li5': '<strong>アプリが遅い、またはフリーズする</strong> — アプリを強制終了（アプリスイッチャーで上にスワイプ）して再起動します。問題が続く場合はiPhoneを再起動してください。',
+    'trouble-li6': '<strong>ギャラリーでサムネイルが読み込まれない</strong> — サムネイルは初回表示時に生成されキャッシュされます。スクロールして別の場所に移動してから戻るか、アプリを強制終了して再起動してください。',
+    'contact-heading': 'お問い合わせ',
+    'contact-p1': '上記で解決しない問題やフィードバックがある場合は、メールでご連絡ください。できるだけ早くご返信いたします。',
+    'contact-hl': 'サポートにご連絡の際は、<strong>iOSバージョン</strong>、<strong>デバイスモデル</strong>、および問題の<strong>再現手順</strong>をお知らせいただくと、より迅速にご対応できます。',
+    'contact-label': 'メール',
+    'privacy-heading': 'プライバシーポリシー',
+    'privacy-p1': 'OutVaultのプライバシーポリシーは以下のリンクからご確認ください。',
+    'privacy-link': 'プライバシーポリシー →',
+    'footer-copy': '© 2026 Hoon\'s Labs · OutVault: Private Camera',
+    'footer-privacy': 'プライバシーポリシー',
+  },
+
+  fr: {
+    'subtitle': 'Assistance',
+    'meta-badge': 'Dernière mise à jour : 1ᵉʳ juin 2026',
+    'faq-heading': 'Foire aux questions',
+    'faq-q1': 'Mes photos sont-elles enregistrées dans iOS Photos ?',
+    'faq-a1': 'Non — jamais. OutVault contourne complètement la photothèque iOS. Chaque photo et vidéo que vous capturez est stockée exclusivement dans le bac à sable privé de l\'application sur votre appareil. Rien n\'est écrit dans votre Pellicule ou l\'application Photos.',
+    'faq-q2': 'Où exactement mes médias sont-ils stockés ?',
+    'faq-a2': 'Les fichiers médias sont stockés dans le répertoire <strong>Application Support/assets/</strong> de l\'application, protégé par <strong>NSFileProtectionComplete</strong> — le niveau de chiffrement sur appareil le plus élevé d\'Apple. Les fichiers sont inaccessibles lorsque votre appareil est verrouillé. Aucune autre application ou personne ne peut accéder à ces fichiers sans déverrouiller votre appareil et passer Face ID / code d\'accès.',
+    'faq-q3': 'Comment fonctionne le déverrouillage Face ID ?',
+    'faq-a3': 'OutVault requiert Face ID ou votre code d\'accès à chaque ouverture de l\'application, et à nouveau après son passage en arrière-plan. L\'authentification est entièrement gérée par iOS — l\'Application ne voit jamais vos données biométriques. Sur le Simulateur, l\'authentification est automatiquement contournée à des fins de développement.',
+    'faq-q4': 'Comment prendre une photo ou enregistrer une vidéo ?',
+    'faq-a4': 'Appuyez sur le <strong>bouton caméra</strong> dans la galerie pour ouvrir l\'appareil photo. Appuyez sur le déclencheur pour capturer une photo — vous serez immédiatement renvoyé à la galerie. Appuyez et maintenez (ou appuyez sur le bouton d\'enregistrement) pour démarrer une vidéo ; appuyez à nouveau pour arrêter. Après l\'enregistrement, un toast <em>« Vidéo enregistrée »</em> apparaît et l\'appareil photo reste ouvert pour que vous puissiez enregistrer un autre clip immédiatement.',
+    'faq-q5': 'Comment partager une photo ou une vidéo ?',
+    'faq-a5': 'Ouvrez la ressource dans la vue détaillée et appuyez sur le bouton <strong>Partager</strong>. La feuille de partage iOS standard apparaîtra. Les <strong>utilisateurs Pro</strong> peuvent supprimer toutes les métadonnées EXIF (localisation, appareil, horodatage) avant le partage — la feuille de partage présentera une copie propre sans métadonnées.',
+    'faq-q6': 'Comment supprimer une photo ou une vidéo ?',
+    'faq-a6': 'Ouvrez la ressource dans la vue détaillée et appuyez sur <strong>Supprimer</strong>, ou appuyez longuement sur une vignette dans la galerie et choisissez <strong>Supprimer</strong> dans le menu contextuel. La suppression est définitive — il n\'y a pas de corbeille.',
+    'faq-q7': 'Qu\'est-ce que la suppression automatique ? (Pro)',
+    'faq-a7': 'Les utilisateurs Pro peuvent définir une date d\'expiration sur n\'importe quelle ressource. Une fois le délai d\'expiration passé, l\'Application purge automatiquement le fichier au prochain lancement ou via une tâche en arrière-plan. Une notification locale est envoyée à l\'avance comme rappel. Vous contrôlez la fenêtre d\'expiration individuellement par ressource.',
+    'faq-q8': 'Qu\'est-ce que la modification des métadonnées ? (Pro)',
+    'faq-a8': 'Les utilisateurs Pro peuvent modifier la date, la note, l\'auteur et le texte de lieu attachés à n\'importe quelle ressource. Le champ lieu est un <strong>texte libre</strong> — l\'Application n\'accède pas au GPS. Les métadonnées modifiées sont stockées en toute sécurité dans le bac à sable de l\'application aux côtés de vos médias.',
+    'faq-q9': 'Qu\'est-ce que EXIF Strip ? (Pro)',
+    'faq-a9': 'Lors du partage d\'un fichier, les utilisateurs Pro peuvent choisir de supprimer toutes les métadonnées EXIF intégrées (modèle d\'appareil photo, coordonnées GPS, horodatages, etc.) avant que le fichier ne soit transmis à la feuille de partage iOS. Le fichier original stocké dans votre coffre reste inchangé.',
+    'faq-q10': 'Mes données seront-elles supprimées si je désinstalle l\'app ?',
+    'faq-a10': 'Oui. Tous les médias et métadonnées stockés dans le bac à sable de l\'application sont définitivement supprimés lorsque vous désinstallez l\'Application. Il n\'y a pas de sauvegarde cloud sauf si vous avez activé la synchronisation CloudKit (une future fonctionnalité Pro). Nous recommandons d\'exporter les fichiers importants via la feuille de partage avant la désinstallation.',
+    'faq-q11': 'Comment restaurer un achat (Lifetime Pro) ?',
+    'faq-a11': 'Allez dans <strong>Réglages</strong> dans l\'Application et appuyez sur <strong>Restaurer les achats</strong>. Assurez-vous d\'être connecté à l\'App Store avec le même identifiant Apple que celui utilisé pour l\'achat d\'origine. Les achats sont gérés par RevenueCat et liés à votre compte App Store.',
+    'faq-q12': 'L\'app affiche une mauvaise date sur mes photos.',
+    'faq-a12': 'OutVault enregistre la date de capture au moment où le déclencheur est activé. Si la date semble incorrecte, vérifiez les paramètres de date et d\'heure de votre appareil (Réglages → Général → Date et heure → Réglage automatique). Les utilisateurs Pro peuvent également corriger manuellement la date via la modification des métadonnées.',
+    'faq-q13': 'Puis-je utiliser OutVault sur le Simulateur ?',
+    'faq-a13': 'Oui. Sur le Simulateur iOS, l\'appareil photo est remplacé par une interface tactile colorée qui génère des photos exemples en six couleurs. Face ID est automatiquement contourné. Vous pouvez également ajouter 12 photos exemples via <strong>Réglages → Debug → Ajouter des photos exemples</strong>.',
+    'trouble-heading': 'Dépannage',
+    'trouble-hl': 'La plupart des problèmes sont résolus en <strong>forçant la fermeture de l\'app et en la rouvrant</strong>, ou en <strong>redémarrant votre iPhone</strong>.',
+    'trouble-li1': '<strong>L\'appareil photo ne s\'ouvre pas / écran noir</strong> — Allez dans Réglages iOS → Confidentialité &amp; sécurité → Caméra et assurez-vous qu\'OutVault a l\'autorisation de caméra activée. Forcez la fermeture et relancez l\'application.',
+    'trouble-li2': '<strong>Face ID ne s\'affiche pas</strong> — Allez dans Réglages iOS → Face ID et code et confirmez que Face ID est inscrit. Forcez la fermeture de l\'app et réessayez.',
+    'trouble-li3': '<strong>La galerie apparaît vide après la réinstallation</strong> — Les médias stockés dans le bac à sable de l\'application sont supprimés avec l\'application. Si vous n\'aviez pas de synchronisation CloudKit, les données ne peuvent pas être récupérées. Exportez les fichiers importants avant la désinstallation.',
+    'trouble-li4': '<strong>La notification de suppression automatique n\'arrive pas</strong> — Allez dans Réglages iOS → Notifications → OutVault et confirmez que les notifications sont autorisées. L\'App maintient une seule notification planifiée pour la prochaine ressource à expirer.',
+    'trouble-li5': '<strong>L\'app est lente ou se fige</strong> — Forcez la fermeture de l\'application (glissez vers le haut dans le sélecteur d\'applications) et relancez. Redémarrez votre iPhone si le problème persiste.',
+    'trouble-li6': '<strong>La vignette ne se charge pas dans la galerie</strong> — Les vignettes sont générées et mises en cache lors du premier affichage. Faites défiler ailleurs et revenez pour réessayer, ou forcez la fermeture et relancez.',
+    'contact-heading': 'Nous contacter',
+    'contact-p1': 'Si votre problème n\'est pas couvert ci-dessus ou si vous souhaitez partager des commentaires, veuillez nous contacter par e-mail. Nous vous répondrons dans les plus brefs délais.',
+    'contact-hl': 'Lors du contact avec le support, veuillez inclure votre <strong>version iOS</strong>, votre <strong>modèle d\'appareil</strong> et les <strong>étapes pour reproduire</strong> le problème pour une assistance plus rapide.',
+    'contact-label': 'E-mail',
+    'privacy-heading': 'Politique de confidentialité',
+    'privacy-p1': 'Consultez la politique de confidentialité d\'OutVault via le lien ci-dessous.',
+    'privacy-link': 'Politique de confidentialité →',
+    'footer-copy': '© 2026 Hoon\'s Labs · OutVault: Private Camera',
+    'footer-privacy': 'Politique de confidentialité',
+  },
+
+  ko: {
+    'subtitle': '지원',
+    'meta-badge': '최종 업데이트: 2026년 6월 1일',
+    'faq-heading': '자주 묻는 질문',
+    'faq-q1': '사진이 iOS 사진 앱에 저장되나요?',
+    'faq-a1': '아니요 — 절대 저장되지 않습니다. OutVault는 iOS 사진 라이브러리를 완전히 우회합니다. 촬영한 모든 사진과 동영상은 기기의 앱 프라이빗 샌드박스에만 저장됩니다. 카메라 롤이나 사진 앱에는 아무것도 기록되지 않습니다.',
+    'faq-q2': '미디어는 정확히 어디에 저장되나요?',
+    'faq-a2': '미디어 파일은 앱의 <strong>Application Support/assets/</strong> 디렉토리에 저장되며, Apple의 최고 수준 기기 내 암호화인 <strong>NSFileProtectionComplete</strong>로 보호됩니다. 기기가 잠긴 동안에는 파일에 접근할 수 없습니다. 기기 잠금을 해제하고 Face ID / 암호를 통과하지 않으면 다른 앱이나 사람이 이 파일에 접근할 수 없습니다.',
+    'faq-q3': 'Face ID 잠금 해제는 어떻게 작동하나요?',
+    'faq-a3': 'OutVault는 앱을 열 때마다, 그리고 백그라운드로 이동한 후에 Face ID 또는 기기 암호를 요구합니다. 인증은 iOS가 완전히 처리합니다. 앱은 귀하의 생체 인식 데이터를 전혀 볼 수 없습니다. 시뮬레이터에서는 개발 목적으로 인증이 자동으로 우회됩니다.',
+    'faq-q4': '사진을 찍거나 동영상을 녹화하려면 어떻게 하나요?',
+    'faq-a4': '갤러리에서 <strong>카메라 버튼</strong>을 탭하여 카메라를 엽니다. 셔터를 탭하면 사진이 촬영되고 즉시 갤러리로 돌아갑니다. 동영상을 시작하려면 길게 누르거나(또는 녹화 버튼 탭), 중지하려면 다시 탭합니다. 녹화 후 <em>"동영상이 저장되었습니다"</em> 토스트가 표시되고 카메라는 열린 상태를 유지하므로 바로 다음 클립을 녹화할 수 있습니다.',
+    'faq-q5': '사진이나 동영상을 공유하려면 어떻게 하나요?',
+    'faq-a5': '상세 보기에서 에셋을 열고 <strong>공유</strong> 버튼을 탭합니다. 표준 iOS 공유 시트가 나타납니다. <strong>Pro 사용자</strong>는 공유 전 모든 EXIF 메타데이터(위치, 기기, 타임스탬프)를 제거할 수 있습니다. 공유 시트에는 메타데이터가 없는 깨끗한 사본이 표시됩니다.',
+    'faq-q6': '사진이나 동영상을 삭제하려면 어떻게 하나요?',
+    'faq-a6': '상세 보기에서 에셋을 열고 <strong>삭제</strong>를 탭하거나, 갤러리에서 썸네일을 길게 눌러 컨텍스트 메뉴에서 <strong>삭제</strong>를 선택합니다. 삭제는 영구적입니다 — 휴지통이 없습니다.',
+    'faq-q7': '자동 삭제란 무엇인가요? (Pro)',
+    'faq-a7': 'Pro 사용자는 모든 에셋에 만료일을 설정할 수 있습니다. 만료 시간이 지나면 다음 번 앱 실행 시 또는 백그라운드 작업을 통해 파일이 자동으로 삭제됩니다. 사전에 리마인더로 로컬 알림이 전송됩니다. 만료 기간은 에셋별로 개별 설정할 수 있습니다.',
+    'faq-q8': '메타데이터 편집이란 무엇인가요? (Pro)',
+    'faq-a8': 'Pro 사용자는 모든 에셋에 첨부된 날짜, 메모, 작성자, 장소 텍스트를 편집할 수 있습니다. 장소 필드는 <strong>자유 입력 텍스트</strong>입니다 — 앱은 GPS에 접근하지 않습니다. 편집된 메타데이터는 미디어와 함께 앱 샌드박스에 안전하게 저장됩니다.',
+    'faq-q9': 'EXIF 제거란 무엇인가요? (Pro)',
+    'faq-a9': '파일을 공유할 때 Pro 사용자는 iOS 공유 시트에 파일을 전달하기 전에 내장된 모든 EXIF 메타데이터(카메라 모델, GPS 좌표, 타임스탬프 등)를 제거할 수 있습니다. 볼트에 저장된 원본 파일은 변경되지 않습니다.',
+    'faq-q10': '앱을 삭제하면 데이터도 삭제되나요?',
+    'faq-a10': '네. 앱 샌드박스에 저장된 모든 미디어와 메타데이터는 앱을 삭제할 때 영구적으로 삭제됩니다. CloudKit 동기화가 활성화된 경우(향후 Pro 기능)를 제외하고 클라우드 백업은 없습니다. 삭제 전에 공유 시트를 통해 중요한 파일을 내보내는 것을 권장합니다.',
+    'faq-q11': '구매를 복원하려면 어떻게 하나요? (Lifetime Pro)',
+    'faq-a11': '앱의 <strong>설정</strong>으로 이동하여 <strong>구매 복원</strong>을 탭합니다. 원래 구매에 사용한 것과 동일한 Apple ID로 App Store에 로그인되어 있는지 확인하세요. 구매는 RevenueCat에 의해 관리되며 App Store 계정에 연결됩니다.',
+    'faq-q12': '앱이 사진에 잘못된 날짜를 표시합니다.',
+    'faq-a12': 'OutVault는 셔터가 눌리는 순간의 촬영 날짜를 기록합니다. 날짜가 잘못 표시되는 경우 기기의 날짜 및 시간 설정을 확인하세요(설정 → 일반 → 날짜 및 시간 → 자동 설정). Pro 사용자는 메타데이터 편집을 통해 날짜를 수동으로 수정할 수도 있습니다.',
+    'faq-q13': '시뮬레이터에서 OutVault를 사용할 수 있나요?',
+    'faq-a13': '네. iOS 시뮬레이터에서 카메라는 6가지 색상의 샘플 사진을 생성하는 색상 탭 UI로 대체됩니다. Face ID는 자동으로 우회됩니다. <strong>설정 → Debug → 샘플 사진 추가</strong>를 통해 12장의 샘플 사진을 추가할 수도 있습니다.',
+    'trouble-heading': '문제 해결',
+    'trouble-hl': '대부분의 문제는 <strong>앱을 강제 종료하고 다시 열거나</strong>, <strong>iPhone을 재시작</strong>하면 해결됩니다.',
+    'trouble-li1': '<strong>카메라가 열리지 않음 / 검은 화면</strong> — iOS 설정 → 개인 정보 보호 및 보안 → 카메라로 이동하여 OutVault의 카메라 권한이 활성화되어 있는지 확인하세요. 강제 종료 후 재실행합니다.',
+    'trouble-li2': '<strong>Face ID 프롬프트가 나타나지 않음</strong> — iOS 설정 → Face ID 및 암호로 이동하여 Face ID가 등록되어 있는지 확인하세요. 앱을 강제 종료하고 다시 시도하세요.',
+    'trouble-li3': '<strong>재설치 후 갤러리가 비어 있음</strong> — 앱 샌드박스에 저장된 미디어는 앱과 함께 삭제됩니다. CloudKit 동기화가 없었다면 데이터를 복구할 수 없습니다. 삭제 전에 중요한 파일을 내보내세요.',
+    'trouble-li4': '<strong>자동 삭제 알림이 도착하지 않음</strong> — iOS 설정 → 알림 → OutVault로 이동하여 알림이 허용되어 있는지 확인하세요. 앱은 다음에 만료되는 에셋에 대해 단일 예약 알림을 유지합니다.',
+    'trouble-li5': '<strong>앱이 느리거나 멈춤</strong> — 앱을 강제 종료(앱 전환기에서 위로 스와이프)하고 재실행합니다. 문제가 지속되면 iPhone을 재시작하세요.',
+    'trouble-li6': '<strong>갤러리에서 썸네일이 로드되지 않음</strong> — 썸네일은 처음 표시될 때 생성되고 캐시됩니다. 다른 곳으로 스크롤했다가 돌아오거나, 앱을 강제 종료하고 재실행하세요.',
+    'contact-heading': '문의하기',
+    'contact-p1': '위 내용으로 해결되지 않는 문제가 있거나 피드백을 공유하고 싶으시면 이메일로 연락해 주세요. 최대한 빨리 답변 드리겠습니다.',
+    'contact-hl': '지원팀에 문의하실 때 더 빠른 도움을 위해 <strong>iOS 버전</strong>, <strong>기기 모델</strong>, 그리고 문제의 <strong>재현 단계</strong>를 포함해 주세요.',
+    'contact-label': '이메일',
+    'privacy-heading': '개인정보 처리방침',
+    'privacy-p1': 'OutVault 개인정보 처리방침은 아래 링크에서 확인하세요.',
+    'privacy-link': '개인정보 처리방침 →',
+    'footer-copy': '© 2026 Hoon\'s Labs · OutVault: Private Camera',
+    'footer-privacy': '개인정보 처리방침',
+  },
+};
+
+function applyLang(lang) {
+  const t = T[lang] || T.en;
+  document.title = t['subtitle'] + ' — OutVault: Private Camera';
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n-html');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  try { localStorage.setItem('ov-lang', lang); } catch(e) {}
+}
+
+(function() {
+  var lang = 'en';
+  try { lang = localStorage.getItem('ov-lang') || lang; } catch(e) {}
+  if (!T[lang]) {
+    var nav = (navigator.language || '').split('-')[0];
+    lang = T[nav] ? nav : 'en';
+  }
+  applyLang(lang);
+})();
+</script>
 </body>
 </html>
