@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PurrPick — 迷ったら、ガチャに任せよう</title>
+  <meta name="description" content="PurrPick(パーピック): シンプルなガチャ式意思決定アプリ。ランチも飲み物も、選択肢を入れてスピンするだけ。" />
+  <meta property="og:title" content="PurrPick — 迷ったら、ガチャに任せよう" />
+  <meta property="og:description" content="選択肢を入れて、スピンするだけ。ガチャ猫があなたの代わりに決めてくれます。" />
+  <meta property="og:image" content="https://hoonslabs.github.io/support/purrpick/assets/app-icon.png" />
+  <meta name="apple-itunes-app" content="app-id=6791975918" />
+  <style>
+    /* ── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Design Tokens — mirrors AppTheme.defaultDark in the app ── */
+    :root {
+      --bg:          #12141C;
+      --surface:     #1A1D28;
+      --surface-alt: #232838;
+      --border:      #333A4D;
+      --text:        #F2EDE4;
+      --muted:       #A9A79C;
+      --disabled:    #5C5850;
+      --accent:      #3B4A7A;
+      --accent-soft: #5A6DA3;
+      --success:     #6B8F71;
+      --gold:        #C9A25C;
+      --radius-sm:   10px;
+      --radius-md:   16px;
+      --radius-lg:   24px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans KR", "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── Language Toggle ──────────────────────────────────── */
+    .lang-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(18,20,28,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 24px;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      padding: 5px 16px;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    [lang-block] { display: none; }
+    [lang-block].visible { display: block; }
+    [lang-block-inline] { display: none; }
+    [lang-block-inline].visible { display: inline; }
+
+    /* ── Hero ─────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      padding: 72px 24px 64px;
+      text-align: center;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 0%, #1E2233 0%, var(--bg) 65%);
+    }
+
+    .hero-icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 26px;
+      margin: 0 auto 24px;
+      box-shadow: 0 12px 40px rgba(59,74,122,0.45);
+      overflow: hidden;
+    }
+
+    .hero-icon img { width: 100%; height: 100%; display: block; }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(201,162,92,0.12);
+      border: 1px solid rgba(201,162,92,0.3);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(30px, 6vw, 46px);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.5px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: clamp(15px, 2.2vw, 18px);
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 32px;
+    }
+
+    .btn-appstore {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: #000;
+      padding: 12px 22px;
+      border-radius: 13px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-appstore:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.4);
+    }
+
+    .btn-appstore svg { flex-shrink: 0; }
+
+    .btn-appstore-sub {
+      font-size: 9px;
+      font-weight: 500;
+      opacity: 0.6;
+      letter-spacing: 0.3px;
+      display: block;
+      text-align: left;
+    }
+
+    .btn-appstore-main {
+      font-size: 15px;
+      font-weight: 700;
+      display: block;
+      text-align: left;
+      letter-spacing: -0.2px;
+    }
+
+    /* ── Section Wrapper ─────────────────────────────────── */
+    .section-wrap {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .section-eyebrow {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: -0.5px;
+      margin-bottom: 44px;
+    }
+
+    /* ── Feature Grid ──────────────────────────────────────── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      background: rgba(59,74,122,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 14px;
+    }
+
+    .feature-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* ── FAQ ─────────────────────────────────────────────── */
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+    }
+
+    .faq-item:first-child { padding-top: 0; }
+    .faq-item:last-child  { border-bottom: none; padding-bottom: 0; }
+
+    .faq-q {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .faq-q::before {
+      content: "Q";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 22px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .faq-a {
+      font-size: 14px;
+      color: var(--muted);
+      padding-left: 32px;
+    }
+
+    /* ── Contact Card ────────────────────────────────────── */
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      margin-top: 24px;
+    }
+
+    .contact-card .icon { font-size: 26px; }
+    .contact-card .label { font-size: 12px; color: var(--muted); margin-bottom: 2px; }
+    .contact-card .value { font-size: 15px; font-weight: 700; color: var(--gold); }
+    .contact-card a { color: var(--gold); text-decoration: none; }
+
+    .support-note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 14px;
+    }
+
+    /* ── Footer ──────────────────────────────────────────── */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px 48px;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-copy { font-size: 12px; color: var(--disabled); }
+
+    h2.block-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Language Toggle ─────────────────────────── -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('ja')" id="btn-ja">日本語</button>
+  <button class="lang-btn"        onclick="setLang('ko')" id="btn-ko">한국어</button>
+  <button class="lang-btn"        onclick="setLang('en')" id="btn-en">English</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-icon"><img src="./assets/app-icon.png" alt="PurrPick app icon" /></div>
+
+  <div class="hero-eyebrow">
+    <span lang-block-inline="ja" class="visible">シンプル・ガチャ式・意思決定アプリ</span>
+    <span lang-block-inline="ko">심플한 가챠형 의사결정 앱</span>
+    <span lang-block-inline="en">A Simple Gacha-Style Decision App</span>
+    &nbsp;· iOS
+  </div>
+
+  <h1>
+    <span lang-block="ja" class="visible">迷ったら、<em>ガチャ</em>に任せよう</span>
+    <span lang-block="ko">고민된다면, <em>가챠</em>에게 맡기세요</span>
+    <span lang-block="en">Can't decide? <em>Spin it out.</em></span>
+  </h1>
+
+  <p class="hero-sub">
+    <span lang-block-inline="ja" class="visible">ランチも、飲み物も、今日の気分も。選択肢を入れてスピンするだけで、ガチャ猫があなたの代わりに決めてくれます。</span>
+    <span lang-block-inline="ko">점심도, 음료도, 오늘 기분도. 선택지만 넣고 스핀하면 끝 — 가챠 고양이가 대신 골라드려요.</span>
+    <span lang-block-inline="en">Lunch, drinks, today's mood — just add your options and spin. Let PurrPick's mascot pick for you.</span>
+  </p>
+
+  <a class="btn-appstore" href="https://apps.apple.com/app/id6791975918" target="_blank" rel="noopener">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" fill="#000"/>
+    </svg>
+    <span>
+      <span class="btn-appstore-sub">
+        <span lang-block-inline="ja" class="visible">App Storeからダウンロード</span>
+        <span lang-block-inline="ko">App Store에서 다운로드</span>
+        <span lang-block-inline="en">Download on the</span>
+      </span>
+      <span class="btn-appstore-main">App Store</span>
+    </span>
+  </a>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     FEATURES
+══════════════════════════════════════════════ -->
+<section class="section-wrap">
+  <p class="section-eyebrow">
+    <span lang-block-inline="ja" class="visible">機能</span>
+    <span lang-block-inline="ko">기능</span>
+    <span lang-block-inline="en">Features</span>
+  </p>
+  <h2 class="section-title">
+    <span lang-block="ja" class="visible">シンプルなのに、ちゃんと楽しい</span>
+    <span lang-block="ko">단순하지만, 확실히 재미있어요</span>
+    <span lang-block="en">Simple, but genuinely fun</span>
+  </h2>
+
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>
+        <span lang-block-inline="ja" class="visible">ワンタップガチャ</span>
+        <span lang-block-inline="ko">원터치 가챠</span>
+        <span lang-block-inline="en">One-Tap Gacha</span>
+      </h3>
+      <p>
+        <span lang-block-inline="ja" class="visible">選択肢を追加してスピンするだけ。3段階のハプティクスと演出で結果を発表します。</span>
+        <span lang-block-inline="ko">선택지를 추가하고 스핀만 하면 끝. 3단계 햅틱과 연출로 결과를 알려줘요.</span>
+        <span lang-block-inline="en">Add your options, spin once. Three-stage haptics and a little ceremony reveal your pick.</span>
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">⚔️</div>
+      <h3>
+        <span lang-block-inline="ja" class="visible">デュエルモード</span>
+        <span lang-block-inline="ko">듀얼 모드</span>
+        <span lang-block-inline="en">Duel Mode</span>
+      </h3>
+      <p>
+        <span lang-block-inline="ja" class="visible">友達と一つずつ絵文字を選んで対決。運命のガチャで勝者を決めよう。</span>
+        <span lang-block-inline="ko">친구와 각자 이모지를 골라 대결! 운명의 가챠로 승자를 정해요.</span>
+        <span lang-block-inline="en">Pick an emoji each and face off — one gacha spin decides the winner.</span>
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🎨</div>
+      <h3>
+        <span lang-block-inline="ja" class="visible">マイセットに保存</span>
+        <span lang-block-inline="ko">마이 세트 저장</span>
+        <span lang-block-inline="en">Save as a Set</span>
+      </h3>
+      <p>
+        <span lang-block-inline="ja" class="visible">絵文字だけで選択肢を作成。よく使う組み合わせは「マイセット」として保存できます。</span>
+        <span lang-block-inline="ko">이모지만으로 선택지를 만들어요. 자주 쓰는 조합은 "마이 세트"로 저장할 수 있어요.</span>
+        <span lang-block-inline="en">Build options with just emoji — no typing needed. Save your favorite combos as reusable sets.</span>
+      </p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">📤</div>
+      <h3>
+        <span lang-block-inline="ja" class="visible">ゴールドカードでシェア</span>
+        <span lang-block-inline="ko">골드카드로 공유</span>
+        <span lang-block-inline="en">Share a Gold Card</span>
+      </h3>
+      <p>
+        <span lang-block-inline="ja" class="visible">決まった結果を1:1のカードデザインでX・LINEにシェアできます。</span>
+        <span lang-block-inline="ko">결정된 결과를 1:1 카드 디자인으로 X·LINE에 공유할 수 있어요.</span>
+        <span lang-block-inline="en">Share your result as a square card on X or LINE.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SUPPORT / FAQ  (App Store Connect "Support URL" → #faq)
+══════════════════════════════════════════════ -->
+<section class="section-wrap" id="faq">
+  <p class="section-eyebrow">
+    <span lang-block-inline="ja" class="visible">サポート</span>
+    <span lang-block-inline="ko">지원</span>
+    <span lang-block-inline="en">Support</span>
+  </p>
+  <h2 class="section-title">
+    <span lang-block="ja" class="visible">よくある質問</span>
+    <span lang-block="ko">자주 묻는 질문</span>
+    <span lang-block="en">Frequently Asked Questions</span>
+  </h2>
+
+  <div lang-block="ja" class="visible">
+    <div class="faq-item">
+      <p class="faq-q">ガチャの結果が気に入らなかったら？</p>
+      <p class="faq-a">気に入らなければもう一度スピンしてください。回数制限はありません。過去の結果は「今日の選択」履歴からいつでも確認できます。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">選択肢はいくつまで追加できますか？</p>
+      <p class="faq-a">個数の上限はありません。ただしスピンするには最低2個の選択肢が必要です。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">iCloud同期がうまくいきません。</p>
+      <p class="faq-a">2台の端末が同じApple IDでiCloudにログインしているかご確認ください。設定 →［名前］→ iCloud → PurrPickが有効になっているかもチェックしてみてください。反映まで数分かかる場合があります。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">ウィジェットが更新されません。</p>
+      <p class="faq-a">アプリを一度開くとウィジェットのデータが更新されます。それでも反映されない場合は、ウィジェットを削除して再度追加してみてください。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">広告を消すにはどうすればいいですか？</p>
+      <p class="faq-a">「アプリ情報」→「購入」→「広告を消す」から、一度の購入で永久に広告が非表示になります。機種変更後は「購入を復元」で引き継げます。</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">アプリを削除するとデータも消えますか？</p>
+      <p class="faq-a">端末内のデータは削除されますが、iCloudにログインしていた場合はiCloud上のデータが保持され、再インストール後に自動で復元されます。</p>
+    </div>
+  </div>
+
+  <div lang-block="ko">
+    <div class="faq-item">
+      <p class="faq-q">가챠 결과가 마음에 안 들면 어떻게 하나요?</p>
+      <p class="faq-a">마음에 안 들면 다시 스핀하면 돼요. 횟수 제한은 없어요. 지난 결과는 "오늘의 선택" 기록에서 언제든 확인할 수 있어요.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">선택지는 몇 개까지 추가할 수 있나요?</p>
+      <p class="faq-a">개수 제한은 따로 없어요. 다만 스핀하려면 최소 2개의 선택지가 필요해요.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">iCloud 동기화가 안 돼요.</p>
+      <p class="faq-a">두 기기가 같은 Apple ID로 iCloud에 로그인되어 있는지 확인해주세요. 설정 → [이름] → iCloud → PurrPick이 켜져 있는지도 확인해보세요. 반영까지 몇 분 걸릴 수 있어요.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">위젯이 업데이트되지 않아요.</p>
+      <p class="faq-a">앱을 한 번 열면 위젯 데이터가 갱신돼요. 그래도 반영이 안 되면 위젯을 삭제 후 다시 추가해보세요.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">광고는 어떻게 제거하나요?</p>
+      <p class="faq-a">"앱 정보" → "구매" → "광고 제거하기"에서 한 번의 구매로 광고를 영구히 제거할 수 있어요. 기기를 바꿔도 "구매 복원"으로 이어서 사용할 수 있어요.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">앱을 삭제하면 데이터도 사라지나요?</p>
+      <p class="faq-a">기기 내 데이터는 삭제되지만, iCloud에 로그인되어 있었다면 iCloud의 데이터는 유지되어 재설치 후 자동으로 복원돼요.</p>
+    </div>
+  </div>
+
+  <div lang-block="en">
+    <div class="faq-item">
+      <p class="faq-q">What if I don't like the result?</p>
+      <p class="faq-a">Just spin again — there's no limit. Past picks are always available in the "Today's Choices" history.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">How many options can I add?</p>
+      <p class="faq-a">There's no upper limit. You just need at least 2 options to spin.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">iCloud sync isn't working.</p>
+      <p class="faq-a">Make sure both devices are signed into iCloud with the same Apple ID, and that PurrPick is enabled under Settings → [Your Name] → iCloud. Syncing can take a few minutes.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">The widget isn't updating.</p>
+      <p class="faq-a">Opening the app refreshes the widget's data. If it still looks stale, remove the widget and add it again.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">How do I remove ads?</p>
+      <p class="faq-a">Go to App Info → Purchases → Remove Ads. It's a one-time purchase that removes ads for good, and it carries over to a new device via "Restore Purchases."</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Does deleting the app delete my data?</p>
+      <p class="faq-a">Local data is removed, but if you were signed into iCloud, your data stays there and restores automatically on reinstall.</p>
+    </div>
+  </div>
+
+  <div class="contact-card">
+    <span class="icon">📬</span>
+    <div>
+      <div class="label">
+        <span lang-block-inline="ja" class="visible">お問い合わせ</span>
+        <span lang-block-inline="ko">문의</span>
+        <span lang-block-inline="en">Contact</span>
+      </div>
+      <div class="value"><a href="mailto:hoons.labs@gmail.com">hoons.labs@gmail.com</a></div>
+    </div>
+  </div>
+  <p class="support-note">
+    <span lang-block-inline="ja" class="visible">お問い合わせの際は、iOSバージョンと再現手順を添えていただけるとスムーズです。</span>
+    <span lang-block-inline="ko">문의하실 때 iOS 버전과 재현 방법을 함께 알려주시면 더 빠르게 도와드릴 수 있어요.</span>
+    <span lang-block-inline="en">Including your iOS version and steps to reproduce helps us help you faster.</span>
+  </p>
+</section>
+
+<!-- ── Footer ─────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="https://hoonslabs.github.io/privacy/purrpick/">
+      <span lang-block-inline="ja" class="visible">プライバシーポリシー</span>
+      <span lang-block-inline="ko">개인정보 처리방침</span>
+      <span lang-block-inline="en">Privacy Policy</span>
+    </a>
+    <a href="mailto:hoons.labs@gmail.com">hoons.labs@gmail.com</a>
+  </div>
+  <p class="footer-copy">© 2026 PurrPick. All rights reserved.</p>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('[lang-block]').forEach(el => {
+      el.classList.toggle('visible', el.id ? el.id.endsWith('-' + lang) : el.getAttribute('lang-block') === lang);
+    });
+    document.querySelectorAll('[lang-block-inline]').forEach(el => {
+      el.classList.toggle('visible', el.getAttribute('lang-block-inline') === lang);
+    });
+    ['ja', 'ko', 'en'].forEach(l => {
+      document.getElementById('btn-' + l).classList.toggle('active', l === lang);
+    });
+    document.documentElement.lang = lang;
+    localStorage.setItem('purrpick-lang', lang);
+  }
+
+  (function () {
+    const params  = new URLSearchParams(window.location.search);
+    const urlLang = params.get('lang');
+    if (['ja', 'ko', 'en'].includes(urlLang)) { setLang(urlLang); return; }
+
+    const saved = localStorage.getItem('purrpick-lang');
+    if (['ja', 'ko', 'en'].includes(saved)) { setLang(saved); return; }
+
+    const nav = navigator.language;
+    if (nav.startsWith('ko')) { setLang('ko'); return; }
+    if (nav.startsWith('ja')) { setLang('ja'); return; }
+    setLang('en');
+  })();
+</script>
+
+</body>
+</html>
