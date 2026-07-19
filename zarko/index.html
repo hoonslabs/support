@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Zarko</title>
+  <meta name="description" content="Zarko Support / サポート" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:      #39FF8B;
+      --primary-deep: #12C26E;
+      --primary-dim:  rgba(57,255,139,0.12);
+      --warning:      #FFB627;
+      --failure:      #FF3B5C;
+      --tier-rare:    #3D9BFF;
+      --tier-epic:    #B45CFF;
+      --bg:           #0A0E1A;
+      --surface:      #111A2E;
+      --elevated:     #1A2742;
+      --text:         #EAF0F7;
+      --muted:        #97A3BE;
+      --muted2:       #58637E;
+      --border:       #243150;
+      --border-soft:  #1B2540;
+      --radius:       12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    /* ── Language Toggle ── */
+    .lang-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 24px;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      padding: 5px 16px;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #04140B;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      background: radial-gradient(ellipse at 50% 0%, #131D36 0%, var(--bg) 70%);
+      color: #fff;
+      padding: 56px 24px 48px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .logo-mark {
+      width: 64px;
+      height: 64px;
+      background: var(--primary-dim);
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin-bottom: 16px;
+      border: 1px solid rgba(57,255,139,0.25);
+    }
+
+    .site-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      color: var(--primary);
+      text-shadow: 0 0 24px rgba(57,255,139,0.35);
+    }
+
+    .site-header .subtitle {
+      font-size: 14px;
+      opacity: 0.75;
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Category Header ── */
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 40px 0 16px;
+    }
+
+    .cat-header:first-of-type { margin-top: 0; }
+
+    .cat-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      background: var(--elevated);
+      border: 1px solid var(--border-soft);
+    }
+
+    .cat-header h2 {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--muted);
+    }
+
+    /* ── FAQ Item ── */
+    .faq {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 20px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: background 0.15s;
+      font-family: inherit;
+    }
+
+    .faq-q:hover { background: rgba(57,255,139,0.04); }
+
+    .faq-q .chevron {
+      font-size: 12px;
+      color: var(--muted);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .faq.open .faq-q .chevron { transform: rotate(180deg); color: var(--primary); }
+
+    .faq-a {
+      display: none;
+      padding: 0 24px 20px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .faq.open .faq-a { display: block; }
+
+    .faq-a p { margin-bottom: 10px; color: var(--muted); }
+    .faq-a p:last-child { margin-bottom: 0; }
+    .faq-a ul { padding-left: 20px; }
+    .faq-a li { margin-bottom: 6px; }
+    .faq-a strong { color: var(--text); }
+
+    /* ── Highlight Box ── */
+    .highlight {
+      background: var(--primary-dim);
+      border-left: 3px solid var(--primary);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
+    /* ── Contact Card ── */
+    .contact-section {
+      background: radial-gradient(ellipse at 50% 0%, #131D36 0%, var(--bg) 70%);
+      border: 1px solid var(--border-soft);
+      border-radius: 16px;
+      padding: 40px 32px;
+      margin-top: 48px;
+      text-align: center;
+      color: var(--text);
+    }
+
+    .contact-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+      text-shadow: 0 0 20px rgba(57,255,139,0.3);
+    }
+
+    .contact-section .desc {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #04140B;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      transition: opacity 0.2s, transform 0.15s;
+      box-shadow: 0 0 24px rgba(57,255,139,0.35);
+    }
+
+    .contact-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .response-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--muted2);
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border-soft);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .site-footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid transparent; }
+    .site-footer a:hover { border-color: var(--muted); }
+
+    /* ── Lang visibility ── */
+    [lang-block] { display: none; }
+    [lang-block].visible { display: block; }
+
+    @media (max-width: 600px) {
+      .site-header { padding: 32px 20px 28px; }
+      .logo-mark { width: 52px; height: 52px; font-size: 26px; margin-bottom: 12px; }
+      .site-header h1 { font-size: 22px; }
+      .container { padding: 28px 16px 60px; }
+      .cat-header { margin: 28px 0 14px; }
+      .faq-q { padding: 16px 18px; font-size: 14px; }
+      .faq-a { padding: 0 18px 16px; padding-top: 14px; font-size: 14px; }
+      .contact-section { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Language Toggle -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">English</button>
+  <button class="lang-btn"        onclick="setLang('ja')" id="btn-ja">日本語</button>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="logo-mark">🔒</div>
+  <h1>Zarko</h1>
+  <p class="subtitle" lang-block="en" id="hd-en">Support Center</p>
+  <p class="subtitle" lang-block="ja" id="hd-ja">サポートセンター</p>
+</header>
+
+<!-- ══════════════════════════════════════════════
+     ENGLISH VERSION
+══════════════════════════════════════════════ -->
+<div lang-block="en" id="content-en">
+<main class="container">
+
+  <!-- Getting Started -->
+  <div class="cat-header">
+    <div class="cat-icon">🚀</div>
+    <h2>Getting Started</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I set up Zarko for the first time?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>During onboarding, you'll be asked to allow Screen Time permission (required for blocking), then choose which apps, categories, or websites to block. Once that's done, you're ready to start your first focus session.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Why does iOS ask for Screen Time permission?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Zarko uses Apple's official Screen Time (Family Controls) framework to block the apps and websites you choose. This is the same system-level API Apple provides for personal screen-time management — Zarko cannot block anything without it, and all blocking happens entirely on your device.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Can I choose exactly which apps get blocked?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Yes — during setup (or anytime from the app picker) you can select individual apps, whole categories (like Social or Games), or specific websites you want blocked in Safari.</p>
+    </div>
+  </div>
+
+  <!-- Focus Sessions -->
+  <div class="cat-header">
+    <div class="cat-icon">🔒</div>
+    <h2>Focus Sessions</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How long can a focus session be?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>You can choose 25, 50, or 90 minutes when starting a session.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What happens to my selected apps during a session?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>They're completely locked using Apple's Screen Time framework — opening a blocked app shows a shield screen instead of the app itself.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Can I block websites too, not just apps?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Yes. Any website you add during setup is blocked in Safari for the duration of your session, the same way blocked apps are.</p>
+    </div>
+  </div>
+
+  <!-- Unlocking Early -->
+  <div class="cat-header">
+    <div class="cat-icon">🎰</div>
+    <h2>Unlocking Early</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      I want to check my phone before the session ends. What happens?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>You'll have to beat the unlock challenge — a chance-based "spin" with your exact success rate shown on screen, plus a short physical or mental mission (like shaking your phone, walking a few steps, or solving a quick problem).</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What are my actual odds?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>The exact percentage is always shown on screen before you spin — no hidden math. It's intentionally low, because the whole point is to make quitting early inconvenient, not to trap you forever.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What if I keep failing?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>A built-in safety net guarantees you'll unlock after a set number of attempts within the same session, so you're never permanently stuck. Losing a spin also comes with a short cooldown before you can try again.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Is real money or in-app currency involved?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>No. Nothing is purchased, wagered, or exchanged for cash. The unlock challenge only affects when you're allowed to end your own focus session early — there's nothing to buy anywhere in Zarko.</p>
+    </div>
+  </div>
+
+  <!-- Streaks & Stats -->
+  <div class="cat-header">
+    <div class="cat-icon">🔥</div>
+    <h2>Streaks &amp; Stats</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How does the daily streak work?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Complete at least one focus session in a day to keep your streak going. Miss a day and the streak resets — but your past history is never erased.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Where can I see my stats?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>The Stats tab shows your weekly focus time, session count, and streak, plus a daily breakdown chart.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Can I share my progress?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Yes — tap the share icon on the Stats tab to generate a shareable card with your weekly stats, sized for Instagram Stories.</p>
+    </div>
+  </div>
+
+  <!-- Themes & Achievements -->
+  <div class="cat-header">
+    <div class="cat-icon">🎨</div>
+    <h2>Themes &amp; Achievements</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I unlock new theme colors?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Successfully completing the unlock challenge gives you a chance at a new color theme. Collect and apply them from the Inventory tab.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Do themes cost anything?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>No — all themes are earned through gameplay, never purchased.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What are achievements?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>The Inventory tab also tracks achievement badges you earn for milestones like completing sessions, keeping a streak going, and winning unlock challenges. Check the Inventory tab to see which ones you've unlocked.</p>
+    </div>
+  </div>
+
+  <!-- Pricing -->
+  <div class="cat-header">
+    <div class="cat-icon">💸</div>
+    <h2>Pricing</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Is Zarko free?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Yes — 100% free. No ads, no subscriptions, no in-app purchases.</p>
+    </div>
+  </div>
+
+  <!-- Troubleshooting -->
+  <div class="cat-header">
+    <div class="cat-icon">🛠</div>
+    <h2>Troubleshooting</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      The shield screen isn't showing when I open a blocked app.
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Make sure Screen Time permission is still allowed for Zarko in <strong>iOS Settings → Screen Time</strong>. If you recently changed your app selection, try ending and restarting your session.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      I'm not getting my streak reminder notification.
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Check that notifications are enabled for Zarko in <strong>iOS Settings → Notifications</strong>, and that the Streak Reminder toggle is on in Zarko's Settings tab.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      I selected apps but the session won't start.
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Make sure you've selected at least one app, category, or website before starting — the Start button stays disabled until something is selected.</p>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-section">
+    <h2>Still need help?</h2>
+    <p class="desc">Can't find the answer you're looking for? Send us an email and we'll get back to you.</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">
+      📧 &nbsp;Contact Support
+    </a>
+    <p class="response-note">We respond within 5 business days.</p>
+  </div>
+
+</main>
+</div><!-- /content-en -->
+
+<!-- ══════════════════════════════════════════════
+     JAPANESE VERSION
+══════════════════════════════════════════════ -->
+<div lang-block="ja" id="content-ja">
+<main class="container">
+
+  <div class="cat-header">
+    <div class="cat-icon">🚀</div>
+    <h2>はじめに</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Zarkoを初めて使うにはどうすればいいですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>初回起動時にScreen Time権限の許可を求められます(ブロック機能に必須)。その後、ブロックしたいアプリ・カテゴリ・Webサイトを選択します。設定が終われば、最初の集中セッションを開始できます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      なぜScreen Timeの権限を求められるのですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>ZarkoはAppleの公式Screen Time(Family Controls)機能を使って、選択したアプリやWebサイトをブロックします。これはAppleが提供するシステムレベルのAPIで、この権限なしにZarkoは何もブロックできません。ブロック処理はすべて端末内で完結します。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      ブロックするアプリを個別に選べますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>はい。設定時(またはいつでもアプリ選択画面から)、個別のアプリ、カテゴリ全体(SNSやゲームなど)、またはSafariで特定のWebサイトを選んでブロックできます。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon">🔒</div>
+    <h2>集中セッション</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      セッションの時間はどのくらい選べますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>セッション開始時に25分・50分・90分から選択できます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      セッション中、選択したアプリはどうなりますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Appleの Screen Time 機能によって完全にロックされます。ブロック対象のアプリを開こうとすると、アプリの代わりにシールド画面が表示されます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      アプリだけでなくWebサイトもブロックできますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>はい。設定時に追加したWebサイトは、アプリと同様にセッション中はSafariでブロックされます。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon">🎰</div>
+    <h2>早期解除について</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      セッション終了前にスマホを確認したくなったら？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>解除チャレンジに勝つ必要があります — 画面に表示される成功確率での「スピン」に加えて、簡単な身体的・頭脳的なミッション(スマホを振る、少し歩く、簡単な問題を解くなど)をクリアします。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      実際の確率はどのくらいですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>スピンする前に、正確な確率が必ず画面に表示されます — 隠された計算はありません。確率は意図的に低く設定されています。目的は永遠に閉じ込めることではなく、早期解除を「面倒」にすることです。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      何度も失敗したらどうなりますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>同じセッション内で一定回数挑戦すれば必ず解除できる保証枠が組み込まれているため、永遠に詰むことはありません。スピンに外れると、次に挑戦できるまで短いクールダウンが発生します。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      実際のお金やアプリ内通貨は関係ありますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>いいえ。購入・賭け・換金といった要素は一切ありません。解除チャレンジは、自分の集中セッションを早く終えられるかどうかにのみ影響します — Zarko内で購入できるものはそもそも何もありません。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon">🔥</div>
+    <h2>ストリーク・統計</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      デイリーストリークの仕組みは？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>1日に最低1回集中セッションを完了すると、ストリークが継続します。1日でも逃すとストリークはリセットされますが、それまでの記録が消えることはありません。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      統計はどこで確認できますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>統計タブで週間の集中時間、セッション数、ストリークに加え、日別の内訳グラフを確認できます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      進捗をシェアできますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>はい — 統計タブのシェアアイコンをタップすると、Instagram Stories向けサイズの週間統計カードが作成されます。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon">🎨</div>
+    <h2>テーマ・実績</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      新しいテーマカラーはどうやって手に入りますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>解除チャレンジに成功すると、新しいテーマカラーを獲得するチャンスがあります。獲得したテーマはインベントリタブで確認・適用できます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      テーマは購入する必要がありますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>いいえ — すべてのテーマはプレイを通じて獲得するものであり、購入する必要は一切ありません。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      実績とは何ですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>インベントリタブでは、セッションの完了、ストリークの継続、解除チャレンジの成功などの節目で獲得できる実績バッジも確認できます。どのバッジを獲得したかはインベントリタブでチェックしてください。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon">💸</div>
+    <h2>料金について</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Zarkoは無料ですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>はい — 完全無料です。広告なし、サブスクリプションなし、アプリ内課金なしでご利用いただけます。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon">🛠</div>
+    <h2>トラブルシューティング</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      ブロック対象のアプリを開いてもシールド画面が表示されません。
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>iOSの設定 → スクリーンタイム</strong>でZarkoにScreen Time権限が許可されているか確認してください。最近ブロック対象を変更した場合は、セッションを一度終了して再開してみてください。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      ストリークリマインダー通知が届きません。
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>iOSの設定 → 通知</strong>でZarkoの通知が有効になっているか、またZarkoの設定タブでストリークリマインダーがオンになっているか確認してください。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      アプリを選択したのにセッションが開始できません。
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>開始前に、アプリ・カテゴリ・Webサイトのいずれか1つ以上を選択しているか確認してください。何も選択していない間は開始ボタンが無効のままになります。</p>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <h2>さらにサポートが必要ですか？</h2>
+    <p class="desc">お探しの回答が見つからない場合は、メールでお問い合わせください。</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">
+      📧 &nbsp;お問い合わせ
+    </a>
+    <p class="response-note">営業日5日以内にご返答いたします。</p>
+  </div>
+
+</main>
+</div><!-- /content-ja -->
+
+<footer class="site-footer">
+  <p>© 2026 PrivacyPure. All rights reserved. &nbsp;·&nbsp;
+  <a href="../../privacy/zarko/">Privacy Policy</a> &nbsp;·&nbsp;
+  <a href="mailto:hoons.labs@gmail.com">Contact</a>
+  </p>
+</footer>
+
+<script>
+  function toggle(btn) {
+    const faq = btn.closest('.faq');
+    faq.classList.toggle('open');
+  }
+
+  function setLang(lang) {
+    document.querySelectorAll('[lang-block]').forEach(el => {
+      el.classList.toggle('visible', el.id.endsWith('-' + lang));
+    });
+    ['en','ja'].forEach(l => {
+      document.getElementById('btn-' + l).classList.toggle('active', l === lang);
+    });
+    document.documentElement.lang = lang;
+    localStorage.setItem('zarko-lang', lang);
+  }
+
+  (function () {
+    const params  = new URLSearchParams(window.location.search);
+    const urlLang = params.get('lang');
+    if (['en','ja'].includes(urlLang)) { setLang(urlLang); return; }
+
+    const saved = localStorage.getItem('zarko-lang');
+    if (['en','ja'].includes(saved)) { setLang(saved); return; }
+
+    const nav = navigator.language;
+    if (nav.startsWith('ja')) { setLang('ja'); return; }
+    setLang('en');
+  })();
+</script>
+
+</body>
+</html>
