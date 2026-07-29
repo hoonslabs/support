@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Briven</title>
+  <meta name="description" content="Briven Support / 지원 센터 / サポート" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent:       #171717;
+      --accent-soft:  #B6B09F;
+      --moss:         #63735A;
+      --moss-bg:      #E6EAE2;
+      --amber:        #A47A3F;
+      --amber-bg:     #F3E7D6;
+      --sky:          #0EA5E9;
+      --sky-bg:       #E0F2FE;
+      --bg:           #F6F4EF;
+      --surface:      #FFFFFF;
+      --text:         #171717;
+      --muted:        #706A5C;
+      --border:       #E4DFD3;
+      --radius:       12px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --accent:       #EEEAE1;
+        --accent-soft:  #B6B09F;
+        --moss:         #8DA37D;
+        --moss-bg:      rgba(141,163,125,0.14);
+        --amber:        #CBA268;
+        --amber-bg:     rgba(203,162,104,0.14);
+        --sky:          #38BDF8;
+        --sky-bg:       rgba(56,189,248,0.12);
+        --bg:           #171717;
+        --surface:      #211F1B;
+        --text:         #EEEAE1;
+        --muted:        #A79F8C;
+        --border:       #3A362F;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    /* ── Language Toggle ── */
+    .lang-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 24px;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      padding: 5px 16px;
+      border-radius: 20px;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .lang-btn.active {
+      background: #171717;
+      border-color: #171717;
+      color: #EEEAE1;
+    }
+
+    /* ── Header ── */
+    .site-header {
+      background: linear-gradient(135deg, #211F1B 0%, #171717 100%);
+      color: #EEEAE1;
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+
+    .logo-mark {
+      width: 64px;
+      height: 64px;
+      background: rgba(182, 176, 159, 0.15);
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(182, 176, 159, 0.2);
+    }
+
+    .site-header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      color: #B6B09F;
+    }
+
+    .site-header .subtitle {
+      font-size: 14px;
+      opacity: 0.75;
+      font-weight: 400;
+      color: #EEEAE1;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Category Header ── */
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 40px 0 16px;
+    }
+
+    .cat-header:first-of-type { margin-top: 0; }
+
+    .cat-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .cat-header h2 {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--muted);
+    }
+
+    /* ── FAQ Item ── */
+    .faq {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 20px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: background 0.15s;
+    }
+
+    .faq-q:hover { background: color-mix(in srgb, var(--accent-soft) 8%, var(--surface)); }
+
+    .faq-q .chevron {
+      font-size: 12px;
+      color: var(--muted);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .faq.open .faq-q .chevron { transform: rotate(180deg); }
+
+    .faq-a {
+      display: none;
+      padding: 0 24px 20px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.7;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    .faq.open .faq-a { display: block; }
+
+    .faq-a p { margin-bottom: 10px; color: var(--muted); }
+    .faq-a p:last-child { margin-bottom: 0; }
+    .faq-a ul { padding-left: 20px; }
+    .faq-a li { margin-bottom: 6px; }
+    .faq-a strong { color: var(--text); }
+
+    /* ── Highlight Box ── */
+    .highlight {
+      background: color-mix(in srgb, var(--moss) 10%, var(--surface));
+      border-left: 3px solid var(--moss);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 12px 0;
+      font-size: 14px;
+    }
+
+    /* ── Contact Card ── */
+    .contact-section {
+      background: linear-gradient(135deg, #211F1B 0%, #171717 100%);
+      border-radius: 16px;
+      padding: 40px 32px;
+      margin-top: 48px;
+      text-align: center;
+      color: #EEEAE1;
+    }
+
+    .contact-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #B6B09F;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+    }
+
+    .contact-section .desc {
+      font-size: 14px;
+      color: rgba(238,234,225,0.7);
+      margin-bottom: 28px;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #B6B09F;
+      color: #171717;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .contact-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .response-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: rgba(238,234,225,0.5);
+    }
+
+    /* ── Footer ── */
+    .site-footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .site-footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid transparent; }
+    .site-footer a:hover { border-color: var(--muted); }
+
+    /* ── Lang visibility ── */
+    [lang-block] { display: none; }
+    [lang-block].visible { display: block; }
+
+    @media (max-width: 600px) {
+      .site-header { padding: 32px 20px 28px; }
+      .logo-mark { width: 52px; height: 52px; font-size: 26px; margin-bottom: 12px; }
+      .site-header h1 { font-size: 22px; }
+      .container { padding: 28px 16px 60px; }
+      .cat-header { margin: 28px 0 14px; }
+      .faq-q { padding: 16px 18px; font-size: 14px; }
+      .faq-a { padding: 0 18px 16px; padding-top: 14px; font-size: 14px; }
+      .contact-section { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Language Toggle -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">English</button>
+  <button class="lang-btn"        onclick="setLang('ko')" id="btn-ko">한국어</button>
+  <button class="lang-btn"        onclick="setLang('ja')" id="btn-ja">日本語</button>
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="logo-mark">📒</div>
+  <h1>Briven</h1>
+  <p class="subtitle" lang-block="en" id="hd-en">Support Center</p>
+  <p class="subtitle" lang-block="ko" id="hd-ko">지원 센터</p>
+  <p class="subtitle" lang-block="ja" id="hd-ja">サポートセンター</p>
+</header>
+
+<!-- ══════════════════════════════════════════════
+     ENGLISH VERSION
+══════════════════════════════════════════════ -->
+<div lang-block="en" id="content-en">
+<main class="container">
+
+  <!-- Getting Started -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--moss-bg);">🚀</div>
+    <h2>Getting Started</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I set up Briven for the first time?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>First, choose your currency — this is the only required step. Then you can optionally add your
+      income sources and any subscriptions you're paying for; both can be skipped and added anytime later
+      from the Dashboard. At the end, Briven asks for notification permission for a gentle weekly review
+      reminder.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Can I change my currency later?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Yes — go to <strong>Settings → Currency</strong>. This changes how all amounts are displayed and
+      entered going forward. Briven does not perform exchange-rate conversion; it simply switches the
+      display currency.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Does Briven support importing a CSV or bank statement?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>No. Briven is intentionally a fully manual budgeting app — there is no bank connection, no CSV or
+      OFX import, and no account linking of any kind. You enter every income source, subscription, and
+      expense yourself.</p>
+      <div class="highlight">
+        This is a deliberate privacy choice: your banking credentials and transaction history never have
+        to leave your control.
+      </div>
+    </div>
+  </div>
+
+  <!-- Expenses & Categories -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--sky-bg);">🧾</div>
+    <h2>Expenses &amp; Categories</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I log an expense?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Tap the <strong>+</strong> button from Dashboard or Transactions. Enter the amount, pick a category,
+      optionally pick a payment method and add a memo, then save. You can create a brand-new category or
+      payment method right from that same screen without leaving it.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What are subcategories?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>A few default categories — Dining Out, Transport, Shopping — come with two subcategories each
+      (e.g., Coffee &amp; Cafes, Fuel &amp; Gas). You can also create your own on any top-level category.
+      In charts and reports, a parent category's total automatically rolls up all of its subcategories'
+      spending; you can drill into the individual subcategory breakdown from your transaction list.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Can I delete a category? What happens to past expenses?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Yes — any category, including the default ones, can be deleted or edited. Past expenses tagged
+      with a deleted category are automatically grouped under <strong>"Uncategorized"</strong>; they are
+      never deleted along with the category.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What is Payment Methods for?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>It lets you track whether an expense was cash or a specific card. Briven starts you off with
+      <strong>Cash</strong>, and you can add as many cards as you like from <strong>Settings → Payment
+      Methods</strong>. Reports and Transactions show a per-method subtotal.</p>
+    </div>
+  </div>
+
+  <!-- Income & Subscriptions -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--moss-bg);">💵</div>
+    <h2>Income &amp; Subscriptions</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I add multiple income sources?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Go to the <strong>Income</strong> card on the Dashboard and tap it to manage your income sources.
+      You can register as many as you like — for example, a full-time job plus freelance work — each with
+      its own frequency: weekly, monthly, yearly, or irregular.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What does "irregular" income mean?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Choose <strong>Irregular</strong> for income that doesn't follow a fixed schedule or amount, like
+      freelance payments. Instead of setting one fixed amount, you log each payment individually as it
+      arrives.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      I changed jobs — what should I do with my old income source?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Turn off its <strong>Active</strong> toggle instead of deleting it. Deactivating keeps your past
+      monthly reports accurate — Briven never rewrites history when your income setup changes.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How many subscriptions can I track for free?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Up to <strong>5 active subscriptions</strong> on the free plan. Unlimited subscription tracking is
+      one of the features planned for the upcoming one-time lifetime purchase.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What happens if a subscription's price goes up?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Update the amount on the subscription's edit screen. Briven detects the increase, shows
+      <strong>"was $X"</strong> in your subscriptions list, and sends you an immediate notification so a
+      price hike never slips by unnoticed.</p>
+    </div>
+  </div>
+
+  <!-- Reports -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--amber-bg);">📊</div>
+    <h2>Reports</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I see my spending for a specific day or date range?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Tap <strong>"This Month"</strong> on the Dashboard to open Reports. Tap any date on the calendar
+      for a single day, or drag across it to select a range — your total and category breakdown update
+      instantly without leaving the screen. Tap the same date again to deselect and return to the
+      whole-month view.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What are the category budget bars in Reports?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>If you set a monthly budget on a category (from the Categories screen), Reports shows a progress
+      bar for it whenever you're viewing the whole month — it stays in your brand color when you're within
+      budget and turns amber if you go over.</p>
+    </div>
+  </div>
+
+  <!-- iCloud Sync -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--sky-bg);">☁️</div>
+    <h2>iCloud Sync</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Does Briven sync across my devices?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Yes, and it's free. Briven uses Apple's CloudKit — your own private iCloud database — to sync your
+      data across your iPhones automatically when you're signed into iCloud. No account or subscription is
+      required.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Is my data shared with anyone else, like a partner?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>No. iCloud sync in Briven is single-user only — it keeps your own devices in sync with each other,
+      not with anyone else's account. There is no shared or family sync feature; each budget stays private
+      to you.</p>
+    </div>
+  </div>
+
+  <!-- App Lock -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--moss-bg);">🔒</div>
+    <h2>App Lock</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I enable Face ID / Touch ID for Briven?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Go to <strong>Settings → Security → App Lock</strong> and turn it on — it's off by default. If Face
+      ID or Touch ID fails or isn't set up, your device passcode works as a fallback.</p>
+    </div>
+  </div>
+
+  <!-- Lifetime Unlock -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--amber-bg);">✨</div>
+    <h2>Lifetime Unlock (Coming Soon)</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Is Briven free?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Yes. Unlimited expense logging, income tracking, subscription tracking (up to 5), categories,
+      payment methods, iCloud sync, and monthly Reports are all free, with no ads.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      What will the one-time lifetime purchase include?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>A future update will introduce a single, non-subscription purchase that unlocks:</p>
+      <ul>
+        <li><strong>Savings Goals</strong> — set targets and track progress</li>
+        <li><strong>Unlimited subscription tracking</strong> — no 5-item limit</li>
+        <li><strong>Multi-year trend reports</strong></li>
+        <li><strong>Data export</strong> (PDF / CSV)</li>
+        <li><strong>Multiple budget profiles</strong> (e.g., personal + side business)</li>
+      </ul>
+      <p>No recurring billing — pay once, own it for life.</p>
+    </div>
+  </div>
+
+  <!-- Privacy & Data -->
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--sky-bg);">🔐</div>
+    <h2>Privacy &amp; Data</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Does Briven require an account?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>No — there's no sign-up, login, or account of any kind. Briven works immediately after you choose
+      your currency.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Where is my financial data stored?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Entirely on your device, and optionally in your own private Apple iCloud account if you're signed
+      in. Briven has no backend server, and the developer cannot access your income, expenses, or
+      subscriptions. See the <a href="../../privacy/briven/">Privacy Policy</a> for full details.</p>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-section">
+    <h2>Still need help?</h2>
+    <p class="desc">Can't find the answer you're looking for? Send us an email and we'll get back to you.</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">
+      📧 &nbsp;Contact Support
+    </a>
+    <p class="response-note">We respond within 5 business days.</p>
+  </div>
+
+</main>
+</div><!-- /content-en -->
+
+<!-- ══════════════════════════════════════════════
+     KOREAN VERSION
+══════════════════════════════════════════════ -->
+<div lang-block="ko" id="content-ko">
+<main class="container">
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--moss-bg);">🚀</div>
+    <h2>시작하기</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Briven을 처음 어떻게 설정하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>먼저 통화를 선택합니다 — 유일한 필수 단계입니다. 이후 수입원과 결제 중인 구독을
+      선택적으로 추가할 수 있으며, 두 단계 모두 건너뛰고 나중에 대시보드에서 추가할 수 있습니다.
+      마지막으로 주간 리뷰 알림을 위한 알림 권한을 요청합니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      통화를 나중에 변경할 수 있나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>네, <strong>설정 → 통화</strong>에서 변경할 수 있습니다. 이후 모든 금액의 표시·입력
+      방식이 바뀝니다. Briven은 환율 변환을 하지 않으며 표시 통화만 전환합니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      은행 명세서나 CSV를 가져올 수 있나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>아니요. Briven은 의도적으로 완전 매뉴얼 예산관리 앱입니다 — 은행 연동, CSV/OFX 임포트,
+      어떤 형태의 계정 연결도 없습니다. 모든 수입원, 구독, 지출을 사용자가 직접 입력합니다.</p>
+      <div class="highlight">
+        이는 의도된 프라이버시 설계입니다: 은행 로그인 정보와 거래 내역이 사용자 통제를 벗어날
+        일이 없습니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--sky-bg);">🧾</div>
+    <h2>지출 &amp; 카테고리</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      지출은 어떻게 기록하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>대시보드나 Transactions 화면의 <strong>+</strong> 버튼을 탭하세요. 금액을 입력하고
+      카테고리를 선택한 뒤, 선택적으로 결제 방식과 메모를 추가하고 저장합니다. 같은 화면에서
+      새 카테고리나 결제 방식도 바로 만들 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      서브카테고리는 무엇인가요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>기본 카테고리 중 Dining Out/Transport/Shopping 세 개는 각각 서브카테고리 2개씩 포함되어
+      있습니다(예: Coffee &amp; Cafes, Fuel &amp; Gas). 최상위 카테고리에는 직접 서브카테고리를
+      만들 수도 있습니다. 차트·리포트에서 부모 카테고리 금액은 모든 서브카테고리 지출을 자동
+      합산해 보여주며, 거래 목록에서 서브카테고리별 세부 내역을 드릴다운으로 확인할 수 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      카테고리를 삭제할 수 있나요? 과거 지출은 어떻게 되나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>네 — 기본 카테고리를 포함해 어떤 카테고리든 삭제·수정할 수 있습니다. 삭제된 카테고리를
+      가리키던 과거 지출은 자동으로 <strong>"Uncategorized"</strong>로 묶여 표시되며, 카테고리와
+      함께 삭제되지 않습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      결제 방식 관리는 무엇인가요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>지출이 현금인지 특정 카드인지 구분해서 기록할 수 있습니다. Briven은 기본으로
+      <strong>Cash</strong> 하나를 제공하며, <strong>설정 → Payment Methods</strong>에서 카드를
+      원하는 만큼 추가할 수 있습니다. Reports와 Transactions에서 결제 방식별 소계를 볼 수
+      있습니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--moss-bg);">💵</div>
+    <h2>수입 &amp; 구독</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      수입원을 여러 개 등록할 수 있나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>대시보드의 <strong>Income</strong> 카드를 탭해 수입원을 관리합니다. 본업+부업처럼 원하는
+      만큼 등록할 수 있으며, 각 수입원은 주급/월급/연봉/비정기 중 원하는 주기를 가질 수
+      있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      "비정기(Irregular)" 수입은 무엇인가요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>프리랜서 수입처럼 금액과 주기가 일정하지 않은 경우 <strong>Irregular</strong>를
+      선택하세요. 고정 금액을 설정하는 대신, 입금될 때마다 건별로 직접 기록합니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      이직했어요 — 기존 수입원은 어떻게 처리하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>삭제하지 말고 <strong>Active</strong> 토글을 꺼주세요. 비활성화하면 과거 월별 리포트가
+      그대로 유지됩니다 — Briven은 수입원 구성이 바뀌어도 과거 기록을 소급 수정하지 않습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      무료로 구독을 몇 개까지 추적할 수 있나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>무료 플랜에서는 최대 <strong>활성 구독 5개</strong>까지 가능합니다. 무제한 구독 추적은
+      향후 출시될 라이프타임 구매에 포함될 예정인 기능입니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      구독료가 인상되면 어떻게 되나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>구독 수정 화면에서 금액을 올려 저장하면 Briven이 인상을 감지해 목록에
+      <strong>"was $X"</strong>로 표시하고 즉시 알림을 보내드립니다 — 가격 인상을 놓치지
+      않도록 해줍니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--amber-bg);">📊</div>
+    <h2>리포트</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      특정 날짜나 기간의 지출을 어떻게 확인하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>대시보드의 <strong>"This Month"</strong>를 탭해 Reports를 엽니다. 달력에서 날짜를
+      탭하면 하루, 드래그하면 그 구간이 선택되며 화면 전환 없이 총액과 카테고리 breakdown이
+      바로 갱신됩니다. 같은 날짜를 다시 탭하면 선택이 해제되고 월 전체 통계로 돌아갑니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Reports의 카테고리 예산 바는 무엇인가요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Categories 화면에서 카테고리에 월 예산을 설정하면, 월 전체를 보고 있을 때 Reports에
+      진행률 바가 표시됩니다 — 예산 이내면 브랜드 컬러, 초과하면 amber(주의) 색으로
+      바뀝니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--sky-bg);">☁️</div>
+    <h2>iCloud 동기화</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      기기 간 동기화가 되나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>네, 무료입니다. Briven은 Apple CloudKit(사용자 본인의 개인 iCloud 데이터베이스)을
+      사용해 iCloud에 로그인되어 있으면 자동으로 iPhone 간 데이터를 동기화합니다. 별도 계정이나
+      구독이 필요 없습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      배우자 등 다른 사람과 데이터가 공유되나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>아니요. Briven의 iCloud 동기화는 1인 전용입니다 — 사용자 본인의 여러 기기끼리만
+      동기화되며, 다른 사람의 계정과는 공유되지 않습니다. 실시간 공유/가족 동기화 기능은
+      제공하지 않으며, 각 예산은 개인 소유로 유지됩니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--moss-bg);">🔒</div>
+    <h2>앱 잠금</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Face ID / Touch ID는 어떻게 켜나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>설정 → Security → App Lock</strong>에서 켤 수 있습니다 — 기본값은 꺼짐입니다.
+      Face ID/Touch ID가 실패하거나 설정되어 있지 않으면 기기 암호가 대체 인증으로
+      작동합니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--amber-bg);">✨</div>
+    <h2>라이프타임 언락 (출시 예정)</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Briven은 무료인가요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>네. 무제한 지출 기록, 수입 추적, 구독 추적(최대 5개), 카테고리, 결제 방식, iCloud
+      동기화, 월별 Reports까지 전부 광고 없이 무료입니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      라이프타임 구매에는 무엇이 포함되나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>향후 업데이트에서 1회 결제(구독 아님)로 다음 기능이 잠금 해제됩니다.</p>
+      <ul>
+        <li><strong>저축 목표</strong> — 목표 금액 설정 및 진행률 추적</li>
+        <li><strong>구독 추적 무제한</strong> — 5개 제한 없음</li>
+        <li><strong>다년 트렌드 리포트</strong></li>
+        <li><strong>데이터 내보내기</strong> (PDF/CSV)</li>
+        <li><strong>다중 예산 프로필</strong> (예: 개인 + 부업)</li>
+      </ul>
+      <p>반복 결제 없이 한 번 결제하면 평생 소유합니다.</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--sky-bg);">🔐</div>
+    <h2>프라이버시 &amp; 데이터</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Briven은 계정이 필요한가요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>아니요 — 가입, 로그인, 계정 자체가 없습니다. 통화만 선택하면 바로 사용할 수
+      있습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      금융 데이터는 어디에 저장되나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>전적으로 기기에 저장되며, iCloud에 로그인되어 있으면 선택적으로 사용자 본인의 개인
+      Apple iCloud 계정에도 저장됩니다. Briven은 백엔드 서버가 없고, 개발자는 사용자의 수입,
+      지출, 구독 내역에 접근할 수 없습니다. 자세한 내용은
+      <a href="../../privacy/briven/">개인정보 처리방침</a>을 참고해 주세요.</p>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <h2>추가 도움이 필요하신가요?</h2>
+    <p class="desc">찾는 답변이 없으신가요? 이메일로 문의해 주시면 답변드립니다.</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">
+      📧 &nbsp;문의하기
+    </a>
+    <p class="response-note">영업일 기준 5일 이내 답변드립니다.</p>
+  </div>
+
+</main>
+</div><!-- /content-ko -->
+
+<!-- ══════════════════════════════════════════════
+     JAPANESE VERSION
+══════════════════════════════════════════════ -->
+<div lang-block="ja" id="content-ja">
+<main class="container">
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--moss-bg);">🚀</div>
+    <h2>はじめに</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Brivenを初めて設定するには？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>まず通貨を選択します — これが唯一必須のステップです。その後、収入源と支払い中の
+      サブスクリプションを任意で追加できます。どちらもスキップして、後からダッシュボードで
+      追加することも可能です。最後に、週次レビュー通知のための通知許可をリクエストします。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      通貨は後から変更できますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>はい、<strong>設定 → 通貨</strong>から変更できます。これにより以降のすべての金額の
+      表示・入力方法が変わります。Brivenは為替換算を行わず、表示通貨を切り替えるだけです。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      銀行明細やCSVをインポートできますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>いいえ。Brivenは意図的に完全手入力型の家計管理アプリです — 銀行連携、CSV/OFX
+      インポート、いかなる形のアカウント連携もありません。すべての収入源、サブスクリプション、
+      支出はご自身で入力します。</p>
+      <div class="highlight">
+        これは意図的なプライバシー設計です：銀行のログイン情報や取引履歴がお客様の管理下から
+        出ることはありません。
+      </div>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--sky-bg);">🧾</div>
+    <h2>支出 &amp; カテゴリ</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      支出はどうやって記録しますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>ダッシュボードまたはTransactions画面の<strong>+</strong>ボタンをタップします。金額を
+      入力し、カテゴリを選択、任意で支払い方法とメモを追加して保存します。同じ画面から新しい
+      カテゴリや支払い方法もその場で作成できます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      サブカテゴリとは何ですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>デフォルトカテゴリのうちDining Out/Transport/Shoppingの3つには、それぞれ2つずつ
+      サブカテゴリが付属しています（例：Coffee &amp; Cafes、Fuel &amp; Gas）。最上位カテゴリには
+      独自のサブカテゴリを作成することもできます。チャートやレポートでは親カテゴリの金額に
+      すべてのサブカテゴリの支出が自動的に合算され、取引一覧からサブカテゴリ別の内訳を
+      ドリルダウンで確認できます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      カテゴリを削除できますか？過去の支出はどうなりますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>はい — デフォルトのカテゴリを含め、どのカテゴリも削除・編集できます。削除された
+      カテゴリを指していた過去の支出は自動的に<strong>「Uncategorized」</strong>にまとめられ、
+      カテゴリと一緒に削除されることはありません。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      支払い方法管理とは何ですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>支出が現金か特定のカードかを記録できます。Brivenは初期状態で<strong>Cash</strong>を
+      1つ用意しており、<strong>設定 → Payment Methods</strong>からカードを好きなだけ追加でき
+      ます。ReportsとTransactionsでは支払い方法別の小計が表示されます。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--moss-bg);">💵</div>
+    <h2>収入 &amp; サブスクリプション</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      複数の収入源を登録できますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>ダッシュボードの<strong>Income</strong>カードをタップして収入源を管理します。本業＋
+      副業のように好きなだけ登録でき、それぞれに週給・月給・年俸・不定期のいずれかの頻度を
+      設定できます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      「不定期（Irregular）」収入とは何ですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>フリーランス収入のように金額や頻度が一定でない場合は<strong>Irregular</strong>を
+      選択してください。固定金額を設定する代わりに、入金があるたびに個別に記録します。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      転職しました — 以前の収入源はどうすればいいですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>削除せずに<strong>Active</strong>トグルをオフにしてください。無効化すれば過去の月次
+      レポートはそのまま維持されます — Brivenは収入設定が変わっても過去の記録を遡って
+      書き換えません。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      無料でいくつまでサブスクリプションを追跡できますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>無料プランでは最大<strong>アクティブなサブスクリプション5件</strong>まで追跡できます。
+      無制限のサブスクリプション追跡は、今後提供予定のライフタイム購入に含まれる機能の
+      1つです。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      サブスクリプションの価格が上がった場合はどうなりますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>サブスクリプションの編集画面で金額を上げて保存すると、Brivenが値上げを検知し
+      一覧に<strong>「was $X」</strong>と表示、即座に通知を送ります — 値上げを見逃すことは
+      ありません。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--amber-bg);">📊</div>
+    <h2>レポート</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      特定の日や期間の支出を確認するには？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>ダッシュボードの<strong>「This Month」</strong>をタップしてReportsを開きます。カレンダー
+      で日付をタップすると1日分、ドラッグすると期間が選択され、画面遷移なしに合計額と
+      カテゴリ別内訳がその場で更新されます。同じ日付を再度タップすると選択が解除され、月全体の
+      統計に戻ります。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Reportsのカテゴリ予算バーとは何ですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Categories画面でカテゴリに月間予算を設定すると、月全体を表示しているときにReportsで
+      進捗バーが表示されます — 予算内であればブランドカラー、超過するとamber（注意）色に
+      変わります。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--sky-bg);">☁️</div>
+    <h2>iCloud同期</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      デバイス間で同期されますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>はい、無料です。Brivenは Apple の CloudKit（お客様ご自身のプライベート iCloud
+      データベース）を使用し、iCloudにサインインしていれば自動的にiPhone間でデータを同期します。
+      アカウントやサブスクリプションは不要です。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      パートナーなど他の人とデータが共有されますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>いいえ。Brivenの iCloud同期は単一ユーザー専用です — お客様ご自身の複数デバイス間のみで
+      同期され、他の人のアカウントとは共有されません。リアルタイム共有・家族間同期機能はなく、
+      各予算はお客様個人のものとして保たれます。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--moss-bg);">🔒</div>
+    <h2>アプリロック</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Face ID / Touch IDを有効にするには？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>設定 → Security → App Lock</strong>でオンにできます — デフォルトはオフです。
+      Face ID/Touch IDが失敗したり設定されていない場合は、端末のパスコードが代替認証として
+      機能します。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--amber-bg);">✨</div>
+    <h2>ライフタイムアンロック（近日公開）</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Brivenは無料ですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>はい。支出記録、収入追跡、サブスクリプション追跡（最大5件）、カテゴリ、支払い方法、
+      iCloud同期、月次Reportsまで、すべて広告なしで無料でご利用いただけます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      ライフタイム購入には何が含まれますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>今後のアップデートで、買い切り（サブスクリプションではない）1回の購入で以下が
+      アンロックされます。</p>
+      <ul>
+        <li><strong>貯蓄目標</strong> — 目標金額の設定と進捗の追跡</li>
+        <li><strong>サブスクリプション追跡無制限</strong> — 5件の制限なし</li>
+        <li><strong>複数年トレンドレポート</strong></li>
+        <li><strong>データエクスポート</strong>（PDF/CSV）</li>
+        <li><strong>複数予算プロフィール</strong>（例：個人＋副業）</li>
+      </ul>
+      <p>継続課金はなく、一度購入すれば永久に使えます。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--sky-bg);">🔐</div>
+    <h2>プライバシー &amp; データ</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Brivenにはアカウントが必要ですか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>いいえ — 登録、ログイン、アカウントの類は一切ありません。通貨を選択すればすぐに
+      使い始められます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      家計データはどこに保存されますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>すべて端末に保存され、iCloudにサインインしている場合は任意でお客様ご自身のプライベート
+      Apple iCloudアカウントにも保存されます。Brivenにはバックエンドサーバーがなく、開発者が
+      お客様の収入・支出・サブスクリプションにアクセスすることはできません。詳細は
+      <a href="../../privacy/briven/">プライバシーポリシー</a>をご覧ください。</p>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <h2>さらにサポートが必要ですか？</h2>
+    <p class="desc">お探しの回答が見つからない場合は、メールでお問い合わせください。</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">
+      📧 &nbsp;お問い合わせ
+    </a>
+    <p class="response-note">営業日5日以内にご返答いたします。</p>
+  </div>
+
+</main>
+</div><!-- /content-ja -->
+
+<footer class="site-footer">
+  <p>© 2026 Briven. All rights reserved. &nbsp;·&nbsp;
+  <a href="../../privacy/briven/">Privacy Policy</a> &nbsp;·&nbsp;
+  <a href="mailto:hoons.labs@gmail.com">Contact</a>
+  </p>
+</footer>
+
+<script>
+  function toggle(btn) {
+    const faq = btn.closest('.faq');
+    faq.classList.toggle('open');
+  }
+
+  function setLang(lang) {
+    document.querySelectorAll('[lang-block]').forEach(el => {
+      el.classList.toggle('visible', el.id.endsWith('-' + lang));
+    });
+    ['en','ko','ja'].forEach(l => {
+      document.getElementById('btn-' + l).classList.toggle('active', l === lang);
+    });
+    document.documentElement.lang = lang;
+    localStorage.setItem('briven-lang', lang);
+  }
+
+  (function () {
+    const params  = new URLSearchParams(window.location.search);
+    const urlLang = params.get('lang');
+    if (['en','ko','ja'].includes(urlLang)) { setLang(urlLang); return; }
+
+    const saved = localStorage.getItem('briven-lang');
+    if (['en','ko','ja'].includes(saved)) { setLang(saved); return; }
+
+    setLang('en');
+  })();
+</script>
+
+</body>
+</html>
