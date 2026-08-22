@@ -161,6 +161,7 @@
     <button class="lang-btn" data-lang="ja" onclick="applyLang('ja')">日本語</button>
     <button class="lang-btn" data-lang="fr" onclick="applyLang('fr')">FR</button>
     <button class="lang-btn" data-lang="ko" onclick="applyLang('ko')">한국어</button>
+    <button class="lang-btn" data-lang="es" onclick="applyLang('es')">ES</button>
   </div>
 </header>
 
@@ -520,6 +521,55 @@ const T = {
     'privacy-link': '개인정보 처리방침 →',
     'footer-copy': '© 2026 Hoon\'s Labs · OutVault: Private Camera',
     'footer-privacy': '개인정보 처리방침',
+  },
+
+  es: {
+    'subtitle': 'Soporte',
+    'meta-badge': 'Última actualización: 1 de junio de 2026',
+    'faq-heading': 'Preguntas frecuentes',
+    'faq-q1': '¿Se guardan mis fotos en Fotos de iOS?',
+    'faq-a1': 'No, nunca. OutVault evita por completo la biblioteca de Fotos de iOS. Cada foto y vídeo que capturas se almacena exclusivamente dentro del sandbox privado de la app en tu dispositivo. No se escribe nada en tu Carrete ni en la app Fotos.',
+    'faq-q2': '¿Dónde se almacena exactamente mi contenido?',
+    'faq-a2': 'Los archivos multimedia se almacenan en el directorio <strong>Application Support/assets/</strong> de la app, protegido por <strong>NSFileProtectionComplete</strong> — el nivel más alto de cifrado en el dispositivo de Apple. Los archivos son inaccesibles mientras tu dispositivo está bloqueado. Ninguna otra app o persona puede acceder a estos archivos sin desbloquear tu dispositivo y superar Face ID o el código de acceso.',
+    'faq-q3': '¿Cómo funciona el desbloqueo con Face ID?',
+    'faq-a3': 'OutVault requiere Face ID o el código de acceso de tu dispositivo cada vez que abres la app, y de nuevo después de que pase a segundo plano. La autenticación la gestiona iOS por completo — la App nunca ve tus datos biométricos. En el Simulador, la autenticación se omite automáticamente con fines de desarrollo.',
+    'faq-q4': '¿Cómo hago una foto o grabo un vídeo?',
+    'faq-a4': 'Toca el <strong>botón de la cámara</strong> en la galería para abrir la cámara. Toca el disparador para capturar una foto — volverás a la galería de inmediato. Mantén pulsado (o toca el botón de grabación) para iniciar un vídeo; toca de nuevo para detenerlo. Tras grabar, aparece un aviso <em>«Vídeo guardado»</em> y la cámara permanece abierta para que puedas grabar otro clip de inmediato.',
+    'faq-q5': '¿Cómo comparto una foto o un vídeo?',
+    'faq-a5': 'Abre el elemento en la vista de detalle y toca el botón <strong>Compartir</strong>. Aparecerá la hoja de compartir estándar de iOS. Los <strong>usuarios Pro</strong> pueden eliminar todos los metadatos EXIF (ubicación, dispositivo, marca de tiempo) antes de compartir — la hoja de compartir mostrará una copia limpia y sin metadatos del archivo.',
+    'faq-q6': '¿Cómo elimino una foto o un vídeo?',
+    'faq-a6': 'Abre el elemento en la vista de detalle y toca <strong>Eliminar</strong>, o mantén pulsada una miniatura en la galería y elige <strong>Eliminar</strong> en el menú contextual. La eliminación es permanente — no hay papelera.',
+    'faq-q7': '¿Qué es la eliminación automática? (Pro)',
+    'faq-a7': 'Los usuarios Pro pueden establecer una fecha de caducidad en cualquier elemento. Una vez transcurrido el plazo de caducidad, la App elimina automáticamente el archivo la próxima vez que se abra, o mediante una tarea en segundo plano. Se envía una notificación local con antelación como recordatorio. Tú controlas el plazo de caducidad de forma individual para cada elemento.',
+    'faq-q8': '¿Qué es la edición de metadatos? (Pro)',
+    'faq-a8': 'Los usuarios Pro pueden editar la fecha, la nota, el autor y el texto de ubicación de cualquier elemento. El campo de ubicación es <strong>texto libre</strong> — la App no accede al GPS. Los metadatos editados se almacenan de forma segura en el sandbox de la app junto con tu contenido.',
+    'faq-q9': '¿Qué es la eliminación de EXIF? (Pro)',
+    'faq-a9': 'Al compartir un archivo, los usuarios Pro pueden elegir eliminar todos los metadatos EXIF incrustados (modelo de cámara, coordenadas GPS, marcas de tiempo, etc.) antes de que el archivo se entregue a la hoja de compartir de iOS. El archivo original almacenado en tu bóveda permanece sin cambios.',
+    'faq-q10': '¿Se eliminarán mis datos si borro la app?',
+    'faq-a10': 'Sí. Todo el contenido y los metadatos almacenados en el sandbox de la app se eliminan permanentemente al desinstalar la App. No hay copia de seguridad en la nube a menos que tengas activada la sincronización con CloudKit (una futura función Pro). Te recomendamos exportar los archivos importantes mediante la hoja de compartir antes de desinstalar.',
+    'faq-q11': '¿Cómo restauro una compra (Lifetime Pro)?',
+    'faq-a11': 'Ve a <strong>Ajustes</strong> en la App y toca <strong>Restaurar compras</strong>. Asegúrate de haber iniciado sesión en el App Store con el mismo ID de Apple usado en la compra original. Las compras las gestiona RevenueCat y están vinculadas a tu cuenta de App Store.',
+    'faq-q12': 'La app muestra la fecha incorrecta en mis fotos.',
+    'faq-a12': 'OutVault registra la fecha de captura en el momento en que se acciona el disparador. Si la fecha aparece incorrecta, comprueba los ajustes de fecha y hora de tu dispositivo (Ajustes → General → Fecha y hora → Ajuste automático). Los usuarios Pro también pueden corregir la fecha manualmente mediante la edición de metadatos.',
+    'faq-q13': '¿Puedo usar OutVault en el Simulador?',
+    'faq-a13': 'Sí. En el Simulador de iOS, la cámara se sustituye por una interfaz de toque de color que genera fotos de muestra en seis colores. Face ID se omite automáticamente. También puedes añadir 12 fotos de muestra mediante <strong>Ajustes → Debug → Añadir fotos de muestra</strong>.',
+    'trouble-heading': 'Solución de problemas',
+    'trouble-hl': 'La mayoría de los problemas se resuelven <strong>forzando el cierre de la app y volviendo a abrirla</strong>, o <strong>reiniciando tu iPhone</strong>.',
+    'trouble-li1': '<strong>La cámara no se abre / pantalla negra</strong> — Ve a Ajustes de iOS → Privacidad y seguridad → Cámara y asegúrate de que OutVault tiene el permiso de cámara activado. Fuerza el cierre y vuelve a abrir la app.',
+    'trouble-li2': '<strong>Face ID no se solicita</strong> — Ve a Ajustes de iOS → Face ID y código y confirma que tu Face ID está configurado. Fuerza el cierre de la app y vuelve a intentarlo.',
+    'trouble-li3': '<strong>La galería aparece vacía tras reinstalar</strong> — El contenido almacenado en el sandbox de la app se elimina junto con la app. Si no tenías sincronización con CloudKit, los datos no se pueden recuperar. Exporta los archivos importantes antes de desinstalar.',
+    'trouble-li4': '<strong>La notificación de eliminación automática no llega</strong> — Ve a Ajustes de iOS → Notificaciones → OutVault y confirma que las notificaciones están permitidas. La App mantiene una única notificación programada para el próximo elemento que caduque.',
+    'trouble-li5': '<strong>La app va lenta o se congela</strong> — Fuerza el cierre de la app (desliza hacia arriba en el selector de apps) y vuelve a abrirla. Reinicia tu iPhone si el problema persiste.',
+    'trouble-li6': '<strong>Las miniaturas no cargan en la galería</strong> — Las miniaturas se generan y se guardan en caché la primera vez que se muestran. Desplázate fuera y vuelve para reintentarlo, o fuerza el cierre y vuelve a abrir la app.',
+    'contact-heading': 'Contáctanos',
+    'contact-p1': 'Si tu problema no está cubierto arriba o quieres compartir comentarios, escríbenos por correo electrónico. Te responderemos lo antes posible.',
+    'contact-hl': 'Al contactar con soporte, incluye tu <strong>versión de iOS</strong>, <strong>modelo de dispositivo</strong> y los <strong>pasos para reproducir</strong> el problema para una ayuda más rápida.',
+    'contact-label': 'Correo electrónico',
+    'privacy-heading': 'Política de privacidad',
+    'privacy-p1': 'Consulta la Política de Privacidad de OutVault en el siguiente enlace.',
+    'privacy-link': 'Política de privacidad →',
+    'footer-copy': '© 2026 Hoon\'s Labs · OutVault: Private Camera',
+    'footer-privacy': 'Política de privacidad',
   },
 };
 
