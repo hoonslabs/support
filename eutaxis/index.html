@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Eutaxis</title>
+  <meta name="description" content="Eutaxis Support / 지원 센터" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:            #0A0F1E;
+      --surface:       #111827;
+      --surface-2:     #161F32;
+      --accent:        #00D4FF;
+      --accent-strong: #00D4FF;
+      --good:          #2ED573;
+      --warn:          #FFB800;
+      --text:          #F1F5F9;
+      --muted:         #64748B;
+      --border:        rgba(255,255,255,0.08);
+      --border-strong: rgba(255,255,255,0.14);
+      --radius:        14px;
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg:            #F8FAFC;
+        --surface:       #FFFFFF;
+        --surface-2:     #EEF2F7;
+        --accent:        #0092B8;
+        --accent-strong: #00D4FF;
+        --good:          #059669;
+        --warn:          #B45309;
+        --text:          #0F172A;
+        --muted:         #64748B;
+        --border:        #E2E8F0;
+        --border-strong: #CBD5E1;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    .lang-bar {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: flex-end;
+      padding: 10px 24px; gap: 8px;
+    }
+    .lang-btn {
+      padding: 5px 16px; border-radius: 20px;
+      border: 1.5px solid var(--border-strong);
+      background: transparent; color: var(--muted);
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+    .site-header {
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--border);
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+    .logo-mark {
+      width: 64px; height: 64px; border-radius: 18px;
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+      border: 1px solid var(--border-strong);
+      color: var(--accent-strong);
+    }
+    .logo-mark svg { width: 32px; height: 32px; }
+    .site-header h1 {
+      font-size: 26px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+      margin-bottom: 8px; color: var(--text);
+    }
+    .site-header .subtitle { font-size: 14px; opacity: 0.75; color: var(--muted); }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+
+    .cat-header {
+      display: flex; align-items: center; gap: 12px;
+      margin: 40px 0 16px;
+    }
+    .cat-header:first-of-type { margin-top: 0; }
+    .cat-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; flex-shrink: 0;
+      border: 1px solid var(--border-strong);
+      color: var(--accent-strong);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-weight: 700;
+    }
+    .cat-header h2 {
+      font-size: 13px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--muted);
+    }
+
+    .faq {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: 12px; overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; background: none; border: none; text-align: left;
+      padding: 20px 24px; font-size: 15px; font-weight: 600; color: var(--text);
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      gap: 12px; font-family: inherit;
+    }
+    .faq-q:hover { background: color-mix(in srgb, var(--accent-strong) 5%, var(--surface)); }
+    .faq-q .chevron { font-size: 11px; color: var(--muted); transition: transform 0.2s; flex-shrink: 0; }
+    .faq.open .faq-q .chevron { transform: rotate(180deg); }
+    .faq-a {
+      display: none; padding: 0 24px 20px; color: var(--muted);
+      font-size: 15px; line-height: 1.7; border-top: 1px solid var(--border); padding-top: 16px;
+    }
+    .faq.open .faq-a { display: block; }
+    .faq-a p { margin-bottom: 10px; color: var(--muted); }
+    .faq-a p:last-child { margin-bottom: 0; }
+    .faq-a ul { padding-left: 20px; }
+    .faq-a li { margin-bottom: 6px; }
+    .faq-a strong { color: var(--text); }
+
+    .highlight {
+      background: color-mix(in srgb, var(--good) 10%, var(--surface));
+      border-left: 3px solid var(--good);
+      border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 12px 0; font-size: 14px;
+    }
+    .highlight.warn { background: color-mix(in srgb, var(--warn) 12%, var(--surface)); border-color: var(--warn); }
+
+    .tier {
+      display: inline-block; padding: 1px 9px; border-radius: 20px;
+      font-size: 11.5px; font-weight: 700; letter-spacing: 0.3px;
+    }
+    .tier-gold   { background: color-mix(in srgb, var(--warn) 18%, transparent); color: var(--warn); }
+    .tier-silver { background: color-mix(in srgb, var(--muted) 22%, transparent); color: var(--text); }
+    .tier-bronze { background: color-mix(in srgb, #C2703D 22%, transparent); color: #E08A4F; }
+
+    .contact-section {
+      background: var(--surface-2);
+      border: 1px solid var(--border-strong);
+      border-radius: 16px; padding: 40px 32px; margin-top: 48px;
+      text-align: center; color: var(--text);
+    }
+    .contact-section h2 { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .contact-section .desc { font-size: 14px; color: var(--muted); margin-bottom: 28px; }
+    .contact-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent-strong); color: var(--bg);
+      font-weight: 700; font-size: 15px; padding: 14px 28px; border-radius: 50px;
+      text-decoration: none; border: none;
+    }
+    .contact-btn:hover { opacity: 0.9; }
+    .response-note { margin-top: 16px; font-size: 13px; color: var(--muted); }
+
+    .site-footer {
+      text-align: center; padding: 32px 24px; border-top: 1px solid var(--border);
+      font-size: 13px; color: var(--muted);
+    }
+    .site-footer a { color: var(--muted); text-decoration: none; border-bottom: 1px solid transparent; }
+    .site-footer a:hover { color: var(--text); }
+
+    [lang-block] { display: none; }
+    [lang-block].visible { display: block; }
+
+    @media (max-width: 600px) {
+      .site-header { padding: 32px 20px 28px; }
+      .logo-mark { width: 52px; height: 52px; }
+      .logo-mark svg { width: 26px; height: 26px; }
+      .site-header h1 { font-size: 20px; }
+      .container { padding: 28px 16px 60px; }
+      .cat-header { margin: 28px 0 14px; }
+      .faq-q { padding: 16px 18px; font-size: 14px; }
+      .faq-a { padding: 0 18px 16px; padding-top: 14px; font-size: 14px; }
+      .contact-section { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')" id="btn-en">English</button>
+  <button class="lang-btn"        onclick="setLang('ko')" id="btn-ko">한국어</button>
+</div>
+
+<header class="site-header">
+  <div class="logo-mark">
+    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round">
+      <circle cx="50" cy="50" r="27"/>
+      <path d="M50 6 L50 20 M50 80 L50 94 M6 50 L20 50 M80 50 L94 50"/>
+      <circle cx="50" cy="50" r="4" fill="currentColor" stroke="none"/>
+    </svg>
+  </div>
+  <h1>Eutaxis</h1>
+  <p class="subtitle" lang-block="en" id="hd-en">Support Center</p>
+  <p class="subtitle" lang-block="ko" id="hd-ko">지원 센터</p>
+</header>
+
+<!-- ═══════════════ ENGLISH ═══════════════ -->
+<div lang-block="en" id="content-en">
+<main class="container">
+
+  <div class="cat-header"><div class="cat-icon">01</div><h2>Getting Started</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">How do I start a project?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>Tap <strong>New Project</strong> on the Home tab and give it a name,
+      client name, and site address (both optional). Every measurement, photo, and comparison
+      you record afterward is attached to that project so it stays organized for the final
+      report.</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Which tools does Eutaxis include?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>Six tools, all reachable from inside a project: <strong>AR Ruler
+      Pro</strong> (distance), <strong>Level Pro</strong> (tilt/level), <strong>Photo
+      Tagger</strong> (annotated site photos), <strong>Light Tracker</strong> (ambient
+      brightness), <strong>Noise Analyzer</strong> (ambient dB), and <strong>Before/After</strong>
+      (paired comparison photos).</p></div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon">02</div><h2>AR Ruler Pro</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">How do I measure a distance?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>Aim the crosshair at a surface until it turns blue, then tap the
+      capture button to place the first point. Aim at the second point and capture again — the
+      distance appears instantly, and you can add a note before saving it to the project.</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">What do Gold, Silver, and Bronze mean?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Eutaxis rates every device by its AR hardware:</p>
+      <ul>
+        <li><span class="tier tier-gold">GOLD</span> — devices with LiDAR. The most accurate
+          measurements, especially on featureless or textureless surfaces.</li>
+        <li><span class="tier tier-silver">SILVER</span> — devices without LiDAR use
+          camera-based plane detection instead. Accurate on well-lit, textured surfaces, less
+          reliable on blank walls or in low light.</li>
+        <li><span class="tier tier-bronze">BRONZE</span> — devices that can't run AR world
+          tracking at all. AR Ruler Pro is unavailable; the other five tools work normally.</li>
+      </ul>
+      <p>Every reading also shows a confidence badge (High / Medium / Low) reflecting the
+      current surface and lighting, independent of your device's tier.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Why does it say "Tracking Lost"?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>ARKit needs a moment to re-orient itself after a sudden motion, low
+      light, or a plain/reflective surface with nothing for it to track against. Move the phone
+      slowly over a textured surface until tracking recovers — your points in progress are
+      preserved.</p></div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon">03</div><h2>Level Pro, Light &amp; Noise</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">How accurate is Level Pro?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>Level Pro reads your device's built-in motion sensors directly, in
+      degrees or as a grade percentage. Use <strong>Set Reference</strong> to zero out a
+      slightly-off surface (like a phone case) before taking a reading, and <strong>Reset</strong>
+      to return to the device's true zero.</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Are Light Tracker and Noise Analyzer calibrated instruments?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>No — they estimate lux from your camera's exposure metering and
+      decibels from your microphone, which is useful for quickly comparing rooms or spotting a
+      problem area, but isn't a substitute for a calibrated light or sound meter. See our
+      <a href="../../terms/eutaxis/">Terms of Service</a> for details.</p></div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon">04</div><h2>Photo Tagger &amp; Before/After</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">How do I tag a photo?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>Capture a photo, then tap anywhere on it to drop a pin and choose a tag
+      type — <strong>💬 Note</strong>, <strong>⚠️ Issue</strong>, or <strong>✅ Done</strong> —
+      with an optional caption. Tap an existing pin to edit or remove it. You can tag up to 3
+      points per photo on the free plan.</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">How does Before/After work?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>Capture a "before" photo, then come back later (same session or a
+      future visit) and capture the matching "after" photo. Both appear side by side wherever
+      that comparison is shown, including in the PDF report.</p></div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon">05</div><h2>PDF Reports</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">What does a report include?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>A cover page with a summary of the project, a measurements table, your
+      annotated photos, and any Before/After comparisons — laid out as a paginated inspection
+      document you can hand to a client or file for your own records.</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Why is there a watermark on my report?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>The free plan generates unlimited reports with a small "Eutaxis (Free)"
+      watermark. A future paid plan will remove it — see the Free Plan section below.</p></div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon">06</div><h2>Free Plan &amp; Data</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">What are the free plan's limits?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>Up to <strong>5 active projects</strong>, up to <strong>3 tags per
+      annotated photo</strong>, and a watermark on PDF reports. Delete an old project to make
+      room for a new one if you hit the limit.</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Is my data backed up anywhere?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <div class="highlight warn">Eutaxis stores everything only on your device — there is
+      currently no iCloud sync or cloud backup.</div>
+      <p>Before uninstalling the App or resetting your device, export or share any PDF reports
+      and photos you want to keep using the Share button.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">How do I delete a project or all my data?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>Open a project and use the <strong>···</strong> menu to delete just
+      that project, or go to <strong>Settings → Delete All Data</strong> to erase everything at
+      once. Both actions are immediate and permanent.</p></div>
+  </div>
+
+  <div class="contact-section">
+    <h2>Still need help?</h2>
+    <p class="desc">Can't find the answer you're looking for? Send us an email and we'll get back to you.</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">📧&nbsp; Contact Support</a>
+    <p class="response-note">We respond within 5 business days.</p>
+  </div>
+
+</main>
+</div>
+
+<!-- ═══════════════ KOREAN ═══════════════ -->
+<div lang-block="ko" id="content-ko">
+<main class="container">
+
+  <div class="cat-header"><div class="cat-icon">01</div><h2>시작하기</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">프로젝트는 어떻게 시작하나요?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>Home 탭에서 <strong>New Project</strong>를 탭하고 이름, 클라이언트명,
+      현장 주소(둘 다 선택 사항)를 입력하세요. 이후 기록하는 모든 측정값·사진·비교는 해당
+      프로젝트에 귀속되어 최종 리포트까지 정리된 상태로 유지됩니다.</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Eutaxis에는 어떤 도구가 있나요?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>프로젝트 안에서 접근할 수 있는 6가지 도구가 있습니다: 거리 측정
+      <strong>AR Ruler Pro</strong>, 기울기/수평 측정 <strong>Level Pro</strong>, 사진 주석
+      <strong>Photo Tagger</strong>, 주변 밝기 <strong>Light Tracker</strong>, 주변 소음
+      <strong>Noise Analyzer</strong>, 전후 비교 사진 <strong>Before/After</strong>.</p></div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon">02</div><h2>AR Ruler Pro</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">거리는 어떻게 측정하나요?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>크로스헤어가 파란색으로 바뀔 때까지 표면을 조준한 뒤 캡처 버튼을 눌러
+      첫 번째 점을 찍습니다. 두 번째 지점을 조준하고 다시 캡처하면 즉시 거리가 표시되며, 저장
+      전에 메모를 추가할 수 있습니다.</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Gold, Silver, Bronze는 무엇을 의미하나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <p>Eutaxis는 기기의 AR 하드웨어에 따라 등급을 나눕니다.</p>
+      <ul>
+        <li><span class="tier tier-gold">GOLD</span> — LiDAR 탑재 기기. 특징 없는 매끈한 표면에서도
+          가장 정확한 측정이 가능합니다.</li>
+        <li><span class="tier tier-silver">SILVER</span> — LiDAR가 없는 기기는 카메라 기반 평면
+          인식을 사용합니다. 조명이 밝고 질감이 있는 표면에서는 정확하지만, 빈 벽이나 어두운
+          환경에서는 신뢰도가 떨어질 수 있습니다.</li>
+        <li><span class="tier tier-bronze">BRONZE</span> — AR 월드 트래킹 자체가 불가능한 기기.
+          AR Ruler Pro는 사용할 수 없지만 나머지 5개 도구는 정상 작동합니다.</li>
+      </ul>
+      <p>기기 등급과 별개로, 측정할 때마다 현재 표면·조명 상태를 반영한 신뢰도 배지(High /
+      Medium / Low)가 함께 표시됩니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">"Tracking Lost"는 왜 뜨나요?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>급격한 움직임, 어두운 조명, 또는 추적할 특징이 없는 밋밋하거나 반사되는
+      표면을 만나면 ARKit이 다시 위치를 잡는 데 잠시 시간이 필요합니다. 질감이 있는 표면 위로
+      천천히 움직이면 트래킹이 복구되며, 진행 중이던 측정 점은 그대로 유지됩니다.</p></div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon">03</div><h2>Level Pro, Light &amp; Noise</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Level Pro는 얼마나 정확한가요?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>Level Pro는 기기 내장 모션 센서 값을 도(°) 또는 기울기(%)로 직접
+      표시합니다. 케이스 등으로 인해 살짝 기울어진 기준면이 있다면 측정 전 <strong>Set
+      Reference</strong>로 영점을 맞추고, <strong>Reset</strong>으로 기기의 실제 영점으로
+      되돌릴 수 있습니다.</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Light Tracker와 Noise Analyzer는 교정된 계측기인가요?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>아니요 — 카메라의 노출 측광값으로 조도를, 마이크로 데시벨을 추정하는
+      방식입니다. 여러 공간을 빠르게 비교하거나 문제 구역을 찾는 데는 유용하지만, 교정된 조도계나
+      음향 측정 장비를 대체할 수는 없습니다. 자세한 내용은 <a href="../../terms/eutaxis/">이용약관</a>을
+      참고해 주세요.</p></div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon">04</div><h2>Photo Tagger &amp; Before/After</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">사진에 태그는 어떻게 다나요?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>사진을 촬영한 뒤 원하는 위치를 탭하여 핀을 놓고 태그 종류
+      (<strong>💬 Note</strong>, <strong>⚠️ Issue</strong>, <strong>✅ Done</strong>)와 선택적
+      캡션을 지정하세요. 기존 핀을 탭하면 수정하거나 삭제할 수 있습니다. 무료 플랜에서는 사진당
+      최대 3개까지 태그할 수 있습니다.</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">Before/After는 어떻게 사용하나요?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>"Before" 사진을 먼저 촬영한 뒤, 나중에(같은 세션이든 다음 방문이든)
+      돌아와서 짝이 되는 "After" 사진을 촬영하세요. 두 사진은 PDF 리포트를 포함해 비교가
+      표시되는 모든 곳에 나란히 나타납니다.</p></div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon">05</div><h2>PDF 리포트</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">리포트에는 무엇이 포함되나요?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>프로젝트 요약이 담긴 표지, 측정값 표, 주석이 달린 사진, Before/After
+      비교까지 — 클라이언트에게 전달하거나 직접 보관할 수 있는 페이지 형태의 감리 문서로
+      구성됩니다.</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">리포트에 왜 워터마크가 있나요?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>무료 플랜은 작은 "Eutaxis (Free)" 워터마크와 함께 무제한으로 리포트를
+      생성할 수 있습니다. 향후 유료 플랜에서 워터마크가 제거될 예정입니다 — 아래 무료 플랜
+      섹션을 참고하세요.</p></div>
+  </div>
+
+  <div class="cat-header"><div class="cat-icon">06</div><h2>무료 플랜 및 데이터</h2></div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">무료 플랜의 제한은 무엇인가요?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>활성 프로젝트 최대 <strong>5개</strong>, 주석 사진당 태그 최대
+      <strong>3개</strong>, PDF 리포트에 워터마크가 적용됩니다. 한도에 도달하면 기존 프로젝트를
+      삭제하여 새 프로젝트를 위한 공간을 확보하세요.</p></div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">제 데이터는 어딘가에 백업되나요?<span class="chevron">▼</span></button>
+    <div class="faq-a">
+      <div class="highlight warn">Eutaxis는 모든 데이터를 기기에만 저장합니다 — 현재 iCloud
+      동기화나 클라우드 백업은 지원하지 않습니다.</div>
+      <p>앱을 삭제하거나 기기를 초기화하기 전에, 보관하고 싶은 PDF 리포트와 사진은 공유 버튼으로
+      미리 내보내 주세요.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">프로젝트나 전체 데이터는 어떻게 삭제하나요?<span class="chevron">▼</span></button>
+    <div class="faq-a"><p>프로젝트를 열고 <strong>···</strong> 메뉴로 해당 프로젝트만 삭제하거나,
+      <strong>설정 → 모든 데이터 삭제</strong>로 한 번에 전체를 삭제할 수 있습니다. 두 작업 모두
+      즉시 영구적으로 적용됩니다.</p></div>
+  </div>
+
+  <div class="contact-section">
+    <h2>추가 도움이 필요하신가요?</h2>
+    <p class="desc">찾는 답변이 없으신가요? 이메일로 문의해 주시면 답변드립니다.</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">📧&nbsp; 문의하기</a>
+    <p class="response-note">영업일 기준 5일 이내 답변드립니다.</p>
+  </div>
+
+</main>
+</div>
+
+<footer class="site-footer">
+  <p>© 2026 Eutaxis. All rights reserved. &nbsp;·&nbsp;
+  <a href="../../privacy/eutaxis/">Privacy Policy</a> &nbsp;·&nbsp;
+  <a href="../../terms/eutaxis/">Terms of Service</a> &nbsp;·&nbsp;
+  <a href="mailto:hoons.labs@gmail.com">Contact</a></p>
+</footer>
+
+<script>
+  function toggle(btn) {
+    btn.closest('.faq').classList.toggle('open');
+  }
+
+  function setLang(lang) {
+    document.querySelectorAll('[lang-block]').forEach(function (el) {
+      el.classList.toggle('visible', el.id.endsWith('-' + lang));
+    });
+    ['en', 'ko'].forEach(function (l) {
+      document.getElementById('btn-' + l).classList.toggle('active', l === lang);
+    });
+    document.documentElement.lang = lang;
+    localStorage.setItem('eutaxis-lang', lang);
+  }
+
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var urlLang = params.get('lang');
+    if (['en', 'ko'].includes(urlLang)) { setLang(urlLang); return; }
+
+    var saved = localStorage.getItem('eutaxis-lang');
+    if (['en', 'ko'].includes(saved)) { setLang(saved); return; }
+
+    var nav = navigator.language || '';
+    if (nav.startsWith('ko')) { setLang('ko'); return; }
+    setLang('en');
+  })();
+</script>
+
+</body>
+</html>
