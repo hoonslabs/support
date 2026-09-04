@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Chroia</title>
+  <meta name="description" content="Chroia — Support" />
+  <link rel="icon" href="./assets/chroia-icon-180.png" />
+  <link rel="apple-touch-icon" href="./assets/chroia-icon-180.png" />
+  <meta property="og:title" content="Chroia — Support" />
+  <meta property="og:description" content="Chroia — Support" />
+  <meta property="og:image" content="https://hoonslabs.github.io/support/chroia/assets/chroia-icon-1024.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:         #201A16;
+      --steel:       #0047AB;
+      --accent:      #FF265C;
+      --accent-dark: #C4174A;
+      --info:        #0047AB;
+      --cream:       #F4EFE6;
+      --surface:     #E4DCCB;
+      --charcoal:    #201A16;
+      --muted:       #6B6055;
+      --border:      #DCD2BE;
+      --radius:      2px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --cream:   #17130F;
+        --surface: #241E17;
+        --charcoal:#F4EFE6;
+        --border:  #3A3128;
+        --muted:   #B8AFA0;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    .site-header {
+      background: linear-gradient(135deg, var(--ink) 0%, var(--steel) 100%);
+      color: #F4EFE6;
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+
+    .logo-mark {
+      width: 64px; height: 64px;
+      border-radius: 14px;
+      display: block; margin: 0 auto 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+    }
+
+    .site-header h1 { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 26px; font-weight: 700; letter-spacing: 2px; margin-bottom: 8px; }
+    .site-header .subtitle { font-size: 14px; opacity: 0.75; font-weight: 400; }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+
+    .meta-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 6px 14px;
+      font-size: 13px; color: var(--muted); margin-bottom: 40px;
+    }
+    .meta-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+
+    .section {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px; margin-bottom: 20px;
+    }
+    .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .section-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .section h2 { font-size: 18px; font-weight: 700; color: var(--charcoal); letter-spacing: -0.3px; }
+
+    p { margin-bottom: 14px; color: var(--charcoal); }
+    p:last-child { margin-bottom: 0; }
+    ul { padding-left: 20px; margin-bottom: 14px; }
+    li { margin-bottom: 6px; }
+    strong { color: var(--charcoal); font-weight: 600; }
+    a { color: var(--accent-dark); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); transition: border-color 0.2s; }
+    a:hover { border-color: var(--accent); }
+
+    .highlight {
+      background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 16px 0; font-size: 15px;
+    }
+
+    .faq-item { border-bottom: 1px solid var(--border); padding: 18px 0; }
+    .faq-item:first-child { padding-top: 0; }
+    .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .faq-q {
+      font-size: 15px; font-weight: 600; color: var(--charcoal);
+      margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;
+    }
+    .faq-q::before {
+      content: "Q";
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 22px; height: 22px;
+      background: var(--accent); color: #fff;
+      border-radius: 6px; font-size: 11px; font-weight: 700; margin-top: 2px;
+    }
+    .faq-a { font-size: 15px; color: var(--charcoal); line-height: 1.7; padding-left: 30px; margin: 0; }
+
+    .contact-card {
+      display: flex; align-items: center; gap: 16px;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 10%, var(--surface)), color-mix(in srgb, var(--steel) 8%, var(--surface)));
+      border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+      border-radius: var(--radius); padding: 20px 24px; margin-top: 16px;
+    }
+    .contact-card .icon { font-size: 28px; }
+    .contact-card .label { font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 2px; }
+    .contact-card .value { font-size: 15px; font-weight: 600; color: var(--accent-dark); }
+
+    .site-footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+    .site-footer a { color: var(--muted); }
+
+    @media (max-width: 600px) {
+      .section { padding: 24px 18px; }
+      .site-header { padding: 40px 20px 36px; }
+      .contact-card { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <img class="logo-mark" src="./assets/chroia-icon-180.png" alt="Chroia" width="64" height="64" />
+  <h1>CHROIA</h1>
+  <p class="subtitle">Support</p>
+</header>
+
+<main class="container">
+
+  <div class="meta-badge">
+    <span class="dot"></span>
+    <span>Last updated: September 4, 2026</span>
+  </div>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="section-header"><div class="section-icon">💬</div><h2>Frequently Asked Questions</h2></div>
+
+    <div class="faq-item">
+      <p class="faq-q">Where are my photos saved?</p>
+      <p class="faq-a">Every photo you capture is saved directly to your device's Photos app, inside a dedicated <strong>"Chroia"</strong> album. You can find, edit, or share them from the system Photos app.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What's free, and what needs Full Unlock?</p>
+      <p class="faq-a"><strong>Photocopy</strong> is available with no purchase. <strong>Full Unlock</strong> is a one-time purchase that opens the other five mechanisms: Riso Duotone, Flat Screenprint, Offset Newsprint, Engraving, and Mimeograph.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Is Full Unlock a subscription?</p>
+      <p class="faq-a">No — Full Unlock is a single <strong>one-time purchase ($5.99)</strong>. There is no recurring charge and nothing to cancel.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">How do I restore a purchase?</p>
+      <p class="faq-a">Open <strong>Settings</strong> in the App and tap <strong>Restore Purchases</strong>. Make sure you're signed in to the App Store with the same Apple ID used for the original purchase.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Why does my captured photo look different from the live preview?</p>
+      <p class="faq-a">For <strong>Riso Duotone</strong> and <strong>Offset Newsprint</strong>, the live viewfinder only approximates one representative ink plate to keep the preview smooth. The full multi-plate overprint — the remaining ink plate(s), plus the intentional plate misregistration — is composited only at the moment you press the shutter, which is why the saved photo can look noticeably darker or richer in color than what you saw live. A small <strong>"+ OVERPRINT AT CAPTURE"</strong> tag appears on the viewfinder for these two mechanisms as a reminder. The other four mechanisms (Flat Screenprint, Photocopy, Engraving, Mimeograph) render a single pass, so their preview always matches the saved photo exactly.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What does the Misregistration slider do?</p>
+      <p class="faq-a">Real risograph and offset printing rarely lines up its color plates perfectly — that slight offset is part of the look. The Misregistration slider (available for Riso Duotone and Offset Newsprint) controls how far the plates drift apart at capture time; set it to 0 for perfectly aligned plates, or higher for a more visibly "off-register" print effect.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Does Chroia support Camera Control (the physical button on iPhone 16 and later)?</p>
+      <p class="faq-a">Not in this version — every control is on-screen touch (tap a mechanism in the carousel, tap Adjust for ink color/angle/dot width/misregistration), so the app works identically across all supported devices.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Does Chroia capture video?</p>
+      <p class="faq-a">No — Chroia is a photo-only camera by design. Video capture is out of scope.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What format are photos saved in?</p>
+      <p class="faq-a">Photos save as HEIC, with the mechanism name used recorded in the photo's EXIF/TIFF metadata.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What languages does Chroia support?</p>
+      <p class="faq-a">English and Japanese are supported from launch. The app follows your device's language setting automatically.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Will my photos be deleted if I delete the app?</p>
+      <p class="faq-a">No. Your photos live in your device's Photos Library, entirely independent of the App. Uninstalling Chroia has no effect on photos you've already saved.</p>
+    </div>
+  </section>
+
+  <!-- Troubleshooting -->
+  <section class="section">
+    <div class="section-header"><div class="section-icon">🔧</div><h2>Troubleshooting</h2></div>
+    <div class="highlight">Most issues are resolved by <strong>force-closing the app and reopening it</strong>, or by <strong>restarting your iPhone</strong>.</div>
+    <ul>
+      <li><strong>Camera not opening / black preview</strong> — Go to iOS Settings → Privacy &amp; Security → Camera and make sure Chroia has camera permission enabled. Force-close and relaunch the app.</li>
+      <li><strong>Photos not appearing in the "Chroia" album</strong> — Go to iOS Settings → Privacy &amp; Security → Photos and confirm Chroia has "Full Access" (or "Limited Access") permission. Without this, captures can't be saved, and the app will show its own permission-needed screen.</li>
+      <li><strong>Purchased Full Unlock but mechanisms are still locked</strong> — Open Settings → Restore Purchases. If it still doesn't unlock, force-close and reopen the App — entitlement state refreshes on launch.</li>
+      <li><strong>App is slow or freezing</strong> — Force-close the app (swipe up in the app switcher) and relaunch. Restart your iPhone if the issue persists.</li>
+    </ul>
+  </section>
+
+  <!-- Contact -->
+  <section class="section">
+    <div class="section-header"><div class="section-icon">✉️</div><h2>Contact Us</h2></div>
+    <p>If your issue isn't covered above or you have feedback to share, please reach out by email. We'll get back to you as soon as possible.</p>
+    <div class="highlight">When contacting support, please include your <strong>iOS version</strong>, <strong>device model</strong>, and <strong>steps to reproduce</strong> the issue for faster assistance.</div>
+    <div class="contact-card">
+      <div class="icon">📬</div>
+      <div>
+        <div class="label">Email</div>
+        <div class="value"><a href="mailto:hoons.labs@gmail.com">hoons.labs@gmail.com</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy Policy -->
+  <section class="section">
+    <div class="section-header"><div class="section-icon">🔒</div><h2>Privacy Policy</h2></div>
+    <p>Read the Chroia Privacy Policy at the link below.</p>
+    <p><a href="../../privacy/chroia/">Privacy Policy →</a></p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>© 2026 Hoon's Labs · Chroia</p>
+  <p style="margin-top:6px;">
+    <a href="../../privacy/chroia/">Privacy Policy</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:hoons.labs@gmail.com">hoons.labs@gmail.com</a>
+  </p>
+</footer>
+
+</body>
+</html>
