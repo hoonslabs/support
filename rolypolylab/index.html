@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Support — Roly Poly Lab</title>
+  <meta name="description" content="Roly Poly Lab — Support" />
+  <link rel="icon" href="./assets/rolypolylab-icon-180.png" />
+  <link rel="apple-touch-icon" href="./assets/rolypolylab-icon-180.png" />
+  <meta property="og:title" content="Roly Poly Lab — Support" />
+  <meta property="og:description" content="Roly Poly Lab — Support" />
+  <meta property="og:image" content="https://hoonslabs.github.io/support/rolypolylab/assets/rolypolylab-icon-1024.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* the app's Pebble colors (App/Pebble.swift) */
+    :root {
+      --ink:         #1E2925;
+      --leaf:        #CFE2CC;
+      --accent:      #0F8C80;
+      --accent-dark: #0A6158;
+      --info:        #12968A;
+      --amber:       #F09A28;
+      --cream:       #F4F7F2;
+      --surface:     #FFFFFF;
+      --charcoal:    #1E2925;
+      --muted:       #66746D;
+      --border:      #D5DDD3;
+      --radius:      18px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --leaf:    #1A221E;
+        --cream:   #121815;
+        --surface: #1E2723;
+        --charcoal:#E6ECE8;
+        --border:  #2E3833;
+        --muted:   #9DAAA3;
+        --accent-dark: #3BB8AA;
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    .site-header { background: var(--leaf); color: var(--charcoal); padding: 56px 24px 48px; text-align: center; }
+    .logo-mark { width: 64px; height: 64px; border-radius: 14px; display: block; margin: 0 auto 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.18); }
+    .site-header h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .site-header .subtitle { font-size: 14px; color: var(--muted); font-weight: 500; }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+
+    .meta-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 6px 14px;
+      font-size: 13px; color: var(--muted); margin-bottom: 40px;
+    }
+    .meta-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+
+    .section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; margin-bottom: 20px; }
+    .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .section-icon {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: color-mix(in srgb, var(--accent) 14%, transparent);
+      display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;
+    }
+    .section h2 { font-size: 18px; font-weight: 700; color: var(--charcoal); letter-spacing: -0.3px; }
+
+    p { margin-bottom: 14px; color: var(--charcoal); }
+    p:last-child { margin-bottom: 0; }
+    ul, ol { padding-left: 20px; margin-bottom: 14px; }
+    li { margin-bottom: 6px; }
+    strong { color: var(--charcoal); font-weight: 600; }
+    a { color: var(--accent-dark); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); transition: border-color 0.2s; }
+    a:hover { border-color: var(--accent); }
+    code { font-size: 14px; }
+
+    .highlight {
+      background: color-mix(in srgb, var(--accent) 9%, var(--surface));
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0; padding: 14px 18px; margin: 16px 0; font-size: 15px;
+    }
+
+    .table-wrap { overflow-x: auto; }
+    .data-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .data-table th {
+      background: color-mix(in srgb, var(--accent) 12%, var(--surface));
+      color: var(--accent-dark); font-weight: 600; text-align: left;
+      padding: 10px 14px; border-bottom: 1px solid var(--border);
+    }
+    .data-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    .tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+    .tag-local { background: color-mix(in srgb, var(--info) 18%, transparent); color: var(--accent-dark); }
+    .tag-third { background: color-mix(in srgb, var(--amber) 22%, transparent); color: #8a5310; }
+    .tag-no    { background: color-mix(in srgb, var(--muted) 18%, transparent); color: var(--muted); }
+    @media (prefers-color-scheme: dark) { .tag-third { color: #F5AA45; } }
+
+    .contact-card {
+      display: flex; align-items: center; gap: 16px;
+      background: color-mix(in srgb, var(--accent) 9%, var(--surface));
+      border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+      border-radius: var(--radius); padding: 20px 24px; margin-top: 16px;
+    }
+    .contact-card .icon { font-size: 28px; }
+    .contact-card .label { font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 2px; }
+    .contact-card .value { font-size: 15px; font-weight: 600; color: var(--accent-dark); }
+
+    .site-footer { text-align: center; padding: 32px 24px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+    .site-footer a { color: var(--muted); }
+
+    @media (max-width: 600px) {
+      .section { padding: 24px 18px; }
+      .site-header { padding: 40px 20px 36px; }
+      .data-table { font-size: 13px; }
+      .data-table th, .data-table td { padding: 8px 10px; }
+      .contact-card { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 18px 0; }
+    .faq-item:first-of-type { padding-top: 0; }
+    .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .faq-q { font-size: 15px; font-weight: 600; color: var(--charcoal); margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; }
+    .faq-q::before {
+      content: "Q"; display: inline-flex; align-items: center; justify-content: center;
+      min-width: 22px; height: 22px; background: var(--accent); color: #fff;
+      border-radius: 7px; font-size: 11px; font-weight: 700; margin-top: 2px;
+    }
+    .faq-a { font-size: 15px; color: var(--charcoal); line-height: 1.7; padding-left: 30px; margin: 0; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <img class="logo-mark" src="./assets/rolypolylab-icon-180.png" alt="Roly Poly Lab" width="64" height="64" />
+  <h1>Roly Poly Lab</h1>
+  <p class="subtitle">Support</p>
+</header>
+
+<main class="container">
+
+  <div class="meta-badge">
+    <span class="dot"></span>
+    <span>Last updated: October 13, 2026</span>
+  </div>
+
+  <section class="section">
+    <div class="section-header"><div class="section-icon">💬</div><h2>Frequently Asked Questions</h2></div>
+    <div class="faq-item">
+      <p class="faq-q">Where is my game saved?</p>
+      <p class="faq-a">Your colony, isopods and Field Guide are saved on your device only. There is no account or cloud sync yet, so <strong>deleting the App deletes your game</strong>, and a new device starts a new game.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What happens while I'm away?</p>
+      <p class="faq-a">The colony keeps growing and earning Compost for up to 8 hours (Research Notes can extend this). A pair in the breeding pen keeps hatching clutches too. When you come back, a report shows what happened.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">How do I find new morphs?</p>
+      <p class="faq-a">Catch the sparkling <strong>mutants</strong> that visit the terrarium — feeding the colony brings the next one sooner. Each mutant carries one new gene. Most genes are hidden: they only show in a kid that gets two copies, so breed two carriers of the same gene. The Breeding Lab shows each pair's chance of a new find and suggests a good pair.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Why does my pair say there is nothing new to hatch?</p>
+      <p class="faq-a">Neither a new Field Guide entry nor a new trait can come from that pair yet — usually a second carrier of the gene is missing. Keep catching mutants or scoop isopods from the colony, then try the suggested pair.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What is Auto Breeding?</p>
+      <p class="faq-a">It opens after your first few Field Guide entries. Switch it on in the Breeding Lab and the pair in the pen keeps breeding, even while you're away; only finds (and kids a collector wants) stay in the hatchery, the rest join the colony. Switch it off whenever you want to choose each clutch yourself.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What does starting a new colony keep?</p>
+      <p class="faq-a">You keep your breeding slots, Field Guide, unlocked body types, Research Notes and the permanent bonus, which grows with each colony. Compost, upgrades and the colony itself start over, from founders you pick.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">What do Ad-Free and Lab Pass include?</p>
+      <p class="faq-a"><strong>Ad-Free</strong> removes interstitial ads and adds 2 breeding slots. <strong>Lab Pass</strong> includes all of that, lets you claim ad rewards without watching ads, and raises Food Efficiency ×1.5. Ad-Free owners can upgrade to Lab Pass for the difference. Rewarded ads are always optional.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">How do I restore a purchase?</p>
+      <p class="faq-a">Open the menu, go to <strong>Store</strong> and tap <strong>Restore Purchases</strong>, signed in with the same Apple ID you bought with. Ad-Free and Lab Pass come back on any device. Items you used up (catalysts, rare food) can't be restored.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Why am I asked for my year of birth?</p>
+      <p class="faq-a">So the ads you may see suit your age. It's asked once, nothing is pre-selected, and the answer stays on your device. See the <a href="../../privacy/rolypolylab/">Privacy Policy</a> for what changes for players under 13.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">I find some isopod colors hard to tell apart.</p>
+      <p class="faq-a">Open <strong>Settings</strong> and set <strong>Isopod Colors</strong> to <strong>Color-Vision Assist</strong>. Body colors spread further apart for red-green and blue-yellow color blindness; genes and the Field Guide stay the same.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header"><div class="section-icon">🔧</div><h2>Troubleshooting</h2></div>
+    <div class="highlight">Most issues go away after <strong>closing the App from the app switcher and opening it again</strong>.</div>
+    <ul>
+      <li><strong>A purchase didn't unlock</strong> — Store → Restore Purchases, then reopen the App. Unlocks are checked with the App Store on every launch.</li>
+      <li><strong>An ad button says to try again tomorrow</strong> — each reward has a daily limit; it resets at local midnight.</li>
+      <li><strong>Ads don't load</strong> — check your internet connection. In some regions you are asked for ad consent first; you can review it under Settings → Privacy Choices.</li>
+      <li><strong>No progress while away</strong> — away time counts up to the cap (8 hours at first).</li>
+      <li><strong>The game feels slow or hot on an older iPhone</strong> — reopen the App; if it continues, please email us your device model.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <div class="section-header"><div class="section-icon">✉️</div><h2>Contact Us</h2></div>
+    <p>If your question isn't answered above, or you have feedback, please email us.</p>
+    <div class="highlight">Please include your <strong>iOS version</strong>, <strong>device model</strong> and <strong>what happened, step by step</strong>.</div>
+    <div class="contact-card">
+      <div class="icon">📬</div>
+      <div>
+        <div class="label">Email</div>
+        <div class="value">hoons.labs@gmail.com</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header"><div class="section-icon">🔒</div><h2>Privacy Policy</h2></div>
+    <p><a href="../../privacy/rolypolylab/">Read the Roly Poly Lab Privacy Policy →</a></p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>© 2026 Hoon's Labs · Roly Poly Lab</p>
+  <p style="margin-top:6px;">
+    <a href="../../privacy/rolypolylab/">Privacy Policy</a>
+    &nbsp;·&nbsp;
+    <a href="../../support/rolypolylab/">Support</a>
+  </p>
+</footer>
+
+</body>
+</html>
