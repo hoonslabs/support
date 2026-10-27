@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Support — Briven</title>
-  <meta name="description" content="Briven Support / 지원 센터 / サポート" />
+  <meta name="description" content="Briven Support Center / 지원 센터 / サポートセンター / 支援中心" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -295,15 +295,24 @@
       .faq-a { padding: 0 18px 16px; padding-top: 14px; font-size: 14px; }
       .contact-section { padding: 32px 20px; }
     }
+
+    /* 4개 언어 버튼 — 좁은 화면에서 넘치지 않게(2026-10-27 zh-Hant 추가) */
+    .lang-bar { flex-wrap: wrap; }
+    @media (max-width: 420px) {
+      .lang-bar { justify-content: center; padding: 10px 12px; gap: 6px; }
+      .lang-btn { padding: 5px 11px; }
+    }
   </style>
 </head>
 <body>
 
+
 <!-- Language Toggle -->
 <div class="lang-bar">
   <button class="lang-btn active" onclick="setLang('en')" id="btn-en">English</button>
-  <button class="lang-btn"        onclick="setLang('ko')" id="btn-ko">한국어</button>
-  <button class="lang-btn"        onclick="setLang('ja')" id="btn-ja">日本語</button>
+  <button class="lang-btn" onclick="setLang('ko')" id="btn-ko">한국어</button>
+  <button class="lang-btn" onclick="setLang('ja')" id="btn-ja">日本語</button>
+  <button class="lang-btn" onclick="setLang('zh-Hant')" id="btn-zh-Hant">繁體中文</button>
 </div>
 
 <!-- Header -->
@@ -313,6 +322,7 @@
   <p class="subtitle" lang-block="en" id="hd-en">Support Center</p>
   <p class="subtitle" lang-block="ko" id="hd-ko">지원 센터</p>
   <p class="subtitle" lang-block="ja" id="hd-ja">サポートセンター</p>
+  <p class="subtitle" lang-block="zh-Hant" id="hd-zh-Hant">支援中心</p>
 </header>
 
 <!-- ══════════════════════════════════════════════
@@ -321,7 +331,6 @@
 <div lang-block="en" id="content-en">
 <main class="container">
 
-  <!-- Getting Started -->
   <div class="cat-header">
     <div class="cat-icon" style="background:var(--moss-bg);">🚀</div>
     <h2>Getting Started</h2>
@@ -333,10 +342,17 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>First, choose your currency — this is the only required step. Then you can optionally add your
-      income sources and any subscriptions you're paying for; both can be skipped and added anytime later
-      from the Dashboard. At the end, Briven asks for notification permission for a gentle weekly review
-      reminder.</p>
+      <p>First, choose your currency — this is the only required step. Then you can optionally add your income sources and any subscriptions you're paying for; both can be skipped and added anytime later from the Dashboard. At the end, Briven asks for notification permission for a gentle weekly review reminder.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Which languages does Briven support?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>English, Japanese, and Traditional Chinese. Briven follows your iPhone's language automatically; to use a different language just for Briven, go to <strong>iOS Settings → Apps → Briven → Language</strong>.</p><p>The default categories are created in the language you're using when you first set up the app. You can rename them anytime.</p>
     </div>
   </div>
 
@@ -346,9 +362,7 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>Yes — go to <strong>Settings → Currency</strong>. This changes how all amounts are displayed and
-      entered going forward. Briven does not perform exchange-rate conversion; it simply switches the
-      display currency.</p>
+      <p>Yes — go to <strong>Settings → Currency</strong>. Briven does not convert exchange rates: all your existing entries are shown in the new currency as-is, so change it only if you entered the wrong one.</p>
     </div>
   </div>
 
@@ -358,17 +372,10 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>No. Briven is intentionally a fully manual budgeting app — there is no bank connection, no CSV or
-      OFX import, and no account linking of any kind. You enter every income source, subscription, and
-      expense yourself.</p>
-      <div class="highlight">
-        This is a deliberate privacy choice: your banking credentials and transaction history never have
-        to leave your control.
-      </div>
+      <p>No. Briven is intentionally a fully manual budgeting app — there is no bank connection, no CSV or OFX import, and no account linking of any kind. You enter every income source, subscription, and expense yourself.</p><div class="highlight">This is a deliberate privacy choice: your banking credentials and transaction history never have to leave your control.</div>
     </div>
   </div>
 
-  <!-- Expenses & Categories -->
   <div class="cat-header">
     <div class="cat-icon" style="background:var(--sky-bg);">🧾</div>
     <h2>Expenses &amp; Categories</h2>
@@ -380,9 +387,17 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>Tap the <strong>+</strong> button from Dashboard or Transactions. Enter the amount, pick a category,
-      optionally pick a payment method and add a memo, then save. You can create a brand-new category or
-      payment method right from that same screen without leaving it.</p>
+      <p>Tap <strong>Add expense</strong> on the Dashboard, or <strong>+</strong> in Transactions. Enter the amount, an optional memo, then pick a category — your recent categories are one tap away, and Briven suggests the one you used last time for the same memo. The payment method remembers your last choice. You can create a new category or payment method right from that screen.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Can I add an expense without opening the app first?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Yes. Add the <strong>Briven</strong> widget to your Home Screen or Lock Screen, or add the <strong>Add Expense</strong> button to Control Center (iOS 18 or later). Tapping it opens Briven straight to a new expense. The widgets never show your amounts. If App Lock is on, you'll unlock first.</p>
     </div>
   </div>
 
@@ -392,10 +407,7 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>A few default categories — Dining Out, Transport, Shopping — come with two subcategories each
-      (e.g., Coffee &amp; Cafes, Fuel &amp; Gas). You can also create your own on any top-level category.
-      In charts and reports, a parent category's total automatically rolls up all of its subcategories'
-      spending; you can drill into the individual subcategory breakdown from your transaction list.</p>
+      <p>A few default categories — Dining Out, Transport, Shopping — come with two subcategories each (e.g., Coffee &amp; Cafes, Fuel &amp; Gas). You can also create your own on any top-level category. In charts and reports, a parent category's total automatically rolls up all of its subcategories' spending; you can drill into the individual subcategory breakdown from your transaction list.</p>
     </div>
   </div>
 
@@ -405,9 +417,7 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>Yes — any category, including the default ones, can be deleted or edited. Past expenses tagged
-      with a deleted category are automatically grouped under <strong>"Uncategorized"</strong>; they are
-      never deleted along with the category.</p>
+      <p>Yes — any category, including the default ones, can be deleted or edited. Past expenses tagged with a deleted category are automatically grouped under <strong>"Uncategorized"</strong>; they are never deleted along with the category.</p>
     </div>
   </div>
 
@@ -417,13 +427,10 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>It lets you track whether an expense was cash or a specific card. Briven starts you off with
-      <strong>Cash</strong>, and you can add as many cards as you like from <strong>Settings → Payment
-      Methods</strong>. Reports and Transactions show a per-method subtotal.</p>
+      <p>It lets you track whether an expense was cash or a specific card. Briven starts you off with <strong>Cash</strong>, and you can add as many cards as you like from <strong>Settings → Payment Methods</strong>. Reports and Transactions show a per-method subtotal.</p>
     </div>
   </div>
 
-  <!-- Income & Subscriptions -->
   <div class="cat-header">
     <div class="cat-icon" style="background:var(--moss-bg);">💵</div>
     <h2>Income &amp; Subscriptions</h2>
@@ -435,9 +442,7 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>Go to the <strong>Income</strong> card on the Dashboard and tap it to manage your income sources.
-      You can register as many as you like — for example, a full-time job plus freelance work — each with
-      its own frequency: weekly, monthly, yearly, or irregular.</p>
+      <p>Tap the <strong>Income</strong> card on the Dashboard to manage your income sources. You can register as many as you like — for example, a full-time job plus freelance work — each with its own frequency (weekly, monthly, yearly, or irregular) and an optional payday reminder.</p>
     </div>
   </div>
 
@@ -447,9 +452,7 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>Choose <strong>Irregular</strong> for income that doesn't follow a fixed schedule or amount, like
-      freelance payments. Instead of setting one fixed amount, you log each payment individually as it
-      arrives.</p>
+      <p>Choose <strong>Irregular</strong> for income that doesn't follow a fixed schedule or amount, like freelance payments. Instead of setting one fixed amount, you log each payment individually as it arrives.</p>
     </div>
   </div>
 
@@ -459,8 +462,7 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>Turn off its <strong>Active</strong> toggle instead of deleting it. Deactivating keeps your past
-      monthly reports accurate — Briven never rewrites history when your income setup changes.</p>
+      <p>Turn off its <strong>Active</strong> toggle instead of deleting it. Deactivating keeps your past monthly reports accurate — Briven never rewrites history when your income setup changes.</p>
     </div>
   </div>
 
@@ -470,8 +472,7 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>Up to <strong>5 active subscriptions</strong> on the free plan. Unlimited subscription tracking is
-      one of the features planned for the upcoming one-time lifetime purchase.</p>
+      <p>Up to <strong>3 active subscriptions</strong> on the free plan. Briven Lifetime removes the limit.</p>
     </div>
   </div>
 
@@ -481,13 +482,10 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>Update the amount on the subscription's edit screen. Briven detects the increase, shows
-      <strong>"was $X"</strong> in your subscriptions list, and sends you an immediate notification so a
-      price hike never slips by unnoticed.</p>
+      <p>Raise the amount on the subscription's edit screen and save. Briven keeps the old price, shows <strong>"was $X"</strong> in your subscriptions list, and sends you a notification. Briven also reminds you the day before each subscription bills.</p>
     </div>
   </div>
 
-  <!-- Reports -->
   <div class="cat-header">
     <div class="cat-icon" style="background:var(--amber-bg);">📊</div>
     <h2>Reports</h2>
@@ -499,10 +497,7 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>Tap <strong>"This Month"</strong> on the Dashboard to open Reports. Tap any date on the calendar
-      for a single day, or drag across it to select a range — your total and category breakdown update
-      instantly without leaving the screen. Tap the same date again to deselect and return to the
-      whole-month view.</p>
+      <p>Tap the <strong>This Month</strong> card on the Dashboard to open Reports. Tap any date on the calendar for a single day, or drag across it to select a range — your total and category breakdown update instantly. Tap the same date again to return to the whole-month view.</p>
     </div>
   </div>
 
@@ -512,13 +507,20 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>If you set a monthly budget on a category (from the Categories screen), Reports shows a progress
-      bar for it whenever you're viewing the whole month — it stays in your brand color when you're within
-      budget and turns amber if you go over.</p>
+      <p>If you set a monthly budget on a category, Reports shows a progress bar for it when you're viewing the whole month — tap the bar to change the budget. It turns amber if you go over, and Briven alerts you the moment an expense takes you over.</p>
     </div>
   </div>
 
-  <!-- iCloud Sync -->
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Can I see weekly or yearly reports?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Week and Year views, the 12-month trend chart, and the full category comparison are part of <strong>Briven Lifetime</strong>. The monthly view, spending pace, and day-of-week pattern are free.</p>
+    </div>
+  </div>
+
   <div class="cat-header">
     <div class="cat-icon" style="background:var(--sky-bg);">☁️</div>
     <h2>iCloud Sync</h2>
@@ -530,9 +532,17 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>Yes, and it's free. Briven uses Apple's CloudKit — your own private iCloud database — to sync your
-      data across your iPhones automatically when you're signed into iCloud. No account or subscription is
-      required.</p>
+      <p>Yes, and it's free. Briven uses Apple's CloudKit — your own private iCloud database — to sync your data across your iPhones automatically when you're signed into iCloud. No account or subscription is required.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      I reinstalled Briven — where did my data go?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>If you were signed into iCloud, your data comes back automatically from your private iCloud — give it a moment after the first launch. Without iCloud, data is stored only on the device and is removed when the app is deleted.</p>
     </div>
   </div>
 
@@ -542,13 +552,10 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>No. iCloud sync in Briven is single-user only — it keeps your own devices in sync with each other,
-      not with anyone else's account. There is no shared or family sync feature; each budget stays private
-      to you.</p>
+      <p>No. iCloud sync in Briven is single-user only — it keeps your own devices in sync with each other, not with anyone else's account. There is no shared or family sync feature; each budget stays private to you.</p>
     </div>
   </div>
 
-  <!-- App Lock -->
   <div class="cat-header">
     <div class="cat-icon" style="background:var(--moss-bg);">🔒</div>
     <h2>App Lock</h2>
@@ -560,15 +567,13 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>Go to <strong>Settings → Security → App Lock</strong> and turn it on — it's off by default. If Face
-      ID or Touch ID fails or isn't set up, your device passcode works as a fallback.</p>
+      <p>Go to <strong>Settings → Security</strong> and turn on <strong>Face ID</strong> (or Touch ID) — it's off by default. If Face ID or Touch ID fails or isn't set up, your device passcode works as a fallback.</p>
     </div>
   </div>
 
-  <!-- Lifetime Unlock -->
   <div class="cat-header">
     <div class="cat-icon" style="background:var(--amber-bg);">✨</div>
-    <h2>Lifetime Unlock (Coming Soon)</h2>
+    <h2>Briven Lifetime</h2>
   </div>
 
   <div class="faq">
@@ -577,30 +582,40 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>Yes. Unlimited expense logging, income tracking, subscription tracking (up to 5), categories,
-      payment methods, iCloud sync, and monthly Reports are all free, with no ads.</p>
+      <p>Yes. Unlimited expense logging, income tracking, subscription tracking (up to 3), categories, payment methods, widgets, iCloud sync, and monthly Reports are all free, with no ads.</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      What will the one-time lifetime purchase include?
+      What does Briven Lifetime include?
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>A future update will introduce a single, non-subscription purchase that unlocks:</p>
-      <ul>
-        <li><strong>Savings Goals</strong> — set targets and track progress</li>
-        <li><strong>Unlimited subscription tracking</strong> — no 5-item limit</li>
-        <li><strong>Multi-year trend reports</strong></li>
-        <li><strong>Data export</strong> (PDF / CSV)</li>
-        <li><strong>Multiple budget profiles</strong> (e.g., personal + side business)</li>
-      </ul>
-      <p>No recurring billing — pay once, own it for life.</p>
+      <p>A single, one-time purchase — never a subscription — that unlocks:</p><ul><li>Unlimited savings goals — log deposits, set a deadline, and see how much to save each month</li><li>Unlimited subscription tracking</li><li>Week and Year views in Reports, plus a 12-month spending trend chart</li><li>A full category-by-category comparison with the previous period</li><li>Export your expenses to CSV or PDF</li></ul><p>Pay once, own it for life.</p>
     </div>
   </div>
 
-  <!-- Privacy & Data -->
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I restore my purchase on a new device?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Go to <strong>Settings → Plan</strong> and tap <strong>Restore Purchases</strong>. Use the same Apple ID you bought it with.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      How do I export my data?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>With Briven Lifetime, go to <strong>Settings → Export Data</strong>, choose a period and CSV or PDF, then tap Export and pick where to save or share it. Exports include expenses only.</p>
+    </div>
+  </div>
+
   <div class="cat-header">
     <div class="cat-icon" style="background:var(--sky-bg);">🔐</div>
     <h2>Privacy &amp; Data</h2>
@@ -612,8 +627,7 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>No — there's no sign-up, login, or account of any kind. Briven works immediately after you choose
-      your currency.</p>
+      <p>No — there's no sign-up, login, or account of any kind. Briven works immediately after you choose your currency.</p>
     </div>
   </div>
 
@@ -623,13 +637,10 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>Entirely on your device, and optionally in your own private Apple iCloud account if you're signed
-      in. Briven has no backend server, and the developer cannot access your income, expenses, or
-      subscriptions. See the <a href="../../privacy/briven/">Privacy Policy</a> for full details.</p>
+      <p>Entirely on your device, and optionally in your own private Apple iCloud account if you're signed in. Briven has no backend server, and the developer cannot access your income, expenses, or subscriptions. See the <a href="../../privacy/briven/">Privacy Policy</a> for full details.</p>
     </div>
   </div>
 
-  <!-- Contact -->
   <div class="contact-section">
     <h2>Still need help?</h2>
     <p class="desc">Can't find the answer you're looking for? Send us an email and we'll get back to you.</p>
@@ -655,45 +666,47 @@
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      Briven을 처음 어떻게 설정하나요?
+      Briven은 처음에 어떻게 설정하나요?
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>먼저 통화를 선택합니다 — 유일한 필수 단계입니다. 이후 수입원과 결제 중인 구독을
-      선택적으로 추가할 수 있으며, 두 단계 모두 건너뛰고 나중에 대시보드에서 추가할 수 있습니다.
-      마지막으로 주간 리뷰 알림을 위한 알림 권한을 요청합니다.</p>
+      <p>먼저 통화를 선택하세요 — 필수 단계는 이것뿐입니다. 이어서 수입원과 사용 중인 구독을 선택적으로 추가할 수 있으며, 둘 다 건너뛰고 나중에 대시보드에서 언제든 추가할 수 있습니다. 마지막으로 주간 리뷰 알림을 위한 알림 권한을 요청합니다.</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      통화를 나중에 변경할 수 있나요?
+      어떤 언어를 지원하나요?
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>네, <strong>설정 → 통화</strong>에서 변경할 수 있습니다. 이후 모든 금액의 표시·입력
-      방식이 바뀝니다. Briven은 환율 변환을 하지 않으며 표시 통화만 전환합니다.</p>
+      <p>영어, 일본어, 중국어(번체)를 지원합니다. Briven은 iPhone 언어 설정을 자동으로 따르며, Briven만 다른 언어로 쓰려면 <strong>iOS 설정 → 앱 → Briven → 언어</strong>에서 바꿀 수 있습니다. (한국어 화면은 아직 지원하지 않아 영어로 표시됩니다.)</p><p>기본 카테고리는 처음 설정할 때의 언어로 만들어지며, 언제든 이름을 바꿀 수 있습니다.</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      은행 명세서나 CSV를 가져올 수 있나요?
+      통화를 나중에 바꿀 수 있나요?
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>아니요. Briven은 의도적으로 완전 매뉴얼 예산관리 앱입니다 — 은행 연동, CSV/OFX 임포트,
-      어떤 형태의 계정 연결도 없습니다. 모든 수입원, 구독, 지출을 사용자가 직접 입력합니다.</p>
-      <div class="highlight">
-        이는 의도된 프라이버시 설계입니다: 은행 로그인 정보와 거래 내역이 사용자 통제를 벗어날
-        일이 없습니다.
-      </div>
+      <p>네 — <strong>Settings → Currency</strong>에서 바꿀 수 있습니다. Briven은 환율을 변환하지 않아 기존 기록이 모두 같은 숫자 그대로 새 통화로 표시되므로, 통화를 잘못 골랐을 때만 바꾸는 것을 권합니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      CSV나 은행 거래내역 가져오기를 지원하나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>아니요. Briven은 의도적으로 완전한 수기 입력 예산관리 앱입니다 — 은행 연동, CSV·OFX 가져오기, 어떤 형태의 계정 연결도 없습니다. 모든 수입원, 구독, 지출을 직접 입력합니다.</p><div class="highlight">이는 의도적인 프라이버시 선택입니다. 은행 인증 정보와 거래 내역을 남에게 맡길 필요가 없습니다.</div>
     </div>
   </div>
 
   <div class="cat-header">
     <div class="cat-icon" style="background:var(--sky-bg);">🧾</div>
-    <h2>지출 &amp; 카테고리</h2>
+    <h2>지출과 카테고리</h2>
   </div>
 
   <div class="faq">
@@ -702,64 +715,62 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>대시보드나 Transactions 화면의 <strong>+</strong> 버튼을 탭하세요. 금액을 입력하고
-      카테고리를 선택한 뒤, 선택적으로 결제 방식과 메모를 추가하고 저장합니다. 같은 화면에서
-      새 카테고리나 결제 방식도 바로 만들 수 있습니다.</p>
+      <p>대시보드의 <strong>Add expense</strong>나 Transactions의 <strong>+</strong>를 누르세요. 금액, 선택 사항인 메모를 입력한 뒤 카테고리를 고릅니다 — 최근 쓴 카테고리는 한 번에 고를 수 있고, 같은 메모로 지난번에 쓴 카테고리를 제안해 드립니다. 결제 방식은 마지막 선택을 기억합니다. 같은 화면에서 새 카테고리나 결제 방식도 바로 만들 수 있습니다.</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      서브카테고리는 무엇인가요?
+      앱을 열지 않고 지출을 추가할 수 있나요?
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>기본 카테고리 중 Dining Out/Transport/Shopping 세 개는 각각 서브카테고리 2개씩 포함되어
-      있습니다(예: Coffee &amp; Cafes, Fuel &amp; Gas). 최상위 카테고리에는 직접 서브카테고리를
-      만들 수도 있습니다. 차트·리포트에서 부모 카테고리 금액은 모든 서브카테고리 지출을 자동
-      합산해 보여주며, 거래 목록에서 서브카테고리별 세부 내역을 드릴다운으로 확인할 수 있습니다.</p>
+      <p>네. 홈 화면이나 잠금 화면에 <strong>Briven</strong> 위젯을 추가하거나, 제어 센터에 <strong>Add Expense</strong> 버튼을 추가하세요(iOS 18 이상). 누르면 Briven이 바로 지출 입력 화면으로 열립니다. 위젯에는 금액이 표시되지 않으며, 앱 잠금이 켜져 있으면 먼저 잠금을 해제합니다.</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      카테고리를 삭제할 수 있나요? 과거 지출은 어떻게 되나요?
+      서브카테고리가 뭔가요?
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>네 — 기본 카테고리를 포함해 어떤 카테고리든 삭제·수정할 수 있습니다. 삭제된 카테고리를
-      가리키던 과거 지출은 자동으로 <strong>"Uncategorized"</strong>로 묶여 표시되며, 카테고리와
-      함께 삭제되지 않습니다.</p>
+      <p>일부 기본 카테고리(Dining Out, Transport, Shopping)에는 서브카테고리가 2개씩 있습니다(예: Coffee &amp; Cafes, Fuel &amp; Gas). 어떤 최상위 카테고리에도 직접 서브카테고리를 만들 수 있습니다. 차트와 리포트에서 상위 카테고리 합계에는 서브카테고리 지출이 자동으로 합산되며, 지출 목록에서 서브카테고리별 내역을 볼 수 있습니다.</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      결제 방식 관리는 무엇인가요?
+      카테고리를 삭제할 수 있나요? 기존 지출은 어떻게 되나요?
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>지출이 현금인지 특정 카드인지 구분해서 기록할 수 있습니다. Briven은 기본으로
-      <strong>Cash</strong> 하나를 제공하며, <strong>설정 → Payment Methods</strong>에서 카드를
-      원하는 만큼 추가할 수 있습니다. Reports와 Transactions에서 결제 방식별 소계를 볼 수
-      있습니다.</p>
+      <p>네 — 기본 카테고리를 포함해 모든 카테고리를 수정하거나 삭제할 수 있습니다. 삭제된 카테고리의 기존 지출은 자동으로 <strong>"Uncategorized"</strong>로 묶이며, 카테고리와 함께 삭제되지 않습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      결제 방식은 어디에 쓰나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>지출이 현금인지 특정 카드인지 기록할 수 있습니다. 처음에는 <strong>Cash</strong>가 있고, <strong>Settings → Payment Methods</strong>에서 카드를 원하는 만큼 추가할 수 있습니다. 리포트와 지출 목록에 결제 방식별 소계가 표시됩니다.</p>
     </div>
   </div>
 
   <div class="cat-header">
     <div class="cat-icon" style="background:var(--moss-bg);">💵</div>
-    <h2>수입 &amp; 구독</h2>
+    <h2>수입과 구독</h2>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      수입원을 여러 개 등록할 수 있나요?
+      수입원을 여러 개 추가하려면?
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>대시보드의 <strong>Income</strong> 카드를 탭해 수입원을 관리합니다. 본업+부업처럼 원하는
-      만큼 등록할 수 있으며, 각 수입원은 주급/월급/연봉/비정기 중 원하는 주기를 가질 수
-      있습니다.</p>
+      <p>대시보드의 <strong>Income</strong> 카드를 눌러 수입원을 관리하세요. 본업과 부업처럼 원하는 만큼 등록할 수 있으며, 각각 주기(매주·매월·매년·비정기)와 선택 사항인 지급일 알림을 설정할 수 있습니다.</p>
     </div>
   </div>
 
@@ -769,19 +780,17 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>프리랜서 수입처럼 금액과 주기가 일정하지 않은 경우 <strong>Irregular</strong>를
-      선택하세요. 고정 금액을 설정하는 대신, 입금될 때마다 건별로 직접 기록합니다.</p>
+      <p>프리랜서 수입처럼 일정이나 금액이 정해지지 않은 수입에는 <strong>Irregular</strong>를 고르세요. 고정 금액 대신 입금될 때마다 하나씩 기록합니다.</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      이직했어요 — 기존 수입원은 어떻게 처리하나요?
+      이직했어요 — 이전 수입원은 어떻게 하나요?
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>삭제하지 말고 <strong>Active</strong> 토글을 꺼주세요. 비활성화하면 과거 월별 리포트가
-      그대로 유지됩니다 — Briven은 수입원 구성이 바뀌어도 과거 기록을 소급 수정하지 않습니다.</p>
+      <p>삭제하지 말고 <strong>Active</strong> 토글을 끄세요. 비활성화하면 과거 월별 리포트가 정확하게 유지됩니다 — Briven은 수입 설정이 바뀌어도 과거 기록을 고쳐 쓰지 않습니다.</p>
     </div>
   </div>
 
@@ -791,20 +800,17 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>무료 플랜에서는 최대 <strong>활성 구독 5개</strong>까지 가능합니다. 무제한 구독 추적은
-      향후 출시될 라이프타임 구매에 포함될 예정인 기능입니다.</p>
+      <p>무료 플랜에서는 <strong>활성 구독 3개</strong>까지입니다. Briven Lifetime을 구매하면 제한이 없어집니다.</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      구독료가 인상되면 어떻게 되나요?
+      구독 가격이 오르면 어떻게 되나요?
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>구독 수정 화면에서 금액을 올려 저장하면 Briven이 인상을 감지해 목록에
-      <strong>"was $X"</strong>로 표시하고 즉시 알림을 보내드립니다 — 가격 인상을 놓치지
-      않도록 해줍니다.</p>
+      <p>구독 편집 화면에서 금액을 올려 저장하세요. Briven이 이전 가격을 보관해 구독 목록에 <strong>"was $X"</strong>로 표시하고 알림을 보냅니다. 또한 각 구독 결제일 하루 전에 알려 드립니다.</p>
     </div>
   </div>
 
@@ -815,25 +821,31 @@
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      특정 날짜나 기간의 지출을 어떻게 확인하나요?
+      특정 날짜나 기간의 지출은 어떻게 보나요?
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>대시보드의 <strong>"This Month"</strong>를 탭해 Reports를 엽니다. 달력에서 날짜를
-      탭하면 하루, 드래그하면 그 구간이 선택되며 화면 전환 없이 총액과 카테고리 breakdown이
-      바로 갱신됩니다. 같은 날짜를 다시 탭하면 선택이 해제되고 월 전체 통계로 돌아갑니다.</p>
+      <p>대시보드의 <strong>This Month</strong> 카드를 눌러 리포트를 여세요. 달력에서 날짜를 누르면 그날, 드래그하면 그 기간이 선택되며 총액과 카테고리별 내역이 바로 바뀝니다. 같은 날짜를 다시 누르면 월 전체 보기로 돌아갑니다.</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      Reports의 카테고리 예산 바는 무엇인가요?
+      리포트의 카테고리 예산 바는 무엇인가요?
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>Categories 화면에서 카테고리에 월 예산을 설정하면, 월 전체를 보고 있을 때 Reports에
-      진행률 바가 표시됩니다 — 예산 이내면 브랜드 컬러, 초과하면 amber(주의) 색으로
-      바뀝니다.</p>
+      <p>카테고리에 월 예산을 설정하면, 월 전체를 볼 때 진행 바가 표시됩니다 — 바를 누르면 예산을 바로 바꿀 수 있습니다. 예산을 넘으면 주황색으로 바뀌고, 지출이 예산을 넘는 순간 알림을 보냅니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      주간·연간 리포트도 볼 수 있나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>주(Week)·연(Year) 보기, 12개월 추이 차트, 전체 카테고리 비교는 <strong>Briven Lifetime</strong> 기능입니다. 월간 보기, 지출 속도 예측, 요일별 패턴은 무료입니다.</p>
     </div>
   </div>
 
@@ -844,13 +856,21 @@
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      기기 간 동기화가 되나요?
+      여러 기기에서 동기화되나요?
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>네, 무료입니다. Briven은 Apple CloudKit(사용자 본인의 개인 iCloud 데이터베이스)을
-      사용해 iCloud에 로그인되어 있으면 자동으로 iPhone 간 데이터를 동기화합니다. 별도 계정이나
-      구독이 필요 없습니다.</p>
+      <p>네, 무료입니다. Briven은 Apple CloudKit(본인의 비공개 iCloud 데이터베이스)을 사용해 iCloud에 로그인된 iPhone 간에 데이터를 자동으로 동기화합니다. 계정이나 구독이 필요 없습니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      앱을 다시 설치했는데 데이터는 어디 있나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>iCloud에 로그인되어 있었다면 데이터가 본인의 비공개 iCloud에서 자동으로 돌아옵니다 — 첫 실행 후 잠시 기다려 주세요. iCloud를 쓰지 않았다면 데이터는 기기에만 저장되어 앱 삭제 시 함께 지워집니다.</p>
     </div>
   </div>
 
@@ -860,9 +880,7 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>아니요. Briven의 iCloud 동기화는 1인 전용입니다 — 사용자 본인의 여러 기기끼리만
-      동기화되며, 다른 사람의 계정과는 공유되지 않습니다. 실시간 공유/가족 동기화 기능은
-      제공하지 않으며, 각 예산은 개인 소유로 유지됩니다.</p>
+      <p>아니요. Briven의 iCloud 동기화는 1인용입니다 — 본인의 기기끼리만 동기화되며 다른 사람의 계정과는 공유되지 않습니다. 공유·가족 동기화 기능은 없으며, 모든 예산은 본인만 볼 수 있습니다.</p>
     </div>
   </div>
 
@@ -873,19 +891,17 @@
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      Face ID / Touch ID는 어떻게 켜나요?
+      Face ID / Touch ID 잠금은 어떻게 켜나요?
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p><strong>설정 → Security → App Lock</strong>에서 켤 수 있습니다 — 기본값은 꺼짐입니다.
-      Face ID/Touch ID가 실패하거나 설정되어 있지 않으면 기기 암호가 대체 인증으로
-      작동합니다.</p>
+      <p><strong>Settings → Security</strong>에서 <strong>Face ID</strong>(또는 Touch ID)를 켜세요 — 기본값은 꺼져 있습니다. Face ID나 Touch ID가 실패하거나 설정되지 않은 경우 기기 암호로 잠금을 해제할 수 있습니다.</p>
     </div>
   </div>
 
   <div class="cat-header">
     <div class="cat-icon" style="background:var(--amber-bg);">✨</div>
-    <h2>라이프타임 언락 (출시 예정)</h2>
+    <h2>Briven Lifetime</h2>
   </div>
 
   <div class="faq">
@@ -894,42 +910,52 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>네. 무제한 지출 기록, 수입 추적, 구독 추적(최대 5개), 카테고리, 결제 방식, iCloud
-      동기화, 월별 Reports까지 전부 광고 없이 무료입니다.</p>
+      <p>네. 지출 기록(무제한), 수입 기록, 구독 추적(3개까지), 카테고리, 결제 방식, 위젯, iCloud 동기화, 월간 리포트가 모두 무료이며 광고도 없습니다.</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      라이프타임 구매에는 무엇이 포함되나요?
+      Briven Lifetime에는 무엇이 포함되나요?
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>향후 업데이트에서 1회 결제(구독 아님)로 다음 기능이 잠금 해제됩니다.</p>
-      <ul>
-        <li><strong>저축 목표</strong> — 목표 금액 설정 및 진행률 추적</li>
-        <li><strong>구독 추적 무제한</strong> — 5개 제한 없음</li>
-        <li><strong>다년 트렌드 리포트</strong></li>
-        <li><strong>데이터 내보내기</strong> (PDF/CSV)</li>
-        <li><strong>다중 예산 프로필</strong> (예: 개인 + 부업)</li>
-      </ul>
-      <p>반복 결제 없이 한 번 결제하면 평생 소유합니다.</p>
+      <p>구독이 아닌 1회 구매로 다음 기능을 영구히 사용할 수 있습니다.</p><ul><li>저축 목표 무제한 — 입금 기록, 마감일 설정, 매달 모아야 할 금액 확인</li><li>구독 추적 무제한</li><li>리포트의 주·연 보기와 12개월 지출 추이 차트</li><li>이전 기간 대비 모든 카테고리 비교</li><li>지출을 CSV 또는 PDF로 내보내기</li></ul><p>한 번 결제로 평생 사용하세요.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      새 기기에서 구매를 복원하려면?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>Settings → Plan</strong>에서 <strong>Restore Purchases</strong>를 누르세요. 구매할 때 사용한 Apple ID로 로그인되어 있어야 합니다.</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      데이터는 어떻게 내보내나요?
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>Briven Lifetime 구매 후 <strong>Settings → Export Data</strong>에서 기간과 CSV 또는 PDF를 고른 뒤 Export를 누르고, 저장하거나 공유할 곳을 선택하세요. 내보내기에는 지출만 포함됩니다.</p>
     </div>
   </div>
 
   <div class="cat-header">
     <div class="cat-icon" style="background:var(--sky-bg);">🔐</div>
-    <h2>프라이버시 &amp; 데이터</h2>
+    <h2>개인정보와 데이터</h2>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      Briven은 계정이 필요한가요?
+      계정이 필요한가요?
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>아니요 — 가입, 로그인, 계정 자체가 없습니다. 통화만 선택하면 바로 사용할 수
-      있습니다.</p>
+      <p>아니요 — 가입, 로그인, 계정이 전혀 없습니다. 통화를 고르면 바로 사용할 수 있습니다.</p>
     </div>
   </div>
 
@@ -939,20 +965,17 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>전적으로 기기에 저장되며, iCloud에 로그인되어 있으면 선택적으로 사용자 본인의 개인
-      Apple iCloud 계정에도 저장됩니다. Briven은 백엔드 서버가 없고, 개발자는 사용자의 수입,
-      지출, 구독 내역에 접근할 수 없습니다. 자세한 내용은
-      <a href="../../privacy/briven/">개인정보 처리방침</a>을 참고해 주세요.</p>
+      <p>모두 기기에 저장되며, iCloud에 로그인한 경우 본인의 비공개 Apple iCloud에도 선택적으로 저장됩니다. Briven은 서버가 없으며 개발자는 사용자의 수입, 지출, 구독에 접근할 수 없습니다. 자세한 내용은 <a href="../../privacy/briven/">개인정보 처리방침</a>을 확인하세요.</p>
     </div>
   </div>
 
   <div class="contact-section">
-    <h2>추가 도움이 필요하신가요?</h2>
-    <p class="desc">찾는 답변이 없으신가요? 이메일로 문의해 주시면 답변드립니다.</p>
+    <h2>도움이 더 필요하신가요?</h2>
+    <p class="desc">찾으시는 답변이 없다면 이메일로 문의해 주세요. 답변드리겠습니다.</p>
     <a href="mailto:hoons.labs@gmail.com" class="contact-btn">
       📧 &nbsp;문의하기
     </a>
-    <p class="response-note">영업일 기준 5일 이내 답변드립니다.</p>
+    <p class="response-note">영업일 기준 5일 이내에 답변드립니다.</p>
   </div>
 
 </main>
@@ -971,46 +994,47 @@
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      Brivenを初めて設定するには？
+      最初の設定はどうすればいいですか？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>まず通貨を選択します — これが唯一必須のステップです。その後、収入源と支払い中の
-      サブスクリプションを任意で追加できます。どちらもスキップして、後からダッシュボードで
-      追加することも可能です。最後に、週次レビュー通知のための通知許可をリクエストします。</p>
+      <p>まず通貨を選びます — 必須なのはこの手順だけです。続けて、収入源と利用中のサブスクを任意で追加できます。どちらもスキップして、あとからダッシュボードでいつでも追加できます。最後に、週の振り返りのお知らせのため通知の許可をお願いします。</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      通貨は後から変更できますか？
+      対応している言語は？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>はい、<strong>設定 → 通貨</strong>から変更できます。これにより以降のすべての金額の
-      表示・入力方法が変わります。Brivenは為替換算を行わず、表示通貨を切り替えるだけです。</p>
+      <p>英語、日本語、繁体字中国語に対応しています。BrivenはiPhoneの言語設定に自動で合わせます。Brivenだけ別の言語で使いたい場合は、<strong>iOSの設定 → アプリ → Briven → 言語</strong>で変更できます。</p><p>標準のカテゴリは、最初に設定したときの言語で作成されます。名前はいつでも変更できます。</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      銀行明細やCSVをインポートできますか？
+      通貨はあとから変更できますか？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>いいえ。Brivenは意図的に完全手入力型の家計管理アプリです — 銀行連携、CSV/OFX
-      インポート、いかなる形のアカウント連携もありません。すべての収入源、サブスクリプション、
-      支出はご自身で入力します。</p>
-      <div class="highlight">
-        これは意図的なプライバシー設計です：銀行のログイン情報や取引履歴がお客様の管理下から
-        出ることはありません。
-      </div>
+      <p>はい。<strong>設定 → 通貨</strong>から変更できます。Brivenは為替換算を行わないため、これまでの記録はすべて同じ数値のまま新しい通貨で表示されます。通貨を間違えて選んだ場合にのみ変更することをおすすめします。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      CSVや銀行の明細の取り込みはできますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>いいえ。Brivenはあえて完全な手入力の家計簿にしています。銀行連携、CSV・OFXの取り込み、アカウント連携は一切ありません。収入源、サブスク、支出はすべてご自身で入力します。</p><div class="highlight">これはプライバシーを守るための意図的な選択です。銀行のログイン情報や取引履歴を他人に預ける必要はありません。</div>
     </div>
   </div>
 
   <div class="cat-header">
     <div class="cat-icon" style="background:var(--sky-bg);">🧾</div>
-    <h2>支出 &amp; カテゴリ</h2>
+    <h2>支出とカテゴリ</h2>
   </div>
 
   <div class="faq">
@@ -1019,111 +1043,102 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>ダッシュボードまたはTransactions画面の<strong>+</strong>ボタンをタップします。金額を
-      入力し、カテゴリを選択、任意で支払い方法とメモを追加して保存します。同じ画面から新しい
-      カテゴリや支払い方法もその場で作成できます。</p>
+      <p>ダッシュボードの<strong>支出を追加</strong>、または支出一覧の<strong>+</strong>をタップします。金額と任意のメモを入力してからカテゴリを選びます。最近使ったカテゴリはワンタップで選べ、同じメモで前回使ったカテゴリも提案されます。支払い方法は前回の選択を覚えています。新しいカテゴリや支払い方法も、その画面からすぐに作成できます。</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      サブカテゴリとは何ですか？
+      アプリを開かずに支出を追加できますか？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>デフォルトカテゴリのうちDining Out/Transport/Shoppingの3つには、それぞれ2つずつ
-      サブカテゴリが付属しています（例：Coffee &amp; Cafes、Fuel &amp; Gas）。最上位カテゴリには
-      独自のサブカテゴリを作成することもできます。チャートやレポートでは親カテゴリの金額に
-      すべてのサブカテゴリの支出が自動的に合算され、取引一覧からサブカテゴリ別の内訳を
-      ドリルダウンで確認できます。</p>
+      <p>はい。ホーム画面やロック画面に<strong>Briven</strong>のウィジェットを追加するか、コントロールセンターに<strong>支出を追加</strong>ボタンを追加してください（iOS 18以降）。タップするとBrivenが支出の入力画面で開きます。ウィジェットに金額は表示されません。アプリロックがオンの場合は、先にロックを解除します。</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      カテゴリを削除できますか？過去の支出はどうなりますか？
+      サブカテゴリとは？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>はい — デフォルトのカテゴリを含め、どのカテゴリも削除・編集できます。削除された
-      カテゴリを指していた過去の支出は自動的に<strong>「Uncategorized」</strong>にまとめられ、
-      カテゴリと一緒に削除されることはありません。</p>
+      <p>一部の標準カテゴリ（外食、交通費、買い物）には、サブカテゴリが2つずつあります（例：カフェ、ガソリン代）。どの親カテゴリにも自分でサブカテゴリを作れます。グラフやレポートでは、親カテゴリの合計にサブカテゴリの支出が自動で合算され、支出一覧からサブカテゴリごとの内訳を確認できます。</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      支払い方法管理とは何ですか？
+      カテゴリは削除できますか？過去の支出はどうなりますか？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>支出が現金か特定のカードかを記録できます。Brivenは初期状態で<strong>Cash</strong>を
-      1つ用意しており、<strong>設定 → Payment Methods</strong>からカードを好きなだけ追加でき
-      ます。ReportsとTransactionsでは支払い方法別の小計が表示されます。</p>
+      <p>はい。標準のものも含め、すべてのカテゴリを編集・削除できます。削除したカテゴリの過去の支出は自動的に<strong>「未分類」</strong>にまとめられ、カテゴリと一緒に削除されることはありません。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      支払い方法は何に使いますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>支出が現金か、どのカードかを記録できます。最初は<strong>現金</strong>だけが登録されており、<strong>設定 → 支払い方法</strong>からカードをいくつでも追加できます。レポートと支出一覧に、支払い方法ごとの小計が表示されます。</p>
     </div>
   </div>
 
   <div class="cat-header">
     <div class="cat-icon" style="background:var(--moss-bg);">💵</div>
-    <h2>収入 &amp; サブスクリプション</h2>
+    <h2>収入とサブスク</h2>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      複数の収入源を登録できますか？
+      収入源を複数登録するには？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>ダッシュボードの<strong>Income</strong>カードをタップして収入源を管理します。本業＋
-      副業のように好きなだけ登録でき、それぞれに週給・月給・年俸・不定期のいずれかの頻度を
-      設定できます。</p>
+      <p>ダッシュボードの<strong>今月の収入</strong>カードをタップして、収入源を管理します。本業と副業など、いくつでも登録でき、それぞれに周期（毎週・毎月・毎年・不定期）と任意の入金日リマインダーを設定できます。</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      「不定期（Irregular）」収入とは何ですか？
+      「不定期」の収入とは？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>フリーランス収入のように金額や頻度が一定でない場合は<strong>Irregular</strong>を
-      選択してください。固定金額を設定する代わりに、入金があるたびに個別に記録します。</p>
+      <p>フリーランスの報酬のように、時期や金額が決まっていない収入には<strong>不定期</strong>を選びます。固定の金額の代わりに、入金があるたびに1件ずつ記録します。</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      転職しました — 以前の収入源はどうすればいいですか？
+      転職しました。前の収入源はどうすればいいですか？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>削除せずに<strong>Active</strong>トグルをオフにしてください。無効化すれば過去の月次
-      レポートはそのまま維持されます — Brivenは収入設定が変わっても過去の記録を遡って
-      書き換えません。</p>
+      <p>削除せずに<strong>有効</strong>をオフにしてください。無効にすると過去の月のレポートが正確なまま保たれます。Brivenは収入の設定が変わっても、過去の記録を書き換えません。</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      無料でいくつまでサブスクリプションを追跡できますか？
+      無料でサブスクはいくつまで記録できますか？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>無料プランでは最大<strong>アクティブなサブスクリプション5件</strong>まで追跡できます。
-      無制限のサブスクリプション追跡は、今後提供予定のライフタイム購入に含まれる機能の
-      1つです。</p>
+      <p>無料プランでは<strong>利用中のサブスク3件</strong>まで記録できます。「Briven 買い切り版」で制限がなくなります。</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      サブスクリプションの価格が上がった場合はどうなりますか？
+      サブスクが値上げしたらどうなりますか？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>サブスクリプションの編集画面で金額を上げて保存すると、Brivenが値上げを検知し
-      一覧に<strong>「was $X」</strong>と表示、即座に通知を送ります — 値上げを見逃すことは
-      ありません。</p>
+      <p>サブスクの編集画面で金額を上げて保存してください。Brivenが以前の価格を残し、サブスク一覧に<strong>「旧価格 ¥X」</strong>と表示して、お知らせを送ります。また、各サブスクの請求日の前日にもお知らせします。</p>
     </div>
   </div>
 
@@ -1134,26 +1149,31 @@
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      特定の日や期間の支出を確認するには？
+      特定の日や期間の支出を見るには？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>ダッシュボードの<strong>「This Month」</strong>をタップしてReportsを開きます。カレンダー
-      で日付をタップすると1日分、ドラッグすると期間が選択され、画面遷移なしに合計額と
-      カテゴリ別内訳がその場で更新されます。同じ日付を再度タップすると選択が解除され、月全体の
-      統計に戻ります。</p>
+      <p>ダッシュボードの<strong>今月</strong>カードをタップしてレポートを開きます。カレンダーの日付をタップするとその日、ドラッグするとその期間が選ばれ、合計とカテゴリ別の内訳がすぐに切り替わります。同じ日付をもう一度タップすると、月全体の表示に戻ります。</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      Reportsのカテゴリ予算バーとは何ですか？
+      レポートのカテゴリ予算バーとは？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>Categories画面でカテゴリに月間予算を設定すると、月全体を表示しているときにReportsで
-      進捗バーが表示されます — 予算内であればブランドカラー、超過するとamber（注意）色に
-      変わります。</p>
+      <p>カテゴリに月の予算を設定すると、月全体を表示しているときに進み具合のバーが表示されます。バーをタップすると予算をすぐに変更できます。予算を超えるとオレンジ色に変わり、支出で予算を超えた瞬間にお知らせします。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      週別・年別のレポートは見られますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>週・年の表示、12か月の推移グラフ、すべてのカテゴリの比較は<strong>「Briven 買い切り版」</strong>の機能です。月の表示、支出ペースの予測、曜日別の傾向は無料です。</p>
     </div>
   </div>
 
@@ -1164,13 +1184,21 @@
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      デバイス間で同期されますか？
+      複数のデバイスで同期できますか？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>はい、無料です。Brivenは Apple の CloudKit（お客様ご自身のプライベート iCloud
-      データベース）を使用し、iCloudにサインインしていれば自動的にiPhone間でデータを同期します。
-      アカウントやサブスクリプションは不要です。</p>
+      <p>はい、無料です。BrivenはAppleのCloudKit（ご自身のプライベートなiCloudデータベース）を使い、iCloudにサインインしているiPhone間でデータを自動で同期します。アカウントやサブスクは不要です。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      アプリを入れ直したらデータはどうなりますか？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>iCloudにサインインしていた場合、データはご自身のプライベートなiCloudから自動で戻ります。初回起動後、少しお待ちください。iCloudを使っていなかった場合、データはデバイスにのみ保存されているため、アプリの削除と同時に消えます。</p>
     </div>
   </div>
 
@@ -1180,9 +1208,7 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>いいえ。Brivenの iCloud同期は単一ユーザー専用です — お客様ご自身の複数デバイス間のみで
-      同期され、他の人のアカウントとは共有されません。リアルタイム共有・家族間同期機能はなく、
-      各予算はお客様個人のものとして保たれます。</p>
+      <p>いいえ。BrivenのiCloud同期は一人用です。ご自身のデバイス同士でのみ同期し、他の人のアカウントとは共有されません。共有やファミリー同期の機能はなく、予算はすべてご自身だけのものです。</p>
     </div>
   </div>
 
@@ -1193,19 +1219,17 @@
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      Face ID / Touch IDを有効にするには？
+      Face ID／Touch IDでロックするには？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p><strong>設定 → Security → App Lock</strong>でオンにできます — デフォルトはオフです。
-      Face ID/Touch IDが失敗したり設定されていない場合は、端末のパスコードが代替認証として
-      機能します。</p>
+      <p><strong>設定 → セキュリティ</strong>で<strong>Face ID</strong>（またはTouch ID）をオンにしてください（初期設定はオフ）。Face IDやTouch IDに失敗した場合や設定されていない場合は、デバイスのパスコードで解除できます。</p>
     </div>
   </div>
 
   <div class="cat-header">
     <div class="cat-icon" style="background:var(--amber-bg);">✨</div>
-    <h2>ライフタイムアンロック（近日公開）</h2>
+    <h2>Briven 買い切り版</h2>
   </div>
 
   <div class="faq">
@@ -1214,56 +1238,62 @@
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>はい。支出記録、収入追跡、サブスクリプション追跡（最大5件）、カテゴリ、支払い方法、
-      iCloud同期、月次Reportsまで、すべて広告なしで無料でご利用いただけます。</p>
+      <p>はい。支出の記録（無制限）、収入の記録、サブスクの記録（3件まで）、カテゴリ、支払い方法、ウィジェット、iCloud同期、月間レポートはすべて無料で、広告もありません。</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      ライフタイム購入には何が含まれますか？
+      「Briven 買い切り版」には何が含まれますか？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>今後のアップデートで、買い切り（サブスクリプションではない）1回の購入で以下が
-      アンロックされます。</p>
-      <ul>
-        <li><strong>貯蓄目標</strong> — 目標金額の設定と進捗の追跡</li>
-        <li><strong>サブスクリプション追跡無制限</strong> — 5件の制限なし</li>
-        <li><strong>複数年トレンドレポート</strong></li>
-        <li><strong>データエクスポート</strong>（PDF/CSV）</li>
-        <li><strong>複数予算プロフィール</strong>（例：個人＋副業）</li>
-      </ul>
-      <p>継続課金はなく、一度購入すれば永久に使えます。</p>
+      <p>サブスクではなく、一度の購入で次の機能がずっと使えます。</p><ul><li>貯金目標（無制限）：入金を記録し、期限を決めて、毎月いくら貯めればよいかを確認</li><li>サブスクの記録が無制限に</li><li>レポートの週別・年別表示と12か月の支出推移グラフ</li><li>前の期間と比べた、すべてのカテゴリの増減</li><li>支出をCSVまたはPDFで書き出し</li></ul><p>一度の支払いで、ずっとお使いいただけます。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      新しいデバイスで購入を復元するには？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p><strong>設定 → プラン</strong>で<strong>購入を復元</strong>をタップしてください。購入時と同じApple IDでサインインしている必要があります。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      データを書き出すには？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>「Briven 買い切り版」の購入後、<strong>設定 → データを書き出す</strong>で期間とCSVまたはPDFを選び、書き出してから保存先や共有先を選びます。書き出せるのは支出のみです。</p>
     </div>
   </div>
 
   <div class="cat-header">
     <div class="cat-icon" style="background:var(--sky-bg);">🔐</div>
-    <h2>プライバシー &amp; データ</h2>
+    <h2>プライバシーとデータ</h2>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      Brivenにはアカウントが必要ですか？
+      アカウントは必要ですか？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>いいえ — 登録、ログイン、アカウントの類は一切ありません。通貨を選択すればすぐに
-      使い始められます。</p>
+      <p>いいえ。登録、ログイン、アカウントは一切ありません。通貨を選べばすぐに使えます。</p>
     </div>
   </div>
 
   <div class="faq">
     <button class="faq-q" onclick="toggle(this)">
-      家計データはどこに保存されますか？
+      お金に関するデータはどこに保存されますか？
       <span class="chevron">▼</span>
     </button>
     <div class="faq-a">
-      <p>すべて端末に保存され、iCloudにサインインしている場合は任意でお客様ご自身のプライベート
-      Apple iCloudアカウントにも保存されます。Brivenにはバックエンドサーバーがなく、開発者が
-      お客様の収入・支出・サブスクリプションにアクセスすることはできません。詳細は
-      <a href="../../privacy/briven/">プライバシーポリシー</a>をご覧ください。</p>
+      <p>すべてデバイスに保存され、iCloudにサインインしている場合はご自身のプライベートなApple iCloudにも保存されます。Brivenにはサーバーがなく、開発者がお客様の収入・支出・サブスクにアクセスすることはできません。詳しくは<a href="../../privacy/briven/">プライバシーポリシー</a>をご覧ください。</p>
     </div>
   </div>
 
@@ -1279,6 +1309,334 @@
 </main>
 </div><!-- /content-ja -->
 
+<!-- ══════════════════════════════════════════════
+     TRADITIONAL CHINESE VERSION
+══════════════════════════════════════════════ -->
+<div lang-block="zh-Hant" id="content-zh-Hant">
+<main class="container">
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--moss-bg);">🚀</div>
+    <h2>開始使用</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      第一次使用 Briven 要怎麼設定？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>先選擇幣別——這是唯一必要的步驟。接著可以選擇新增收入來源與正在使用的訂閱，兩者都可以先略過，之後隨時從總覽新增。最後，Briven 會請求通知權限，以便提醒你每週回顧。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Briven 支援哪些語言？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>支援英文、日文與繁體中文。Briven 會自動依照 iPhone 的語言設定顯示；若只想讓 Briven 使用其他語言，請前往 <strong>iOS 設定 → App → Briven → 語言</strong>。</p><p>預設分類會以你第一次設定時的語言建立，之後隨時可以改名。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      之後可以變更幣別嗎？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>可以，請前往<strong>設定 → 幣別</strong>。Briven 不會換算匯率：現有的所有紀錄都會以原本的數字直接顯示為新幣別，因此建議只在選錯幣別時才變更。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      可以匯入 CSV 或銀行對帳單嗎？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>不行。Briven 刻意設計成完全手動記帳——不綁定銀行、不匯入 CSV 或 OFX，也沒有任何帳號連結。所有收入來源、訂閱與支出都由你自己輸入。</p><div class="highlight">這是刻意的隱私選擇：你的銀行登入資訊與交易紀錄，永遠不必交給別人。</div>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--sky-bg);">🧾</div>
+    <h2>支出與分類</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      要怎麼記錄支出？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>點選總覽的<strong>新增支出</strong>，或支出頁面的 <strong>+</strong>。輸入金額與選填的備註，再選擇分類——最近用過的分類一點即選，輸入相同備註時也會建議上次用的分類。付款方式會記住你上次的選擇。你也可以在同一個畫面直接建立新的分類或付款方式。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      可以不打開 App 就新增支出嗎？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>可以。把 <strong>Briven</strong> 小工具加到主畫面或鎖定畫面，或把<strong>新增支出</strong>按鈕加到控制中心（iOS 18 以上）。點一下就會直接開啟 Briven 的新增支出畫面。小工具不會顯示任何金額；若已開啟 App 鎖定，會先要求解鎖。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      什麼是子分類？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>部分預設分類（外食、交通、購物）各有兩個子分類（例如：咖啡、加油）。你也可以在任何上層分類下自行建立子分類。在圖表與報表中，上層分類的總額會自動加總所有子分類的支出；你可以在支出明細中查看各子分類的細項。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      可以刪除分類嗎？過去的支出會怎樣？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>可以——包括預設分類在內，所有分類都能編輯或刪除。被刪除分類下的過去支出會自動歸到<strong>「未分類」</strong>，不會跟著分類一起刪除。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      付款方式有什麼用？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>可以記錄支出是用現金還是哪張卡片。一開始只有<strong>現金</strong>，你可以在<strong>設定 → 付款方式</strong>新增任意數量的卡片。報表與支出頁面會顯示各付款方式的小計。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--moss-bg);">💵</div>
+    <h2>收入與訂閱</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      要怎麼新增多個收入來源？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>點選總覽的<strong>本月收入</strong>卡片來管理收入來源。你可以登錄任意數量的收入，例如正職加上接案，各自設定週期（每週、每月、每年或不固定），並可選擇開啟入帳日提醒。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      「不固定」收入是什麼意思？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>像接案收入這種時間或金額不固定的收入，請選擇<strong>不固定</strong>。不需設定固定金額，而是在每次入帳時逐筆記錄。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      我換工作了，舊的收入來源該怎麼辦？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>請關閉它的<strong>啟用</strong>開關，而不是刪除。停用後，過去的每月報表會保持正確——即使收入設定改變，Briven 也不會改寫過去的紀錄。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      免費可以追蹤幾項訂閱？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>免費方案最多可追蹤<strong>3 項使用中的訂閱</strong>。購買「Briven 終身版」即可解除限制。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      訂閱漲價時會怎樣？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>在訂閱的編輯畫面調高金額並儲存。Briven 會保留舊價格，在訂閱清單顯示<strong>「原價 $X」</strong>，並傳送通知給你。此外，每項訂閱扣款的前一天也會提醒你。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--amber-bg);">📊</div>
+    <h2>報表</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      要怎麼查看特定日期或期間的支出？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>點選總覽的<strong>本月</strong>卡片開啟報表。在月曆上點選日期即可查看單日，拖曳則可選取一段期間——總額與各分類明細會立即更新。再點一次同一個日期，就會回到整月檢視。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      報表中的分類預算條是什麼？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>為分類設定每月預算後，在檢視整月時會顯示進度條——點一下進度條即可修改預算。超過預算時會變成橘色，且支出一超過預算就會立即提醒你。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      可以看每週或每年的報表嗎？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>週與年檢視、12 個月趨勢圖，以及所有分類的完整比較，是<strong>「Briven 終身版」</strong>的功能。月檢視、支出速度預估與星期別支出分析則為免費功能。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--sky-bg);">☁️</div>
+    <h2>iCloud 同步</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Briven 可以在多台裝置之間同步嗎？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>可以，而且免費。Briven 使用 Apple 的 CloudKit（你自己的私人 iCloud 資料庫），在登入 iCloud 的 iPhone 之間自動同步資料。不需要帳號或訂閱。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      重新安裝 Briven 後，資料去哪了？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>若你之前已登入 iCloud，資料會從你的私人 iCloud 自動回復——第一次開啟後請稍候片刻。若沒有使用 iCloud，資料只儲存在裝置上，刪除 App 時會一併移除。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      資料會和伴侶等其他人共享嗎？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>不會。Briven 的 iCloud 同步僅供個人使用——只在你自己的裝置之間同步，不會與其他人的帳號共享。沒有共享或家庭同步功能，每份預算都只屬於你。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--moss-bg);">🔒</div>
+    <h2>App 鎖定</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      要怎麼開啟 Face ID／Touch ID 鎖定？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>前往<strong>設定 → 安全性</strong>，開啟 <strong>Face ID</strong>（或 Touch ID）——預設為關閉。若 Face ID 或 Touch ID 驗證失敗或尚未設定，可以改用裝置密碼解鎖。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--amber-bg);">✨</div>
+    <h2>Briven 終身版</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      Briven 是免費的嗎？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>是的。無限記錄支出、收入記錄、訂閱追蹤（最多 3 項）、分類、付款方式、小工具、iCloud 同步與每月報表全部免費，而且沒有廣告。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      「Briven 終身版」包含哪些功能？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>一次購買——永遠不是訂閱制——即可永久解鎖：</p><ul><li>無限儲蓄目標：記錄存入金額、設定期限，並查看每月需要存多少</li><li>無限追蹤訂閱</li><li>報表的週與年檢視，以及 12 個月支出趨勢圖</li><li>與上一期相比，每個分類的完整增減比較</li><li>將支出匯出為 CSV 或 PDF</li></ul><p>一次付費，永久使用。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      換新裝置後要怎麼回復購買？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>前往<strong>設定 → 方案</strong>，點選<strong>回復購買項目</strong>。請使用購買時的同一個 Apple ID。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      要怎麼匯出資料？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>購買「Briven 終身版」後，前往<strong>設定 → 匯出資料</strong>，選擇期間與 CSV 或 PDF，點選匯出後再選擇要儲存或分享的位置。匯出內容僅包含支出。</p>
+    </div>
+  </div>
+
+  <div class="cat-header">
+    <div class="cat-icon" style="background:var(--sky-bg);">🔐</div>
+    <h2>隱私與資料</h2>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      需要註冊帳號嗎？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>不需要——沒有註冊、登入或任何帳號。選好幣別就能立即使用。</p>
+    </div>
+  </div>
+
+  <div class="faq">
+    <button class="faq-q" onclick="toggle(this)">
+      我的財務資料儲存在哪裡？
+      <span class="chevron">▼</span>
+    </button>
+    <div class="faq-a">
+      <p>全部儲存在你的裝置上；若已登入 iCloud，也會儲存在你自己的私人 Apple iCloud 中。Briven 沒有後端伺服器，開發者無法存取你的收入、支出或訂閱。詳情請參閱<a href="../../privacy/briven/">隱私權政策</a>。</p>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <h2>還需要協助嗎？</h2>
+    <p class="desc">找不到你要的答案嗎？歡迎寄電子郵件給我們，我們會盡快回覆。</p>
+    <a href="mailto:hoons.labs@gmail.com" class="contact-btn">
+      📧 &nbsp;聯絡我們
+    </a>
+    <p class="response-note">我們會在 5 個工作天內回覆。</p>
+  </div>
+
+</main>
+</div><!-- /content-zh-Hant -->
+
 <footer class="site-footer">
   <p>© 2026 Briven. All rights reserved. &nbsp;·&nbsp;
   <a href="../../privacy/briven/">Privacy Policy</a> &nbsp;·&nbsp;
@@ -1288,30 +1646,41 @@
 
 <script>
   function toggle(btn) {
-    const faq = btn.closest('.faq');
-    faq.classList.toggle('open');
+    btn.closest('.faq').classList.toggle('open');
   }
+
+  const LANGS = ['en','ko','ja','zh-Hant'];
 
   function setLang(lang) {
     document.querySelectorAll('[lang-block]').forEach(el => {
       el.classList.toggle('visible', el.id.endsWith('-' + lang));
     });
-    ['en','ko','ja'].forEach(l => {
+    LANGS.forEach(l => {
       document.getElementById('btn-' + l).classList.toggle('active', l === lang);
     });
     document.documentElement.lang = lang;
-    localStorage.setItem('briven-lang', lang);
+    try { localStorage.setItem('briven-lang', lang); } catch (e) {}
+  }
+
+  // 브라우저(=앱에서 열면 기기) 언어 → 지원 언어로. 대만·홍콩·마카오 중국어는 번체.
+  function detectLang() {
+    for (const raw of (navigator.languages || [navigator.language || 'en'])) {
+      const l = raw.toLowerCase();
+      if (l.startsWith('ja')) return 'ja';
+      if (l.startsWith('ko')) return 'ko';
+      if (l.startsWith('zh') && (l.includes('hant') || l.endsWith('-tw') || l.endsWith('-hk') || l.endsWith('-mo'))) return 'zh-Hant';
+      if (l.startsWith('en')) return 'en';
+    }
+    return 'en';
   }
 
   (function () {
-    const params  = new URLSearchParams(window.location.search);
-    const urlLang = params.get('lang');
-    if (['en','ko','ja'].includes(urlLang)) { setLang(urlLang); return; }
-
-    const saved = localStorage.getItem('briven-lang');
-    if (['en','ko','ja'].includes(saved)) { setLang(saved); return; }
-
-    setLang('en');
+    const urlLang = new URLSearchParams(window.location.search).get('lang');
+    if (LANGS.includes(urlLang)) { setLang(urlLang); return; }
+    let saved = null;
+    try { saved = localStorage.getItem('briven-lang'); } catch (e) {}
+    if (LANGS.includes(saved)) { setLang(saved); return; }
+    setLang(detectLang());
   })();
 </script>
 
